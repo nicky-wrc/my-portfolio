@@ -1,18 +1,18 @@
 export const skills = [
   {
-    category: "Languages",
-    items: ["JavaScript (ES6+)", "TypeScript", "Python", "Dart", "SQL"]
+    category: "Programming Skills",
+    items: ["JavaScript", "TypeScript", "Python", "PHP", "SQL" , "HTML" , "CSS" , "C" , "Java" , "Kotlin"]
   },
   {
-    category: "Frontend & Mobile",
-    items: ["React", "Next.js", "Tailwind CSS", "Flutter", "HTML/CSS"]
+    category: "Frameworks",
+    items: ["React", "Angular", "Vue.js", "Laravel", "Spring Boot", "Express", "Kotlin Multiplatform Mobile", "PyTorch",]
   },
   {
-    category: "Backend & Database",
-    items: ["Node.js", "Express", "PostgreSQL", "MongoDB", "Firebase"]
+    category: "Database",
+    items: ["MySQL", "PostgreSQL", "Firebase"]
   },
   {
-    category: "Tools & Others",
-    items: ["Git & GitHub", "VS Code", "Postman", "Figma", "System Analysis"]
+    category: "Tools",
+    items: ["Git & GitHub", "VS Code", "Postman", "Figma", "Canva", "Docker"]
   }
 ];

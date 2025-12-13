@@ -13,7 +13,7 @@ export default function Home() {
       {/* Navbar */}
       <nav className="fixed top-0 w-full p-6 flex justify-between items-center backdrop-blur-md z-50 border-b border-white/5">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 text-transparent bg-clip-text">
-          Portfolio By Worachat Paranya
+          WorachatPortfolio
         </h1>
         <ul className="hidden md:flex space-x-8 font-medium">
           <li className="hover:text-teal-400 cursor-pointer transition">About Me</li>
