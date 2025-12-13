@@ -57,31 +57,31 @@ export default function Footer() {
       )}
 
       {/* Footer */}
-      <footer className="bg-slate-900/80 backdrop-blur-xl border-t border-slate-700/50 py-12 px-6">
+      <footer className="bg-slate-900/80 dark:bg-slate-900/80 light:bg-white/80 backdrop-blur-xl border-t border-slate-700/50 dark:border-slate-700/50 light:border-slate-200/50 py-12 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Portfolio Name */}
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text mb-6">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 dark:from-cyan-400 dark:to-blue-400 light:from-sky-600 light:to-blue-600 text-transparent bg-clip-text mb-6">
               WorachatPortfolio
             </h3>
           </div>
 
           {/* Contact Information */}
           <div className="text-center mb-8 space-y-3">
-            <p className="text-slate-300 text-lg">
-              <span className="text-slate-400">Email:</span>{' '}
+            <p className="text-slate-300 dark:text-slate-300 light:text-slate-900 text-lg font-medium">
+              <span className="text-slate-400 dark:text-slate-400 light:text-slate-800 font-semibold">Email:</span>{' '}
               <a 
                 href="mailto:nick.worachatz@gmail.com" 
-                className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                className="text-cyan-400 hover:text-cyan-300 dark:text-cyan-400 dark:hover:text-cyan-300 light:text-sky-700 light:hover:text-sky-800 transition-colors font-bold"
               >
                 nick.worachatz@gmail.com
               </a>
             </p>
-            <p className="text-slate-300 text-lg">
-              <span className="text-slate-400">Tel:</span>{' '}
+            <p className="text-slate-300 dark:text-slate-300 light:text-slate-900 text-lg font-medium">
+              <span className="text-slate-400 dark:text-slate-400 light:text-slate-800 font-semibold">Tel:</span>{' '}
               <a 
                 href="tel:0828814470" 
-                className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                className="text-cyan-400 hover:text-cyan-300 dark:text-cyan-400 dark:hover:text-cyan-300 light:text-sky-700 light:hover:text-sky-800 transition-colors font-bold"
               >
                 082-8814470
               </a>
@@ -105,9 +105,9 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-center border-t border-slate-700/50 pt-6">
-            <p className="text-slate-400 text-sm">
-              © 2025 Designed & Built by <span className="text-cyan-400 font-semibold">Worachat Paranya</span>
+          <div className="text-center border-t border-slate-700/50 dark:border-slate-700/50 light:border-slate-400/50 pt-6">
+            <p className="text-slate-400 dark:text-slate-400 light:text-slate-800 text-sm font-medium">
+              © 2025 Designed & Built by <span className="text-cyan-400 dark:text-cyan-400 light:text-sky-700 font-bold">Worachat Paranya</span>
             </p>
           </div>
         </div>

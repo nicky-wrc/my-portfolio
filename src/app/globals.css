@@ -23,7 +23,8 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+/* Default Theme (Original) */
+body.default-theme {
   background: #0a0e27;
   background-image: 
     radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
@@ -32,24 +33,77 @@ body {
     radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
   background-attachment: fixed;
   color: #f1f5f9;
+}
+
+/* Dark Theme */
+body.dark {
+  background: #0a0a0a;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #f1f5f9;
+}
+
+/* Light Theme */
+body.light {
+  background: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(6, 182, 212, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #1e293b;
+}
+
+body {
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.7;
   letter-spacing: 0.01em;
+  transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+}
+
+/* Default theme should be applied by default */
+body:not(.dark):not(.light) {
+  background: #0a0e27;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #f1f5f9;
 }
 
 /* Modern Typography */
-h1, h2, h3, h4, h5, h6 {
+.default-theme h1, .default-theme h2, .default-theme h3, .default-theme h4, .default-theme h5, .default-theme h6,
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #ffffff;
 }
 
-p {
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.default-theme p, .dark p {
   line-height: 1.8;
   color: #cbd5e1;
+}
+
+.light p {
+  line-height: 1.8;
+  color: #475569;
 }
 
 /* Custom scrollbar - Modern Design */
@@ -57,18 +111,36 @@ p {
   width: 12px;
 }
 
-::-webkit-scrollbar-track {
+.default-theme ::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track {
   background: #1e293b;
   border-left: 1px solid #334155;
 }
 
-::-webkit-scrollbar-thumb {
+.light ::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-left: 1px solid #cbd5e1;
+}
+
+.default-theme ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #06b6d4 0%, #3b82f6 100%);
   border-radius: 6px;
   border: 2px solid #1e293b;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #06b6d4 0%, #3b82f6 100%);
+  border-radius: 6px;
+  border: 2px solid #e2e8f0;
+}
+
+.default-theme ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0891b2 0%, #2563eb 100%);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #0891b2 0%, #2563eb 100%);
 }
 
@@ -341,4 +413,60 @@ html {
 
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
+}
+
+/* Theme-specific styles */
+.light .bg-slate-900,
+.light .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-slate-800\/60 {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+}
+
+.light .text-slate-100,
+.light .text-slate-200,
+.light .text-slate-300 {
+  color: #1e293b !important;
+}
+
+.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+.light .border-slate-700,
+.light .border-slate-700\/50 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .bg-slate-700 {
+  background-color: #e2e8f0 !important;
+}
+
+.light .bg-slate-700\/50 {
+  background-color: rgba(226, 232, 240, 0.5) !important;
+}
+
+.light .text-white {
+  color: #0f172a !important;
+}
+
+.light .backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Navigation bar for light mode */
+.light nav {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light nav.scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
 }

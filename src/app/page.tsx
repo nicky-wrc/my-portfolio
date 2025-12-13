@@ -29,7 +29,7 @@ export default function Home() {
   const skills = ['Python', 'Java', 'Node.js', 'Spring Boot', 'MySQL'];
   
   return (
-    <main className="min-h-screen text-slate-100 relative overflow-hidden">
+    <main className="min-h-screen text-slate-100 dark:text-slate-100 light:text-slate-800 relative overflow-hidden">
       <GridBackground />
       <ProgressBar />
       <Navigation />
@@ -193,7 +193,7 @@ export default function Home() {
                       รวมถึงการพัฒนาซอฟต์แวร์ที่เน้นผู้ใช้เป็นศูนย์กลาง
                     </p>
                     <p className="group-hover:text-slate-200 transition-colors">
-                      ตอนนี้ผมกำลังมองหาตำแหน่งฝึกงานในตำแหน่ง Developer เพื่อพัฒนาทักษะและเรียนรู้จากทีมงานที่มีประสบการณ์ 
+                      ตอนนี้ผมกำลังมองหาตำแหน่งฝึกงานในตำแหน่ง Backend Developer เพื่อพัฒนาทักษะและเรียนรู้จากทีมงานที่มีประสบการณ์ 
                       และพร้อมที่จะมีส่วนร่วมในโปรเจกต์ที่น่าสนใจ
                     </p>
                   </div>
@@ -429,7 +429,7 @@ export default function Home() {
                           <div>
                             <p className="text-sm text-slate-400 mb-1 group-hover/item:text-slate-300 transition-colors">Facebook</p>
                             <p className="text-slate-200 group-hover/item:text-cyan-400 transition-colors font-medium">
-                              nick.worachatz
+                              Nick Worachat Paranya
                             </p>
                           </div>
                         </a>

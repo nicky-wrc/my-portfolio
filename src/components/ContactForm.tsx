@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import Confetti from './Confetti';
 
 export default function ContactForm() {
@@ -26,8 +27,30 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
+    try {
+      // EmailJS configuration
+      // คุณต้องไปตั้งค่าที่ https://www.emailjs.com/ และสร้าง Service, Template
+      // แล้วเพิ่ม Public Key, Service ID, และ Template ID ใน environment variables
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+      // Initialize EmailJS
+      if (publicKey === 'YOUR_PUBLIC_KEY' || !publicKey) {
+        throw new Error('EmailJS not configured. Please check EMAILJS_SETUP.md for setup instructions.');
+      }
+
+      emailjs.init(publicKey);
+
+      // Send email
+      await emailjs.send(serviceId, templateId, {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'nick.worachatz@gmail.com',
+      });
+
       setIsSubmitting(false);
       setSubmitStatus('success');
       setShowConfetti(true);
@@ -42,7 +65,16 @@ export default function ContactForm() {
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    }
   };
 
   return (
@@ -124,7 +156,11 @@ export default function ContactForm() {
 
           {submitStatus === 'error' && (
             <div className="p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400">
-              ✗ Something went wrong. Please try again.
+              ✗ Something went wrong. Please try again later.
+              <br />
+              <span className="text-sm text-red-300/80 mt-1 block">
+                If this persists, please check that EmailJS is properly configured.
+              </span>
             </div>
           )}
 
