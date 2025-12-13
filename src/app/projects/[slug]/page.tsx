@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from "next/link";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { projects } from "../../../data/projects";
 import { notFound } from "next/navigation";
 
@@ -16,10 +18,12 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
   }
 
   return (
-    <main className="min-h-screen bg-slate-900 text-slate-200 font-sans py-24 px-6">
-      <div className="max-w-4xl mx-auto">
+    <main className="min-h-screen bg-slate-900 text-slate-200 font-sans">
+      <Navigation />
+      <div className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
         
-        <Link href="/" className="text-teal-400 hover:text-teal-300 mb-8 inline-flex items-center gap-2 transition">
+        <Link href="/projects" className="text-teal-400 hover:text-teal-300 mb-8 inline-flex items-center gap-2 transition">
           <span>←</span> Back to Projects
         </Link>
 
@@ -37,7 +41,18 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
         </div>
 
         <div className="w-full h-64 md:h-96 bg-slate-800 rounded-xl mb-12 flex items-center justify-center border border-slate-700 overflow-hidden shadow-2xl">
-            <span className="text-slate-500 text-lg">Project Screenshot / Demo Video</span>
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const parent = e.currentTarget.parentElement;
+                if (parent) {
+                  parent.innerHTML = '<span class="text-slate-500 text-lg">Project Screenshot / Demo Video</span>';
+                }
+              }}
+            />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -70,7 +85,11 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
                 </div>
             </div>
         </div>
+        </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
