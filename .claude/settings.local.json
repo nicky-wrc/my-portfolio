@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(ls -la \"D:\\portfolio\\my-portfolio\\src\"\" 2>/dev/null || echo \"src not found\"; ls -la \"D:portfoliomy-portfolio\"\")",
+      "Bash(npm run build:*)",
+      "Bash(grep:*)",
+      "Bash(npm run lint:*)"
+    ]
+  }
+}

@@ -1,7 +1,17 @@
+import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import ProjectCard from '@/components/ProjectCard';
 import Footer from '@/components/Footer';
 import { projects } from '@/data/projects';
+
+export const metadata: Metadata = {
+  title: 'Projects | Worachat Paranya - Developer Portfolio',
+  description: 'Explore projects by Worachat Paranya including web applications, mobile apps, AI/ML projects, and backend systems.',
+  openGraph: {
+    title: 'Projects | Worachat Paranya',
+    description: 'Web applications, mobile apps, and AI/ML projects.',
+  },
+};
 
 export default function ProjectsPage() {
   // จัดกลุ่มโปรเจกต์ตาม category
@@ -16,7 +26,7 @@ export default function ProjectsPage() {
   const categories = Object.keys(projectsByCategory);
 
   return (
-    <main className="min-h-screen text-slate-100">
+    <main id="main-content" className="min-h-screen text-slate-100">
       <Navigation />
       
       {/* Hero Section */}

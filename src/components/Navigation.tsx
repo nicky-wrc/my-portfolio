@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Navigation() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -66,6 +67,15 @@ export default function Navigation() {
     if (href.startsWith('/#')) {
       e.preventDefault();
       const hash = href.replace('/#', '');
+      
+      // If we're not on the home page, navigate to home first
+      if (pathname !== '/') {
+        // Navigate to home page with hash - window.location.href will auto-scroll
+        window.location.href = `/#${hash}`;
+        return;
+      }
+      
+      // If we're on the home page, scroll to the section
       const element = document.getElementById(hash);
       if (element) {
         const offset = 80; // Navigation height
@@ -80,6 +90,9 @@ export default function Navigation() {
         // Update URL without triggering scroll
         window.history.pushState(null, '', `#${hash}`);
         setActiveSection(hash);
+      } else {
+        // If element not found, navigate to home with hash
+        window.location.href = `/#${hash}`;
       }
     }
   };

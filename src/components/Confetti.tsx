@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface ConfettiParticle {
   id: number;
@@ -14,68 +14,90 @@ interface ConfettiParticle {
   rotationSpeed: number;
 }
 
+function generateParticles(): ConfettiParticle[] {
+  const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
+  const particles: ConfettiParticle[] = [];
+
+  for (let i = 0; i < 50; i++) {
+    particles.push({
+      id: i,
+      x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+      y: -10,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: Math.random() * 8 + 4,
+      speedX: (Math.random() - 0.5) * 4,
+      speedY: Math.random() * 3 + 2,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10,
+    });
+  }
+  return particles;
+}
+
 export default function Confetti({ trigger }: { trigger: boolean }) {
-  const [particles, setParticles] = useState<ConfettiParticle[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const particlesRef = useRef<ConfettiParticle[]>([]);
 
   useEffect(() => {
     if (!trigger) return;
 
-    const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
-    const newParticles: ConfettiParticle[] = [];
+    particlesRef.current = generateParticles();
 
-    for (let i = 0; i < 50; i++) {
-      newParticles.push({
-        id: i,
-        x: Math.random() * window.innerWidth,
-        y: -10,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 8 + 4,
-        speedX: (Math.random() - 0.5) * 4,
-        speedY: Math.random() * 3 + 2,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 10,
-      });
+    function renderParticles() {
+      if (!containerRef.current) return;
+
+      containerRef.current.innerHTML = particlesRef.current
+        .map(
+          (p) => `<div style="
+            position: absolute;
+            left: ${p.x}px;
+            top: ${p.y}px;
+            width: ${p.size}px;
+            height: ${p.size}px;
+            background-color: ${p.color};
+            transform: rotate(${p.rotation}deg);
+            border-radius: 2px;
+          "></div>`
+        )
+        .join('');
     }
 
-    setParticles(newParticles);
+    function animate() {
+      particlesRef.current = particlesRef.current
+        .map((p) => ({
+          ...p,
+          x: p.x + p.speedX,
+          y: p.y + p.speedY,
+          rotation: p.rotation + p.rotationSpeed,
+          speedY: p.speedY + 0.1,
+        }))
+        .filter((p) => p.y < window.innerHeight + 100);
 
-    const interval = setInterval(() => {
-      setParticles((prev) =>
-        prev
-          .map((p) => ({
-            ...p,
-            x: p.x + p.speedX,
-            y: p.y + p.speedY,
-            rotation: p.rotation + p.rotationSpeed,
-            speedY: p.speedY + 0.1, // gravity
-          }))
-          .filter((p) => p.y < window.innerHeight + 100)
-      );
-    }, 16);
+      renderParticles();
 
-    return () => clearInterval(interval);
+      if (particlesRef.current.length > 0) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    }
+
+    renderParticles();
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, [trigger]);
 
-  if (particles.length === 0) return null;
-
   return (
-    <div className="fixed inset-0 pointer-events-none z-[10000]">
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="absolute rounded-sm"
-          style={{
-            left: `${particle.x}px`,
-            top: `${particle.y}px`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            backgroundColor: particle.color,
-            transform: `rotate(${particle.rotation}deg)`,
-            transition: 'none',
-          }}
-        />
-      ))}
-    </div>
+    <div
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-[10000]"
+      aria-hidden="true"
+    />
   );
 }
+
 

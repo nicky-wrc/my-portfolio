@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useSyncExternalStore } from 'react';
 
 type Theme = 'dark' | 'light' | 'default';
 
@@ -11,53 +11,49 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('default');
-  const [mounted, setMounted] = useState(false);
+function subscribe() {
+  return () => {};
+}
 
-  useEffect(() => {
-    setMounted(true);
-    // Load theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme && ['dark', 'light', 'default'].includes(savedTheme)) {
-      setTheme(savedTheme);
-      // Apply theme immediately
-      const body = document.body;
-      body.classList.remove('dark', 'light', 'default-theme');
-      if (savedTheme === 'dark') {
-        body.classList.add('dark');
-      } else if (savedTheme === 'light') {
-        body.classList.add('light');
-      } else {
-        body.classList.add('default-theme');
-      }
-    } else {
-      // Ensure default theme is applied
-      const body = document.body;
-      if (!body.classList.contains('dark') && !body.classList.contains('light') && !body.classList.contains('default-theme')) {
-        body.classList.add('default-theme');
-      }
-    }
-  }, []);
+function getSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'default';
+  const saved = localStorage.getItem('theme') as Theme;
+  return saved && ['dark', 'light', 'default'].includes(saved) ? saved : 'default';
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>('default');
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
     if (!mounted) return;
 
-    // Save theme to localStorage
-    localStorage.setItem('theme', theme);
-
-    // Apply theme to body (not html)
-    const body = document.body;
-    body.classList.remove('dark', 'light', 'default-theme');
-
-    if (theme === 'dark') {
-      body.classList.add('dark');
-    } else if (theme === 'light') {
-      body.classList.add('light');
-    } else {
-      body.classList.add('default-theme');
+    const initialTheme = getInitialTheme();
+    if (initialTheme !== theme) {
+      setThemeState(initialTheme);
     }
+    applyThemeToBody(initialTheme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    localStorage.setItem('theme', theme);
+    applyThemeToBody(theme);
   }, [theme, mounted]);
+
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme);
+  };
 
   if (!mounted) {
     return <>{children}</>;
@@ -70,6 +66,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+function applyThemeToBody(theme: Theme) {
+  const body = document.body;
+  body.classList.remove('dark', 'light', 'default-theme');
+
+  if (theme === 'dark') {
+    body.classList.add('dark');
+  } else if (theme === 'light') {
+    body.classList.add('light');
+  } else {
+    body.classList.add('default-theme');
+  }
+}
+
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
@@ -77,4 +86,3 @@ export function useTheme() {
   }
   return context;
 }
-

@@ -1,30 +1,36 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
 
 type Theme = 'dark' | 'light' | 'default';
+
+function subscribe() {
+  return () => {};
+}
+
+function getSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'default';
+  const saved = localStorage.getItem('theme') as Theme;
+  return saved && ['dark', 'light', 'default'].includes(saved) ? saved : 'default';
+}
 
 export default function ThemeSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<Theme>('default');
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  useEffect(() => {
-    setMounted(true);
-    // Load theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme && ['dark', 'light', 'default'].includes(savedTheme)) {
-      setCurrentTheme(savedTheme);
-      applyTheme(savedTheme);
-    } else {
-      applyTheme('default');
-    }
-  }, []);
-
-  const applyTheme = (theme: Theme) => {
+  const applyTheme = useCallback((theme: Theme) => {
     const body = document.body;
     body.classList.remove('dark', 'light', 'default-theme');
-    
+
     if (theme === 'dark') {
       body.classList.add('dark');
     } else if (theme === 'light') {
@@ -32,9 +38,20 @@ export default function ThemeSwitcher() {
     } else {
       body.classList.add('default-theme');
     }
-    
+
     localStorage.setItem('theme', theme);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const initialTheme = getInitialTheme();
+    if (initialTheme !== currentTheme) {
+      setCurrentTheme(initialTheme);
+    }
+    applyTheme(initialTheme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, applyTheme]);
 
   const handleThemeChange = (newTheme: Theme) => {
     setCurrentTheme(newTheme);
@@ -90,7 +107,7 @@ export default function ThemeSwitcher() {
                 <span className="text-xl">{t.icon}</span>
                 <span className="font-medium">{t.label}</span>
                 {currentTheme === t.value && (
-                  <svg className="w-4 h-4 ml-auto text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 ml-auto text-cyan-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 )}

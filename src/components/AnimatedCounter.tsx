@@ -40,3 +40,5 @@ export default function AnimatedCounter({ end, duration = 2000, className = '' }
   return <span className={className}>{count}</span>;
 }
 
+
+

@@ -1,16 +1,45 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProjectImage from "@/components/ProjectImage";
-import { projects } from "../../../data/projects";
+import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
 
 interface ProjectDetailProps {
   params: Promise<{ slug: string }>;
 }
 
+// Generate static params for all projects
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+// Generate dynamic metadata for each project
+export async function generateMetadata({ params }: ProjectDetailProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found | Worachat Paranya',
+    };
+  }
+
+  return {
+    title: `${project.title} | Worachat Paranya - Developer Portfolio`,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      images: [project.image],
+    },
+  };
+}
 
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
   const { slug } = await params;
@@ -25,7 +54,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
   const mainFeatures = project.content.split('.').filter(s => s.trim().length > 0).length;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 text-slate-200 font-sans">
+    <main id="main-content" className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 text-slate-200 font-sans">
       <Navigation />
       
       <div className="py-24 px-6">

@@ -17,3 +17,5 @@ export default function SkillPill({ name, icon }: SkillPillProps) {
   );
 }
 
+
+

@@ -1,11 +1,21 @@
+import { Metadata } from 'next';
+import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SkillSection from '@/components/SkillSection';
 import Footer from '@/components/Footer';
-import { skills } from '@/data/skills';
+
+export const metadata: Metadata = {
+  title: 'About | Worachat Paranya - Developer Portfolio',
+  description: 'Learn about Worachat Paranya, a Computer Science student at Khon Kaen University specializing in Backend Development, AI/ML, and Full-Stack applications.',
+  openGraph: {
+    title: 'About | Worachat Paranya',
+    description: 'Computer Science student passionate about Backend Development and AI/ML.',
+  },
+};
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen text-slate-100">
+    <main id="main-content" className="min-h-screen text-slate-100">
       <Navigation />
       
       {/* Hero Section */}
@@ -14,11 +24,14 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8 relative inline-block">
             <div className="w-40 h-40 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 p-1 shadow-2xl shadow-cyan-500/30">
-              <div className="w-full h-full rounded-full bg-slate-800 border-4 border-slate-700 overflow-hidden">
-                <img 
+              <div className="w-full h-full rounded-full bg-slate-800 border-4 border-slate-700 overflow-hidden relative">
+                <Image
                   src="/profile.jpg"
-                  alt="Worachat Paranya" 
-                  className="w-full h-full object-cover"
+                  alt="Worachat Paranya"
+                  fill
+                  sizes="160px"
+                  className="object-cover"
+                  priority
                 />
               </div>
             </div>

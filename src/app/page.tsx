@@ -1,35 +1,29 @@
-// src/app/page.tsx
-
-import Link from "next/link";
-// ใช้ ../ เพื่อถอยจาก app ออกไปหา components และ data
-import ProjectCard from "../components/ProjectCard";
-import SkillSection from "../components/SkillSection";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import TypingAnimation from "../components/TypingAnimation";
-import FloatingElements from "../components/FloatingElements";
-import ScrollReveal from "../components/ScrollReveal";
-import MouseTrail from "../components/MouseTrail";
-import ParallaxBackground from "../components/ParallaxBackground";
-import ProgressBar from "../components/ProgressBar";
-import Sparkles from "../components/Sparkles";
-import GridBackground from "../components/GridBackground";
-import ReadyBadge from "../components/ReadyBadge";
-import SkillPill from "../components/SkillPill";
-import IllustrationSection from "../components/IllustrationSection";
-import SocialIcons from "../components/SocialIcons";
-import ContactForm from "../components/ContactForm";
-import AnimatedCounter from "../components/AnimatedCounter";
-import AnimatedIcon from "../components/AnimatedIcon";
-import HoverGlow from "../components/HoverGlow";
-import { projects } from "../data/projects";
+import Image from "next/image";
+import ProjectCard from "@/components/ProjectCard";
+import SkillSection from "@/components/SkillSection";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import FloatingElements from "@/components/FloatingElements";
+import ScrollReveal from "@/components/ScrollReveal";
+import MouseTrail from "@/components/MouseTrail";
+import ProgressBar from "@/components/ProgressBar";
+import Sparkles from "@/components/Sparkles";
+import GridBackground from "@/components/GridBackground";
+import ReadyBadge from "@/components/ReadyBadge";
+import SkillPill from "@/components/SkillPill";
+import SocialIcons from "@/components/SocialIcons";
+import IllustrationSection from "@/components/IllustrationSection";
+import ContactForm from "@/components/ContactForm";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import AnimatedIcon from "@/components/AnimatedIcon";
+import HoverGlow from "@/components/HoverGlow";
+import { projects } from "@/data/projects";
 
 export default function Home() {
-  const roles = ['Developer', 'Backend Engineer', 'Full-Stack Developer', 'Problem Solver'];
   const skills = ['Python', 'Java', 'Node.js', 'Spring Boot', 'MySQL'];
   
   return (
-    <main className="min-h-screen text-slate-100 dark:text-slate-100 light:text-slate-800 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen text-slate-100 dark:text-slate-100 light:text-slate-800 relative overflow-hidden">
       <GridBackground />
       <ProgressBar />
       <Navigation />
@@ -147,11 +141,14 @@ export default function Home() {
               {/* Profile Picture */}
               <div className="mb-8 relative inline-block group">
                 <div className="w-40 h-40 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 p-1 shadow-2xl shadow-cyan-500/30 animate-glow-pulse group-hover:scale-110 transition-transform duration-500">
-                  <div className="w-full h-full rounded-full bg-slate-800 border-4 border-slate-700 overflow-hidden">
-                    <img 
+                  <div className="w-full h-full rounded-full bg-slate-800 border-4 border-slate-700 overflow-hidden relative">
+                    <Image
                       src="/profile.jpg"
-                      alt="Worachat Paranya" 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      alt="Worachat Paranya"
+                      fill
+                      sizes="160px"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      priority
                     />
                   </div>
                 </div>
@@ -186,7 +183,7 @@ export default function Home() {
                   <div className="space-y-6 text-slate-300 leading-relaxed text-lg">
                     <p className="group-hover:text-slate-200 transition-colors">
                       สวัสดีครับ ผมชื่อ <span className="text-cyan-400 font-semibold hover:text-cyan-300 transition-colors">วรชาติ ปรัญญา </span> 
-                      เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
+                      เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
                     </p>
                     <p className="group-hover:text-slate-200 transition-colors">
                       ผมมีความสนใจเป็นพิเศษในด้าน Backend Development, AI/ML, และการออกแบบระบบที่สามารถขยายตัวได้ 
@@ -462,7 +459,7 @@ export default function Home() {
                         <AnimatedIcon delay={0}>
                           <span className="text-2xl"></span>
                         </AnimatedIcon>
-                        Let's Connect!
+                        Let&apos;s Connect!
                       </h3>
                       <p className="text-slate-300 mb-6 leading-relaxed group-hover:text-slate-200 transition-colors">
                         ผมเปิดรับโอกาสในการฝึกงานและทำงานร่วมกัน 
