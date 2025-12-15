@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worachat Paranya - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            padding: 20px;
+        }
+        
+        .resume-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 20mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+        
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            background: #0066cc;
+            border-radius: 4px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12pt;
+            text-align: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .header-info {
+            flex: 1;
+        }
+        
+        .name {
+            font-size: 28pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #000;
+        }
+        
+        .title {
+            font-size: 14pt;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .contact {
+            font-size: 10pt;
+            color: #555;
+        }
+        
+        .contact-item {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-icon {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            color: #000;
+        }
+        
+        /* Career Objective */
+        .career-objective {
+            text-align: justify;
+            line-height: 1.8;
+            color: #444;
+            font-size: 10.5pt;
+        }
+        
+        /* Education & Experience */
+        .entry {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .entry-left {
+            width: 25%;
+            font-size: 10pt;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .entry-right {
+            width: 75%;
+            padding-left: 15px;
+        }
+        
+        .entry-title {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 3px;
+            color: #333;
+        }
+        
+        .entry-subtitle {
+            font-size: 11pt;
+            color: #555;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .entry-description {
+            font-size: 10pt;
+            color: #666;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        .entry-details {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px 20px;
+        }
+        
+        .skill-item {
+            font-size: 10pt;
+            color: #444;
+            margin-bottom: 5px;
+        }
+        
+        .skill-item::before {
+            content: "• ";
+            color: #333;
+            font-weight: bold;
+        }
+        
+        /* Language */
+        .language-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .language-item {
+            font-size: 10pt;
+        }
+        
+        .language-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: #333;
+        }
+        
+        .language-level {
+            color: #666;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                padding: 15mm;
+            }
+            
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-picture">
+                <img src="/profile.jpg" alt="Profile Picture" onerror="this.style.display='none'; this.parentElement.innerHTML='รูปภาพ';">
+            </div>
+            <div class="header-info">
+                <div class="name">WORACHAT PARANYA</div>
+                <div class="title">Backend Developer</div>
+                <div class="contact">
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        <span>0828814470</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>worachat.pa@kkumail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/>
+                        </svg>
+                        <span>github.com/nicky-wrc</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Career Objective -->
+        <div class="section">
+            <div class="section-title">CAREER OBJECTIVE</div>
+            <div class="career-objective">
+                นักศึกษาขั้นปีที่ 3 วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ผู้มีความหลงใหลในการพัฒนาระบบ Backend และการสร้างโซลูชันที่รองรับการขยายตัว มีพื้นฐานแน่นด้าน Java Spring Boot, Node.js และฐานข้อมูล PostgreSQL ควบคู่กับความเข้าใจในหลักการพัฒนาซอฟต์แวร์สมัยใหม่ กำลังมองหาตำแหน่งฝึกงาน Backend Developer เพื่อนำทักษะทางเทคนิคมาประยุกต์ใช้กับโปรเจกต์จริง เรียนรู้แนวทางปฏิบัติที่ดีจากผู้เชี่ยวชาญ และสั่งสมประสบการณ์สำหรับการเติบโตในสายอาชีพนักพัฒนาซอฟต์แวร์
+            </div>
+        </div>
+        
+        <!-- Education -->
+        <div class="section">
+            <div class="section-title">EDUCATION</div>
+            <div class="entry">
+                <div class="entry-left">2566 - ปัจจุบัน</div>
+                <div class="entry-right">
+                    <div class="entry-title">มหาวิทยาลัยขอนแก่น</div>
+                    <div class="entry-subtitle">วิทยาลัยการคอมพิวเตอร์</div>
+                    <div class="entry-details">
+                        ปริญญาตรี วิทยาการคอมพิวเตอร์ | ชั้นปีที่ 3
+                    </div>
+                    <div class="entry-description">
+                        มุ่งเน้น : Backend Development, Database Design และ System Architecture
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Experience -->
+        <div class="section">
+            <div class="section-title">EXPERIENCE</div>
+            
+            <div class="entry">
+                <div class="entry-left">2567</div>
+                <div class="entry-right">
+                    <div class="entry-title">POS Pharmacy System</div>
+                    <div class="entry-subtitle">Backend Developer</div>
+                    <div class="entry-description">
+                        สร้างระบบ Point of Sale สำหรับร้านขายยาโดยใช้ Laravel 8 และ MySQL พัฒนาฟีเจอร์ครบวงจร ได้แก่ การจัดการสินค้า การจัดการการซื้อพร้อม Import/Export Excel ระบบขายหน้าร้าน Dashboard พร้อมการแสดงผลด้วย Chart.js และการแจ้งเตือนแบบ Real-time
+                    </div>
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-left">2567</div>
+                <div class="entry-right">
+                    <div class="entry-title">Food Order App (UserEatAtHome)</div>
+                    <div class="entry-subtitle">Mobile Developer</div>
+                    <div class="entry-description">
+                        พัฒนาแอปพลิเคชันสั่งอาหารแบบครบวงจรพร้อมระบบจัดการ 2 ฝั่ง (Admin/User) โดยใช้ Flutter, Firebase และ Kotlin พัฒนาระบบอัปเดตสถานะออเดอร์แบบ Real-time การจัดการออเดอร์แบบครบวงจร และระบบแจ้งเตือนแบบทันที
+                    </div>
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-left">2568</div>
+                <div class="entry-right">
+                    <div class="entry-title">E-commerce Backend API</div>
+                    <div class="entry-subtitle">Backend Developer</div>
+                    <div class="entry-description">
+                        สร้าง RESTful API โดยใช้ Spring Boot 3.3.2 และ Java 21 พร้อมระบบจัดการผู้ใช้หลายบทบาท (Customer, Seller, Admin), JWT Authentication การรวมระบบชำระเงินหลายช่องทาง ระบบแชทแบบ Real-time ด้วย WebSocket และ Admin Dashboard พร้อม analytics
+                    </div>
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-left">2568</div>
+                <div class="entry-right">
+                    <div class="entry-title">Game Key Marketplace</div>
+                    <div class="entry-subtitle">Full-Stack Developer</div>
+                    <div class="entry-description">
+                        พัฒนาแพลตฟอร์ม E-Commerce สำหรับซื้อขายคีย์เกมแบบครบวงจรด้วยเทคโนโลยีมากกว่า 15 ตัว ได้แก่ React 19, Node.js, Express.js, PostgreSQL และ JWT authentication พัฒนาระบบกระเป๋าเงินดิจิทัล ระบบกล่องสุ่มของขวัญ (Gacha/Mystery Box) การค้นหาแบบ Real-time Admin Control Panel และรองรับหลายแพลตฟอร์ม (Steam, PlayStation, Xbox, Nintendo, Epic Games)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Skills -->
+        <div class="section">
+            <div class="section-title">SKILLS</div>
+            <div class="skills-container">
+                <div class="skill-item">Java & Spring Boot</div>
+                <div class="skill-item">Node.js & Express</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">React & Next.js</div>
+                <div class="skill-item">JWT Authentication</div>
+                <div class="skill-item">Laravel & PHP</div>
+                <div class="skill-item">RESTful API</div>
+                <div class="skill-item">Flutter & Kotlin</div>
+            </div>
+        </div>
+        
+        <!-- Language -->
+        <div class="section">
+            <div class="section-title">LANGUAGE</div>
+            <div class="language-container">
+                <div class="language-item">
+                    <div class="language-name">Thai</div>
+                    <div class="language-level">Native</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">English</div>
+                    <div class="language-level">Basic</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
