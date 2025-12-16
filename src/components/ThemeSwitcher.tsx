@@ -60,17 +60,48 @@ export default function ThemeSwitcher() {
   };
 
   const themes = [
-    { value: 'default' as const, label: 'Default', icon: '🌓' },
-    { value: 'dark' as const, label: 'Dark', icon: '🌙' },
-    { value: 'light' as const, label: 'Light', icon: '☀️' },
+    { 
+      value: 'default' as const, 
+      label: 'Default', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18" />
+        </svg>
+      )
+    },
+    { 
+      value: 'dark' as const, 
+      label: 'Dark', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <circle cx="17" cy="7" r="1" fill="currentColor" />
+          <circle cx="19" cy="10" r="0.5" fill="currentColor" />
+        </svg>
+      )
+    },
+    { 
+      value: 'light' as const, 
+      label: 'Light', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1v3m0 16v3M5.636 5.636l2.121 2.121m10.606 10.606l2.121 2.121M1 12h3m16 0h3M5.636 18.364l2.121-2.121m10.606-10.606l2.121-2.121" />
+        </svg>
+      )
+    },
   ];
 
   const currentThemeInfo = themes.find(t => t.value === currentTheme) || themes[0];
 
   if (!mounted) {
     return (
-      <div className="w-12 h-12 rounded-lg bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center text-2xl">
-        <span>🌓</span>
+      <div className="w-12 h-12 rounded-lg bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center">
+        <svg className="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18" />
+        </svg>
       </div>
     );
   }
@@ -79,10 +110,10 @@ export default function ThemeSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 rounded-lg bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center text-2xl hover:shadow-lg hover:shadow-cyan-500/20 group"
+        className="w-12 h-12 rounded-lg bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center hover:shadow-lg hover:shadow-cyan-500/20 group"
         aria-label="Toggle theme"
       >
-        <span className="group-hover:scale-110 transition-transform duration-300">
+        <span className="text-cyan-400 group-hover:text-cyan-300 group-hover:scale-110 transition-all duration-300">
           {currentThemeInfo.icon}
         </span>
       </button>
@@ -104,7 +135,9 @@ export default function ThemeSwitcher() {
                     : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
                 }`}
               >
-                <span className="text-xl">{t.icon}</span>
+                <span className={`${currentTheme === t.value ? 'text-cyan-400' : 'text-slate-400'}`}>
+                  {t.icon}
+                </span>
                 <span className="font-medium">{t.label}</span>
                 {currentTheme === t.value && (
                   <svg className="w-4 h-4 ml-auto text-cyan-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">

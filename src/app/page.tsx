@@ -277,22 +277,28 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 text-transparent bg-clip-text animate-gradient">
                 What I Do
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                 {[
-                  { icon: '💻', title: 'Web Development', desc: 'สร้างเว็บแอปพลิเคชันที่ทันสมัยและตอบสนองได้ดีด้วย React, Next.js และเทคโนโลยีล่าสุด', delay: 0 },
-                  { icon: '📱', title: 'Mobile Development', desc: 'พัฒนาแอปมือถือด้วย Flutter และ Kotlin Multiplatform Mobile สำหรับทั้ง iOS และ Android', delay: 200 },
-                  { icon: '🤖', title: 'AI & Backend', desc: 'ออกแบบและพัฒนาระบบ Backend ที่มีประสิทธิภาพ รวมถึงการรวม AI/ML เข้ากับแอปพลิเคชัน', delay: 400 }
+                  { 
+                    title: 'Web Development', 
+                    desc: 'สร้างเว็บแอปพลิเคชันที่ทันสมัยและตอบสนองได้ดีด้วย React, Next.js และเทคโนโลยีล่าสุด'
+                  },
+                  { 
+                    title: 'Mobile Development', 
+                    desc: 'พัฒนาแอปมือถือด้วย Flutter และ Kotlin Multiplatform Mobile สำหรับทั้ง iOS และ Android'
+                  },
+                  { 
+                    title: 'AI & Backend', 
+                    desc: 'ออกแบบและพัฒนาระบบ Backend ที่มีประสิทธิภาพ รวมถึงการรวม AI/ML เข้ากับแอปพลิเคชัน'
+                  }
                 ].map((item, index) => (
-                  <ScrollReveal key={index} direction="up" delay={600 + index * 100}>
-                    <HoverGlow glowColor="cyan">
-                      <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 text-center hover:shadow-xl hover:shadow-cyan-500/20 hover:scale-105 relative overflow-hidden group">
+                  <ScrollReveal key={index} direction="up" delay={600 + index * 100} className="h-full">
+                    <HoverGlow glowColor="cyan" className="h-full">
+                      <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 text-center hover:shadow-xl hover:shadow-cyan-500/20 hover:scale-105 relative overflow-hidden group h-full flex flex-col">
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
-                        <div className="relative z-10">
-                          <AnimatedIcon delay={item.delay}>
-                            <div className="text-5xl mb-4">{item.icon}</div>
-                          </AnimatedIcon>
-                          <h4 className="text-xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors">{item.title}</h4>
-                          <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
+                        <div className="relative z-10 flex flex-col flex-grow">
+                          <h4 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">{item.title}</h4>
+                          <p className="text-slate-300 group-hover:text-slate-200 transition-colors leading-relaxed">
                             {item.desc}
                           </p>
                         </div>

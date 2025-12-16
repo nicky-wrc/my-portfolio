@@ -104,7 +104,7 @@ export default function Navigation() {
         : 'bg-transparent border-slate-700/30 dark:border-slate-700/30 light:border-slate-200/30'
     }`}>
       <Link href="/">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 text-transparent bg-clip-text hover:from-cyan-300 hover:via-blue-300 hover:to-indigo-300 transition-all duration-300 gradient-text-animated">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text hover:from-cyan-300 hover:to-blue-400 transition-all duration-300">
           WorachatPortfolio
         </h1>
       </Link>
