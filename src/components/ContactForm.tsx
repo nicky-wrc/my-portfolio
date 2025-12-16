@@ -29,27 +29,34 @@ export default function ContactForm() {
 
     try {
       // EmailJS configuration
-      // คุณต้องไปตั้งค่าที่ https://www.emailjs.com/ และสร้าง Service, Template
-      // แล้วเพิ่ม Public Key, Service ID, และ Template ID ใน environment variables
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      // Initialize EmailJS
-      if (publicKey === 'YOUR_PUBLIC_KEY' || !publicKey) {
-        throw new Error('EmailJS not configured. Please check EMAILJS_SETUP.md for setup instructions.');
+      // Check if EmailJS is configured
+      if (!publicKey || !serviceId || !templateId || 
+          publicKey === 'YOUR_PUBLIC_KEY' || 
+          serviceId === 'YOUR_SERVICE_ID' || 
+          templateId === 'YOUR_TEMPLATE_ID') {
+        throw new Error('EmailJS_NOT_CONFIGURED');
       }
 
+      // Initialize EmailJS
       emailjs.init(publicKey);
 
       // Send email
-      await emailjs.send(serviceId, templateId, {
+      const result = await emailjs.send(serviceId, templateId, {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
         to_email: 'nick.worachatz@gmail.com',
       });
+
+      // Check if email was sent successfully
+      if (result.status !== 200) {
+        throw new Error('EmailJS_SEND_FAILED');
+      }
 
       setIsSubmitting(false);
       setSubmitStatus('success');
@@ -65,15 +72,20 @@ export default function ContactForm() {
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending email:', error);
       setIsSubmitting(false);
       setSubmitStatus('error');
       
-      // Reset error message after 5 seconds
+      // Log detailed error for debugging
+      if (error?.text) {
+        console.error('EmailJS Error Details:', error.text);
+      }
+      
+      // Reset error message after 8 seconds (longer for production issues)
       setTimeout(() => {
         setSubmitStatus('idle');
-      }, 5000);
+      }, 8000);
     }
   };
 
@@ -156,11 +168,18 @@ export default function ContactForm() {
 
           {submitStatus === 'error' && (
             <div className="p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400">
-              ✗ Something went wrong. Please try again later.
-              <br />
-              <span className="text-sm text-red-300/80 mt-1 block">
-                If this persists, please check that EmailJS is properly configured.
-              </span>
+              <div className="font-semibold mb-2">✗ Something went wrong. Please try again later.</div>
+              <div className="text-sm text-red-300/80 space-y-1">
+                <p>If this persists, please check:</p>
+                <ul className="list-disc list-inside ml-2 space-y-0.5">
+                  <li>EmailJS environment variables are set in your deployment platform (Vercel/Netlify)</li>
+                  <li>Service ID, Template ID, and Public Key are correct</li>
+                  <li>EmailJS account is active and not exceeded monthly limit</li>
+                </ul>
+                <p className="mt-2 text-xs">
+                  See <code className="bg-red-500/20 px-1 rounded">EMAILJS_SETUP.md</code> for setup instructions.
+                </p>
+              </div>
             </div>
           )}
 
