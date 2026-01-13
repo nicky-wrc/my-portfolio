@@ -22,8 +22,8 @@ export default function ContactPage() {
         </svg>
       ),
       label: 'Email',
-      value: 'nick.worachatz@gmail.com',
-      link: 'mailto:nick.worachatz@gmail.com',
+      value: 'worachat.pa@kkumail.com',
+      link: 'mailto:worachat.pa@kkumail.com',
     },
     {
       icon: (

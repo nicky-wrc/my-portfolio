@@ -413,7 +413,7 @@ export default function Home() {
                           <div>
                             <p className="text-sm text-slate-400 mb-1 group-hover/item:text-slate-300 transition-colors">Email</p>
                             <p className="text-slate-200 group-hover/item:text-cyan-400 transition-colors font-medium">
-                              nick.worachatz@gmail.com
+                              worachat.pa@kkumail.com
                             </p>
                           </div>
                         </a>

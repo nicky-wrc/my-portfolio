@@ -59,17 +59,6 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/nicky-wrc/Pharmacy-Project",
   },
   {
-    slug: "pet-adoption",
-    title: "Pet Adoption Explorer",
-    description: "แพลตฟอร์ม E-commerce หาบ้านใหม่ให้สัตว์เลี้ยง",
-    content: "แพลตฟอร์ม E-commerce สำหรับหาบ้านใหม่ให้สัตว์เลี้ยง พัฒนาด้วย React และ Modern Web Technologies. ระบบแสดงรายการสัตว์เลี้ยง (Pet Listing) สำหรับแสดงรายการสัตว์เลี้ยงทั้งหมดพร้อมรูปภาพและรายละเอียด. ระบบค้นหาและกรอง (Search & Filter) สำหรับค้นหาสัตว์เลี้ยงตามประเภท อายุ สายพันธุ์ และสถานที่. ระบบรายละเอียดสัตว์เลี้ยง (Pet Details) แสดงข้อมูลครบถ้วนของสัตว์เลี้ยงแต่ละตัว. ระบบจัดการโปรไฟล์ (Profile Management) สำหรับผู้ใช้จัดการข้อมูลส่วนตัวและสัตว์เลี้ยงที่สนใจ. ระบบติดต่อเจ้าของ (Contact Owner) สำหรับติดต่อเจ้าของสัตว์เลี้ยงผ่านระบบข้อความหรืออีเมล. ระบบเพิ่มสัตว์เลี้ยง (Add Pet) สำหรับเจ้าของเพิ่มสัตว์เลี้ยงที่ต้องการหาบ้านใหม่. ระบบจัดการสัตว์เลี้ยงของฉัน (My Pets) สำหรับเจ้าของจัดการสัตว์เลี้ยงที่เพิ่มไว้. ระบบ Favorites/Wishlist สำหรับผู้ใช้บันทึกสัตว์เลี้ยงที่สนใจ. ระบบ Responsive Design รองรับทุกอุปกรณ์ทั้ง Desktop Tablet และ Mobile. ระบบ UI/UX ที่ทันสมัยและใช้งานง่าย พร้อม Animation และ Transition Effects. พัฒนาด้วย React, JavaScript, HTML5, CSS3, Tailwind CSS, และ Modern Frontend Libraries. ใช้ Component-based Architecture, Responsive Design, และ Modern UI/UX Principles.",
-    role: "Frontend Developer",
-    tags: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "UI/UX", "Frontend", "Responsive Design", "Component-based"],
-    category: "Web App",
-    image: "/AnyConv.com__CPKKU.jpg", 
-    githubUrl: "https://github.com/krit633806374-2/pet-adoption-explorer",
-  },
-  {
     slug: "game-key-marketplace",
     title: "Game Key Marketplace",
     description: "แพลตฟอร์ม E-Commerce สำหรับซื้อขายคีย์เกม (CD-Keys) แบบครบวงจร พัฒนาด้วย Full-Stack Modern Technologies",
@@ -79,6 +68,7 @@ export const projects: Project[] = [
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg", 
     githubUrl: "https://github.com/nicky-wrc/game-key-marketplace",
+    demoUrl: "https://game-key-marketplace-frontend.vercel.app",
   },
   {
     slug: "ecommerce-springboot",
