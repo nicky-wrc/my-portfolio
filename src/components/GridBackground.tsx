@@ -2,32 +2,24 @@
 
 export default function GridBackground() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      {/* Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-20"
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      {/* Subtle data grid */}
+      <div
+        className="absolute inset-0 opacity-[0.12] data-grid"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
+          maskImage: 'radial-gradient(ellipse at 50% 40%, black 25%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, black 25%, transparent 80%)',
         }}
       />
-      
-      {/* Gradient Overlays */}
-      <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-purple-500/20 via-transparent to-transparent blur-3xl" />
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/20 via-transparent to-transparent blur-3xl" />
-      
-      {/* Animated Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+      {/* Slow drifting auroras */}
+      <div className="absolute -top-32 -left-32 w-[44rem] h-[44rem] rounded-full blur-[140px] bg-fuchsia-500/15 animate-aurora-1" />
+      <div className="absolute top-20 right-[-12rem] w-[46rem] h-[46rem] rounded-full blur-[140px] bg-cyan-400/12 animate-aurora-2" />
+      <div className="absolute bottom-[-16rem] left-1/3 w-[42rem] h-[42rem] rounded-full blur-[160px] bg-violet-500/15 animate-aurora-3" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26rem] h-[26rem] rounded-full blur-[140px] bg-emerald-400/[0.06]" />
+
+      {/* Deep vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_35%,_rgba(0,0,0,0.6)_100%)]" />
     </div>
   );
 }
-
-
-
-
-
-

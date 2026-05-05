@@ -34,17 +34,18 @@ export default function SocialIcons() {
   ];
 
   return (
-    <div className="flex gap-3 pt-8">
+    <div className="flex gap-3 justify-center">
       {socialLinks.map((social, index) => (
         <Link
           key={index}
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-12 h-12 flex items-center justify-center border-2 border-cyan-400/50 rounded-lg bg-slate-800/50 backdrop-blur-sm hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-400/30"
+          className="group relative w-12 h-12 flex items-center justify-center cyber-border rounded-xl bg-[#050816]/40 hover:scale-110 transition-all duration-300"
           aria-label={social.name}
         >
-          <span className="text-cyan-400 group-hover:text-cyan-300 transition-colors">
+          <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/0 via-fuchsia-400/0 to-violet-400/0 group-hover:from-cyan-400/15 group-hover:via-fuchsia-400/15 group-hover:to-violet-400/15 transition-all duration-300" />
+          <span className="relative text-cyan-200 group-hover:text-white transition-colors drop-shadow-[0_0_6px_rgba(0,229,255,0.55)]">
             {social.icon}
           </span>
         </Link>
@@ -52,4 +53,3 @@ export default function SocialIcons() {
     </div>
   );
 }
-

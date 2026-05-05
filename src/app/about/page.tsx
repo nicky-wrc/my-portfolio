@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SkillSection from '@/components/SkillSection';
 import Footer from '@/components/Footer';
+import GridBackground from '@/components/GridBackground';
 
 export const metadata: Metadata = {
   title: 'About | Worachat Paranya - Developer Portfolio',
@@ -15,152 +16,144 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main id="main-content" className="min-h-screen text-slate-100">
+    <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
+      <GridBackground />
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-indigo-500/5"></div>
+
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-6 relative overflow-hidden z-10">
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="mb-8 relative inline-block">
-            <div className="w-40 h-40 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 p-1 shadow-2xl shadow-cyan-500/30">
-              <div className="w-full h-full rounded-full bg-slate-800 border-4 border-slate-700 overflow-hidden relative">
+          <div className="mb-8 relative inline-block group">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-fuchsia-400 to-violet-500 blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
+            <div className="relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-violet-500 shadow-2xl shadow-fuchsia-500/30 animate-glow-pulse">
+              <div className="w-full h-full rounded-full bg-[#0a0e2c] border-2 border-[#050816] overflow-hidden relative">
                 <Image
                   src="/profile.jpg"
                   alt="Worachat Paranya"
                   fill
-                  sizes="160px"
+                  sizes="176px"
                   className="object-cover"
                   priority
                 />
               </div>
             </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">Me</span>
+          <p className="font-script text-2xl text-cyan-200/90 mb-2">— get to know —</p>
+          <h1 className="font-display text-4xl md:text-6xl uppercase tracking-tight mb-6">
+            <span className="text-white">About </span>
+            <span className="text-holo">Me</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            To be reborn, you must first accept the death of who you used to be
+          <p className="text-slate-300/85 max-w-2xl mx-auto leading-relaxed">
+            To be reborn, you must first accept the death of who you used to be.
           </p>
         </div>
       </section>
 
-      {/* About Content */}
-      <section className="py-16 px-6">
+      {/* Bio */}
+      <section className="py-12 px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-slate-700/50 shadow-xl">
-            <h2 className="text-3xl font-bold mb-6 text-white">Who I Am</h2>
-            <div className="space-y-6 text-slate-300 leading-relaxed text-lg">
+          <div className="cyber-card p-8 md:p-12">
+            <div className="scan-line" />
+            <h2 className="font-display text-2xl md:text-3xl uppercase tracking-wider mb-6 text-white">
+              <span className="text-holo-cyan">Who</span> I Am
+            </h2>
+            <div className="space-y-5 text-slate-300 leading-relaxed text-lg">
               <p>
-                สวัสดีครับ ผมชื่อ <span className="text-cyan-400 font-semibold">วรชาติ ปรัญญา </span> 
-                เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
+                สวัสดีครับ ผมชื่อ{' '}
+                <span className="text-holo-pink font-semibold">วรชาติ ปรัญญา</span>{' '}
+                เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาการคอมพิวเตอร์
+                สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
               </p>
               <p>
-                ผมมีความสนใจเป็นพิเศษในด้าน Backend Development, AI/ML, และการออกแบบระบบที่สามารถขยายตัวได้ 
-                รวมถึงการพัฒนาซอฟต์แวร์ที่เน้นผู้ใช้เป็นศูนย์กลาง
+                ผมหลงใหลใน <span className="text-cyan-300 font-semibold">Backend Development</span>,{' '}
+                <span className="text-fuchsia-300 font-semibold">AI/ML</span>{' '}
+                และการออกแบบระบบที่ขยายตัวได้ พร้อมพัฒนาประสบการณ์ผู้ใช้ที่ทันสมัย
               </p>
               <p>
-                ตอนนี้ผมกำลังมองหาตำแหน่งฝึกงานในตำแหน่ง Backend Developer เพื่อพัฒนาทักษะและเรียนรู้จากทีมงานที่มีประสบการณ์ 
-                และพร้อมที่จะมีส่วนร่วมในโปรเจกต์ที่น่าสนใจ
+                ตอนนี้กำลังมองหาตำแหน่งฝึกงาน Backend Developer
+                เพื่อร่วมงานกับทีมมืออาชีพและสร้างผลงานที่มีคุณค่าจริง ๆ
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Education & Experience */}
-      <section className="py-16 px-6">
+      {/* Education + Interests */}
+      <section className="py-12 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Education */}
-            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-              <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                <span className="text-3xl"></span>
+            <div className="cyber-card p-8">
+              <h2 className="font-display text-xl md:text-2xl uppercase tracking-wider mb-6 text-white flex items-center gap-3">
+                <span className="w-2 h-6 rounded-full bg-gradient-to-b from-cyan-400 to-fuchsia-400" />
                 Education
               </h2>
-              <div className="space-y-6">
-                <div className="border-l-4 border-cyan-500 pl-6">
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-2">
-                    College of Computing / Computer Science
-                  </h3>
-                  <p className="text-slate-400 mb-1">มหาวิทยาลัย ขอนแก่น</p>
-                  <p className="text-sm text-slate-500">ปีการศึกษาที่ 3</p>
-                </div>
-                {/* เพิ่มข้อมูลการศึกษาเพิ่มเติมได้ที่นี่ */}
+              <div className="border-l-2 border-cyan-400/50 pl-6">
+                <h3 className="font-display text-lg text-holo-cyan mb-2">
+                  College of Computing · Computer Science
+                </h3>
+                <p className="text-slate-400 mb-1">มหาวิทยาลัยขอนแก่น (KKU)</p>
+                <p className="text-sm text-slate-500 font-mono">{'>'} year-3 // in_progress</p>
               </div>
             </div>
 
-            {/* Experience / Interests */}
-            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-              <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                <span className="text-3xl"></span>
-                Interests & Goals
+            <div className="cyber-card p-8">
+              <h2 className="font-display text-xl md:text-2xl uppercase tracking-wider mb-6 text-white flex items-center gap-3">
+                <span className="w-2 h-6 rounded-full bg-gradient-to-b from-fuchsia-400 to-violet-500" />
+                Interests &amp; Goals
               </h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">▸</span>
-                  <p className="text-slate-300">Backend Development & API Design</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-teal-400 mt-1">▸</span>
-                  <p className="text-slate-300">Machine Learning & AI Integration</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-teal-400 mt-1">▸</span>
-                  <p className="text-slate-300">Full-Stack Development</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-teal-400 mt-1">▸</span>
-                  <p className="text-slate-300">System Architecture & Scalability</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-teal-400 mt-1">▸</span>
-                  <p className="text-slate-300">Clean Code & Best Practices</p>
-                </div>
+              <div className="space-y-3">
+                {[
+                  'Backend Development & API Design',
+                  'Machine Learning & AI Integration',
+                  'Full-Stack Development',
+                  'System Architecture & Scalability',
+                  'Clean Code & Best Practices',
+                ].map((it, i) => (
+                  <div key={i} className="flex items-center gap-3 group hover:translate-x-1 transition-transform">
+                    <span className="font-display text-fuchsia-400 group-hover:text-cyan-300 transition-colors">▸</span>
+                    <p className="text-slate-300 group-hover:text-white transition-colors">{it}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <SkillSection />
+      <div className="relative z-10">
+        <SkillSection />
+      </div>
 
       {/* What I Do */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">
-            What I <span className="text-white">Do</span>
+          <p className="font-script text-2xl text-cyan-200/90 text-center mb-2">— what I do —</p>
+          <h2 className="font-display text-3xl md:text-4xl uppercase tracking-tight text-center mb-12">
+            <span className="text-white">What </span>
+            <span className="text-holo">I Do</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 text-center hover:shadow-xl hover:shadow-cyan-500/10">
-              <div className="text-5xl mb-4"></div>
-              <h3 className="text-xl font-bold text-white mb-4">Web Development</h3>
-              <p className="text-slate-400">
-                สร้างเว็บแอปพลิเคชันที่ทันสมัยและตอบสนองได้ดีด้วย React, Next.js และเทคโนโลยีล่าสุด
-              </p>
-            </div>
-            <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 text-center hover:shadow-xl hover:shadow-cyan-500/10">
-              <div className="text-5xl mb-4"></div>
-              <h3 className="text-xl font-bold text-white mb-4">Mobile Development</h3>
-              <p className="text-slate-300">
-                พัฒนาแอปมือถือด้วย Flutter และ Kotlin Multiplatform Mobile สำหรับทั้ง iOS และ Android
-              </p>
-            </div>
-            <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 text-center hover:shadow-xl hover:shadow-cyan-500/10">
-              <div className="text-5xl mb-4"></div>
-              <h3 className="text-xl font-bold text-white mb-4">AI & Backend</h3>
-              <p className="text-slate-400">
-                ออกแบบและพัฒนาระบบ Backend ที่มีประสิทธิภาพ รวมถึงการรวม AI/ML เข้ากับแอปพลิเคชัน
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Web Development', desc: 'สร้างเว็บแอปพลิเคชันที่ทันสมัยและตอบสนองได้ดีด้วย React, Next.js และเทคโนโลยีล่าสุด' },
+              { title: 'Mobile Development', desc: 'พัฒนาแอปมือถือด้วย Flutter และ Kotlin Multiplatform Mobile สำหรับทั้ง iOS และ Android' },
+              { title: 'AI & Backend', desc: 'ออกแบบและพัฒนาระบบ Backend ที่มีประสิทธิภาพ รวมถึงการรวม AI/ML เข้ากับแอปพลิเคชัน' },
+            ].map((item, idx) => (
+              <div key={idx} className="cyber-card p-7 text-center group">
+                <div className="scan-line" />
+                <div className="mx-auto mb-4 w-14 h-14 rounded-xl flex items-center justify-center cyber-border bg-[#050816]/50">
+                  <span className="font-display font-extrabold text-lg text-holo">{idx + 1}</span>
+                </div>
+                <h3 className="font-display text-xl uppercase tracking-wide text-white mb-3 group-hover:text-holo-cyan transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-slate-300 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </main>
   );
 }
-

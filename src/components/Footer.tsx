@@ -9,7 +9,6 @@ export default function Footer() {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -27,27 +26,33 @@ export default function Footer() {
           <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
         </svg>
       ),
-      bgColor: 'bg-blue-600 hover:bg-blue-700',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/nicky_wrc/',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
       ),
-      bgColor: 'bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:from-purple-600 hover:via-pink-600 hover:to-orange-600',
+    },
+    {
+      name: 'GitHub',
+      url: 'https://github.com/nicky-wrc',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+        </svg>
+      ),
     },
   ];
 
   return (
     <>
-      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white rounded-full flex items-center justify-center shadow-xl shadow-cyan-500/50 transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-cyan-400/30 animate-fade-in-up group"
+          className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center cyber-border bg-[#050816]/70 text-cyan-200 hover:text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm shadow-[0_0_24px_rgba(0,229,255,0.4)] animate-fade-in-up group"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,58 +61,76 @@ export default function Footer() {
         </button>
       )}
 
-      {/* Footer */}
-      <footer className="bg-slate-900/80 dark:bg-slate-900/80 light:bg-white/80 backdrop-blur-xl border-t border-slate-700/50 dark:border-slate-700/50 light:border-slate-200/50 py-12 px-6">
+      <footer className="relative z-10 mt-12 border-t border-cyan-400/15 backdrop-blur-xl bg-[#050816]/70 py-14 px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Portfolio Name */}
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 dark:from-cyan-400 dark:to-blue-400 light:from-sky-600 light:to-blue-600 text-transparent bg-clip-text mb-6">
-              WorachatPortfolio
+            <p className="font-script text-xl text-cyan-200/90 mb-1">— signing off —</p>
+            <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wider mb-2">
+              <span className="text-white">Worachat</span>
+              <span className="text-holo-pink">.dev</span>
             </h3>
-          </div>
-
-          {/* Contact Information */}
-          <div className="text-center mb-8 space-y-3">
-            <p className="text-slate-300 dark:text-slate-300 light:text-slate-900 text-lg font-medium">
-              <span className="text-slate-400 dark:text-slate-400 light:text-slate-800 font-semibold">Email:</span>{' '}
-              <a 
-                href="mailto:nick.worachatz@gmail.com" 
-                className="text-cyan-400 hover:text-cyan-300 dark:text-cyan-400 dark:hover:text-cyan-300 light:text-sky-700 light:hover:text-sky-800 transition-colors font-bold"
-              >
-                nick.worachatz@gmail.com
-              </a>
-            </p>
-            <p className="text-slate-300 dark:text-slate-300 light:text-slate-900 text-lg font-medium">
-              <span className="text-slate-400 dark:text-slate-400 light:text-slate-800 font-semibold">Tel:</span>{' '}
-              <a 
-                href="tel:0828814470" 
-                className="text-cyan-400 hover:text-cyan-300 dark:text-cyan-400 dark:hover:text-cyan-300 light:text-sky-700 light:hover:text-sky-800 transition-colors font-bold"
-              >
-                082-8814470
-              </a>
+            <p className="text-slate-400 text-sm font-mono tracking-wider">
+              {'<'} backend / ai / full-stack {'/>'}
             </p>
           </div>
 
-          {/* Social Media Icons */}
-          <div className="flex justify-center gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 max-w-2xl mx-auto">
+            <a
+              href="mailto:nick.worachatz@gmail.com"
+              className="cyber-card p-5 flex items-center gap-4 group"
+            >
+              <span className="w-10 h-10 rounded-lg flex items-center justify-center cyber-border bg-[#050816]/60">
+                <svg className="w-5 h-5 text-cyan-300 group-hover:text-fuchsia-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </span>
+              <div>
+                <p className="text-[0.65rem] tracking-[0.22em] uppercase font-display text-slate-400">Email</p>
+                <p className="text-white font-medium group-hover:text-holo-cyan transition-colors text-sm">
+                  nick.worachatz@gmail.com
+                </p>
+              </div>
+            </a>
+            <a
+              href="tel:0828814470"
+              className="cyber-card p-5 flex items-center gap-4 group"
+            >
+              <span className="w-10 h-10 rounded-lg flex items-center justify-center cyber-border bg-[#050816]/60">
+                <svg className="w-5 h-5 text-cyan-300 group-hover:text-fuchsia-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </span>
+              <div>
+                <p className="text-[0.65rem] tracking-[0.22em] uppercase font-display text-slate-400">Phone</p>
+                <p className="text-white font-medium group-hover:text-holo-cyan transition-colors text-sm">
+                  082-8814470
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div className="flex justify-center gap-3 mb-10">
             {socialLinks.map((social) => (
               <a
                 key={social.name}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${social.bgColor} w-14 h-14 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-xl backdrop-blur-sm border border-white/10`}
+                className="group relative w-12 h-12 flex items-center justify-center cyber-border rounded-xl bg-[#050816]/40 hover:scale-110 transition-all duration-300"
                 aria-label={social.name}
               >
-                {social.icon}
+                <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/0 via-fuchsia-400/0 to-violet-400/0 group-hover:from-cyan-400/15 group-hover:via-fuchsia-400/15 group-hover:to-violet-400/15 transition-all duration-300" />
+                <span className="relative text-cyan-200 group-hover:text-white transition-colors drop-shadow-[0_0_6px_rgba(0,229,255,0.55)]">
+                  {social.icon}
+                </span>
               </a>
             ))}
           </div>
 
-          {/* Copyright */}
-          <div className="text-center border-t border-slate-700/50 dark:border-slate-700/50 light:border-slate-400/50 pt-6">
-            <p className="text-slate-400 dark:text-slate-400 light:text-slate-800 text-sm font-medium">
-              © 2025 Designed & Built by <span className="text-cyan-400 dark:text-cyan-400 light:text-sky-700 font-bold">Worachat Paranya</span>
+          <div className="text-center border-t border-cyan-400/10 pt-6">
+            <p className="text-slate-400 text-sm font-mono">
+              © 2025 — Designed &amp; Built by{' '}
+              <span className="text-holo-pink font-bold">Worachat Paranya</span>
             </p>
           </div>
         </div>
@@ -115,4 +138,3 @@ export default function Footer() {
     </>
   );
 }
-

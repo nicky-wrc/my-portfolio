@@ -13,7 +13,7 @@ export default function ProjectImage({ src, alt, className = '' }: ProjectImageP
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="w-full h-80 md:h-96 bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden shadow-2xl flex items-center justify-center relative group">
+    <div className="w-full h-80 md:h-96 cyber-frame overflow-hidden flex items-center justify-center relative group">
       {!imageError ? (
         <Image
           src={src}
@@ -32,7 +32,8 @@ export default function ProjectImage({ src, alt, className = '' }: ProjectImageP
           <span className="text-lg">Project Screenshot</span>
         </div>
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-cyan-400/10 via-fuchsia-400/10 to-violet-400/10" />
     </div>
   );
 }

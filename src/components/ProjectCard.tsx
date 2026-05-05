@@ -19,26 +19,26 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, description, tags, categor
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 18;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 18;
     setMousePosition({ x, y });
   };
 
-  const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 });
-  };
+  const handleMouseLeave = () => setMousePosition({ x: 0, y: 0 });
 
   return (
     <div
-      className="bg-slate-800/60 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-500 border border-slate-700/50 flex flex-col h-full group hover:border-cyan-500/50"
+      className="cyber-card group flex flex-col h-full overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.5}deg) rotateY(${mousePosition.x * 0.5}deg) translateY(${mousePosition.y * -0.1}px)`,
+        transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.5}deg) rotateY(${mousePosition.x * 0.5}deg)`,
       }}
     >
-      {/* Image Section */}
-      <div className={`h-48 relative overflow-hidden ${imageError ? 'bg-gradient-to-br from-cyan-500/20 to-blue-500/20' : 'bg-gradient-to-br from-slate-700 to-slate-800'}`}>
+      <div className="scan-line" />
+
+      {/* Image */}
+      <div className={`h-48 relative overflow-hidden ${imageError ? 'bg-gradient-to-br from-cyan-500/20 via-fuchsia-500/15 to-violet-500/20' : 'bg-gradient-to-br from-[#0a0e2c] to-[#050816]'}`}>
         {!imageError && (
           <Image
             src={image}
@@ -51,41 +51,51 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, description, tags, categor
         )}
         {imageError && (
           <div className="flex items-center justify-center h-full">
-            <svg className="w-12 h-12 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg className="w-12 h-12 text-cyan-300/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
         )}
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        {/* Top gradient veil */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/95 via-[#050816]/30 to-transparent" />
 
-        {/* Category Badge */}
-        <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs px-3 py-1.5 rounded-lg text-cyan-300 font-semibold border border-cyan-500/30 shadow-lg z-10">
+        {/* Holographic shimmer */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/0 via-fuchsia-400/0 to-violet-400/0 group-hover:from-cyan-400/15 group-hover:via-fuchsia-400/10 group-hover:to-violet-400/15 transition-all duration-500" />
+
+        {/* Category badge */}
+        <div className="absolute top-3 right-3 cyber-chip !text-[0.6rem] !py-1 !px-3">
           {category}
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
-          <Link href={`/projects/${slug}`} className="hover:underline">
+      {/* Body */}
+      <div className="p-6 flex flex-col flex-grow relative z-10">
+        <h3 className="font-display text-lg md:text-xl uppercase tracking-wider text-white mb-3 group-hover:text-holo-cyan transition-colors duration-300">
+          <Link href={`/projects/${slug}`} className="hover:underline underline-offset-4 decoration-fuchsia-400/60">
             {title}
           </Link>
         </h3>
-        <p className="text-slate-300 text-sm mb-6 flex-grow leading-relaxed line-clamp-3">
+        <p className="text-slate-300 text-sm mb-5 flex-grow leading-relaxed line-clamp-3">
           {description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tags.slice(0, 3).map((tag, index) => (
-            <span key={index} className="text-xs font-medium text-cyan-300 bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20 backdrop-blur-sm">
+        <div className="flex flex-wrap gap-2 mb-5">
+          {tags.slice(0, 3).map((tag, idx) => (
+            <span
+              key={idx}
+              className="text-[0.65rem] font-display tracking-[0.18em] uppercase text-cyan-200 bg-cyan-400/5 px-2.5 py-1 rounded-md border border-cyan-400/20 backdrop-blur-sm"
+            >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="mt-auto pt-4 border-t border-slate-700/50">
-          <Link href={`/projects/${slug}`} className="text-cyan-400 text-sm font-semibold hover:text-cyan-300 flex items-center gap-2 group/link transition-colors">
+        <div className="mt-auto pt-4 border-t border-cyan-400/15">
+          <Link
+            href={`/projects/${slug}`}
+            className="inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.22em] text-holo-cyan hover:text-holo-pink transition-colors group/link"
+          >
             Read More
             <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
