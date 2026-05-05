@@ -1,21 +1,57 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const scrollTopButton =
+    mounted && showScrollTop ? (
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="pointer-events-auto fixed z-[9999] flex h-14 w-14 items-center justify-center rounded-full border border-cyan-400/50 bg-[#02030a]/92 text-cyan-200 shadow-[0_0_28px_rgba(0,229,255,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-fuchsia-400/60 hover:text-white hover:shadow-[0_0_32px_rgba(255,46,209,0.4)] group"
+        style={{
+          bottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
+          right: 'max(1.25rem, env(safe-area-inset-right, 0px))',
+          left: 'auto',
+          top: 'auto',
+        }}
+        aria-label="Scroll to top"
+      >
+        <svg
+          className="h-6 w-6 group-hover:-translate-y-0.5 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+      </button>
+    ) : null;
 
   const socialLinks = [
     {
@@ -49,17 +85,7 @@ export default function Footer() {
 
   return (
     <>
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center cyber-border bg-[#050816]/70 text-cyan-200 hover:text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm shadow-[0_0_24px_rgba(0,229,255,0.4)] animate-fade-in-up group"
-          aria-label="Scroll to top"
-        >
-          <svg className="w-6 h-6 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </button>
-      )}
+      {scrollTopButton && createPortal(scrollTopButton, document.body)}
 
       <footer className="relative z-10 mt-12 border-t border-cyan-400/15 backdrop-blur-xl bg-[#050816]/70 py-14 px-6">
         <div className="max-w-6xl mx-auto">
