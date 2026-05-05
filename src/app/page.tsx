@@ -49,7 +49,7 @@ export default function Home() {
                   style={{ letterSpacing: '-0.04em' }}
                 >
                   <span className="block text-white drop-shadow-[0_0_22px_rgba(0,229,255,0.35)]">
-                    Backend
+                    Full-Stack
                   </span>
                   <span className="block text-holo pr-1">Developer</span>
                 </h1>
