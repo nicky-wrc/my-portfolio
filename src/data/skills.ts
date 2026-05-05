@@ -5,14 +5,14 @@ export const skills = [
   },
   {
     category: "Frameworks",
-    items: ["React", "Angular", "Vue.js", "Laravel", "Spring Boot", "Express", "Kotlin Multiplatform Mobile", "PyTorch",]
+    items: ["React", "Angular", "Vue.js", "Laravel", "Spring Boot", "Express", "Kotlin Multiplatform Mobile", "PyTorch", "Next.js"]
   },
   {
     category: "Database",
-    items: ["MySQL", "PostgreSQL", "Firebase"]
+    items: ["MySQL", "PostgreSQL", "Firebase", "Oracle Database", "SQLite", "Mongo DB"]
   },
   {
     category: "Tools",
-    items: ["Git & GitHub", "VS Code", "Postman", "Figma", "Canva", "Docker"]
+    items: ["Git & GitHub", "VS Code", "Antigravity", "Android Studio",  "Postman", "Figma", "Canva", "Docker"]
   }
 ];

@@ -4,7 +4,17 @@ import React, { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { skills } from '@/data/skills';
 
-const iconMapping: Record<string, { type: 'simpleicons' | 'devicons'; name: string }> = {
+type IconCfg =
+  | { type: 'simpleicons'; name: string }
+  | { type: 'devicons'; name: string }
+  /** Raw slug from the `simple-icons` npm package (some brands 404 on cdn.simpleicons.org) */
+  | { type: 'si-icons-file'; name: string }
+  /** Same-origin asset in /public (reliable when CDNs are blocked or img load fails) */
+  | { type: 'public'; path: string };
+
+const SI_ICONS_PKG = '11.12.0';
+
+const iconMapping: Record<string, IconCfg> = {
   'JavaScript': { type: 'simpleicons', name: 'javascript' },
   'TypeScript': { type: 'simpleicons', name: 'typescript' },
   'Python': { type: 'simpleicons', name: 'python' },
@@ -23,14 +33,20 @@ const iconMapping: Record<string, { type: 'simpleicons' | 'devicons'; name: stri
   'Express': { type: 'simpleicons', name: 'express' },
   'Kotlin Multiplatform Mobile': { type: 'simpleicons', name: 'kotlin' },
   'PyTorch': { type: 'simpleicons', name: 'pytorch' },
+  'Next.js': { type: 'simpleicons', name: 'nextdotjs' },
   'MySQL': { type: 'simpleicons', name: 'mysql' },
   'PostgreSQL': { type: 'simpleicons', name: 'postgresql' },
   'Firebase': { type: 'simpleicons', name: 'firebase' },
+  'Oracle Database': { type: 'devicons', name: 'oracle' },
+  'SQLite': { type: 'devicons', name: 'sqlite' },
+  'Mongo DB': { type: 'devicons', name: 'mongodb' },
   'Git & GitHub': { type: 'simpleicons', name: 'github' },
   'VS Code': { type: 'devicons', name: 'visualstudiocode' },
+  'Antigravity': { type: 'public', path: '/logos/antigravity.svg' },
+  'Android Studio': { type: 'public', path: '/logos/androidstudio.svg' },
   'Postman': { type: 'simpleicons', name: 'postman' },
   'Figma': { type: 'simpleicons', name: 'figma' },
-  'Canva': { type: 'simpleicons', name: 'canva' },
+  'Canva': { type: 'public', path: '/logos/canva.svg' },
   'Docker': { type: 'simpleicons', name: 'docker' },
 };
 
@@ -39,9 +55,10 @@ const colorMap: Record<string, string> = {
   'HTML': 'E34F26', 'CSS': '1572B6', 'C': 'A8B9CC', 'Java': 'ED8B00', 'Kotlin': '7F52FF',
   'React': '61DAFB', 'Angular': 'DD0031', 'Vue.js': '4FC08D', 'Laravel': 'FF2D20',
   'Spring Boot': '6DB33F', 'Express': 'FFFFFF', 'PyTorch': 'EE4C2C',
+  'Next.js': 'FFFFFF',
   'MySQL': '4479A1', 'PostgreSQL': '4169E1', 'Firebase': 'FFCA28',
   'Git & GitHub': 'F0F0F0', 'VS Code': '007ACC', 'Postman': 'FF6C37',
-  'Figma': 'F24E1E', 'Canva': '00C4CC', 'Docker': '2496ED',
+  'Figma': 'F24E1E', 'Docker': '2496ED',
 };
 
 const categoryAccents: Record<string, { from: string; via: string; to: string; glow: string; ring: string; tag: string }> = {
@@ -82,6 +99,12 @@ const categoryAccents: Record<string, { from: string; via: string; to: string; g
 function getIconUrl(skillName: string): string | null {
   const cfg = iconMapping[skillName.trim()];
   if (!cfg) return null;
+  if (cfg.type === 'public') {
+    return cfg.path;
+  }
+  if (cfg.type === 'si-icons-file') {
+    return `https://cdn.jsdelivr.net/npm/simple-icons@${SI_ICONS_PKG}/icons/${cfg.name}.svg`;
+  }
   if (cfg.type === 'devicons') {
     let name = cfg.name.toLowerCase();
     if (name === 'visualstudiocode') name = 'vscode';
@@ -138,7 +161,7 @@ function SkillChip({ name, accent }: { name: string; accent: typeof categoryAcce
         )}
       </div>
 
-      <span className="relative text-[0.65rem] sm:text-xs font-display tracking-wider text-slate-300 group-hover:text-white transition-colors text-center max-w-full truncate w-full">
+      <span className="relative text-[0.6rem] sm:text-[0.68rem] font-display tracking-tight sm:tracking-wide text-slate-300 group-hover:text-white transition-colors text-center w-full min-w-0 whitespace-normal break-words leading-snug hyphens-auto line-clamp-2">
         {name}
       </span>
     </div>
@@ -191,7 +214,7 @@ function CategoryPanel({ category, items, index }: { category: string; items: st
         </div>
 
         {/* Skill chips grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5 sm:gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3">
           {items.map((item) => (
             <SkillChip key={item} name={item} accent={accent} />
           ))}

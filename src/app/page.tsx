@@ -18,7 +18,7 @@ export default function Home() {
   const skills = ['Python', 'Java', 'Node.js', 'Spring Boot', 'MySQL', 'Next.js'];
 
   return (
-    <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen text-slate-100 relative overflow-x-clip overflow-y-visible">
       <GridBackground />
       <ProgressBar />
       <Navigation />
@@ -30,9 +30,9 @@ export default function Home() {
         id="home"
         className="min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-16 relative z-10"
       >
-        <div className="max-w-7xl mx-auto w-full grid xl:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto w-full grid xl:grid-cols-2 gap-12 items-center min-w-0">
           {/* Left: Text */}
-          <div className="text-center xl:text-left space-y-8">
+          <div className="text-center xl:text-left space-y-8 min-w-0 w-full max-w-full px-0.5 sm:px-1">
             <ScrollReveal direction="fade" delay={0}>
               <div className="flex justify-center xl:justify-start">
                 <ReadyBadge />
@@ -45,13 +45,15 @@ export default function Home() {
                   Hello, I&apos;m Worachat —
                 </p>
                 <h1
-                  className="font-display font-extrabold uppercase leading-[0.95] tracking-tighter text-[clamp(2.25rem,8vw,5.5rem)] xl:text-[clamp(3.5rem,5vw,5.75rem)]"
-                  style={{ letterSpacing: '-0.04em' }}
+                  className="font-display font-extrabold uppercase leading-[1.03] w-full min-w-0 max-w-full"
+                  style={{ letterSpacing: '-0.048em' }}
                 >
-                  <span className="block text-white drop-shadow-[0_0_22px_rgba(0,229,255,0.35)]">
+                  <span className="block text-white drop-shadow-[0_0_22px_rgba(0,229,255,0.35)] text-[clamp(1.85rem,calc(0.88rem+4.2vw),3.45rem)] xl:text-[clamp(1.95rem,calc(0.82rem+2.55vw),3.65rem)]">
                     Full-Stack
                   </span>
-                  <span className="block text-holo pr-1">Developer</span>
+                  <span className="block text-holo pr-1 sm:pr-2 text-balance text-[clamp(1.72rem,calc(0.82rem+3.85vw),3.2rem)] xl:text-[clamp(1.8rem,calc(0.78rem+2.35vw),3.35rem)]">
+                    Developer
+                  </span>
                 </h1>
                 <p className="font-script text-2xl md:text-3xl text-slate-200/90 pt-2">
                   Designing &amp; crafting{' '}
@@ -127,7 +129,7 @@ export default function Home() {
 
           {/* Right: Robot illustration */}
           <ScrollReveal direction="fade" delay={300}>
-            <div className="relative w-full h-[520px] md:h-[600px] lg:h-[640px] flex items-center justify-center px-2">
+            <div className="relative w-full min-w-0 h-[520px] md:h-[600px] lg:h-[640px] flex items-center justify-center px-2">
               <IllustrationSection />
             </div>
           </ScrollReveal>
@@ -192,16 +194,16 @@ export default function Home() {
                 <p>
                   สวัสดีครับ ผมชื่อ{' '}
                   <span className="text-holo-pink font-semibold">วรชาติ ปรัญญา</span>{' '}
-                  เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
+                  เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 4
                 </p>
                 <p>
-                  ผมหลงใหลใน <span className="text-cyan-300 font-semibold">Backend Development</span>,{' '}
+                  ผมหลงใหลใน <span className="text-cyan-300 font-semibold">Full-Stack Development</span>,{' '}
                   <span className="text-fuchsia-300 font-semibold">AI/ML</span> และการออกแบบระบบที่สามารถ
                   ขยายตัวได้ พร้อมพัฒนาประสบการณ์ผู้ใช้ที่ลื่นไหลและทันสมัย
                 </p>
                 <p>
-                  ตอนนี้กำลังมองหาตำแหน่งฝึกงาน Backend Developer
-                  เพื่อเรียนรู้กับทีมงานมืออาชีพ และร่วมสร้างโปรเจกต์ที่มีคุณค่าจริง ๆ
+                  ตอนนี้กำลังมองหาตำแหน่งฝึกงาน Full-Stack Developer
+                  เพื่อเรียนรู้กับทีมงานมืออาชีพ และร่วมสร้างโปรเจกต์ที่มีคุณภาพขึ้นมาได้จริง ๆ
                 </p>
               </div>
             </div>
@@ -220,7 +222,7 @@ export default function Home() {
                     College of Computing · Computer Science
                   </h4>
                   <p className="text-slate-400 mb-1">มหาวิทยาลัยขอนแก่น (KKU)</p>
-                  <p className="text-sm text-slate-500 font-mono">{'>'} year-3 // in_progress</p>
+                  <p className="text-sm text-slate-500 font-mono">{'>'} year-4 // in_progress</p>
                 </div>
               </div>
             </ScrollReveal>

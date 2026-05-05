@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" role="img" aria-label="Google Antigravity">
+  <defs>
+    <linearGradient id="ag" x1="24" y1="20" x2="104" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4285F4"/>
+      <stop offset="0.5" stop-color="#669DF6"/>
+      <stop offset="1" stop-color="#17D2C4"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="#0B0F1A"/>
+  <path
+    fill="url(#ag)"
+    d="M64 26 102 102H82.5l-7.2-19.2H52.7l-7.2 19.2H26L64 26Zm0 22.2L54.8 78.4h18.4L64 48.2Z"
+  />
+</svg>
