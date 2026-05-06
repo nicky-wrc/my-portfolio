@@ -50,19 +50,27 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-5 text-slate-300 leading-relaxed text-lg">
               <p>
-                สวัสดีครับ ผมชื่อ{' '}
-                <span className="text-holo-pink font-semibold">วรชาติ ปรัญญา</span>{' '}
-                เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาการคอมพิวเตอร์
-                สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3
+                สวัสดีครับ — ผมชื่อ{' '}
+                <span className="text-holo-pink font-semibold">วรชาติ ปรัญญา</span>
+                {' '}นักศึกษาสาขาวิทยาการคอมพิวเตอร์ คณะวิทยาการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น
+                ชั้นปีที่ 4 ถ้าให้สรุปในหนึ่งประโยค ผมเป็นคนที่ชอบทำให้ไอเดียบนกระดาษกลายเป็นซอฟต์แวร์ที่
+                <strong className="text-slate-200 font-medium">ใช้ได้จริง อธิบายได้ และมีเหตุผลรองรับ</strong>
               </p>
               <p>
-                ผมหลงใหลใน <span className="text-cyan-300 font-semibold">Backend Development</span>,{' '}
-                <span className="text-fuchsia-300 font-semibold">AI/ML</span>{' '}
-                และการออกแบบระบบที่ขยายตัวได้ พร้อมพัฒนาประสบการณ์ผู้ใช้ที่ทันสมัย
+                ผมหลงใหลใน{' '}
+                <span className="text-cyan-300 font-semibold">Full-Stack Development</span>,{' '}
+                <span className="text-fuchsia-300 font-semibold">AI/ML</span>
+                {' '}และการออกแบบระบบที่<strong className="text-slate-200 font-medium">ขยายตัวได้จริง</strong>
+                — ทั้งหน้าบ้าน หลังบ้าน และการเชื่อมต่อ ให้ผู้ใช้รู้สึกว่าโปรดักต์
+                <strong className="text-slate-200 font-medium">ลื่นไหล อ่านง่าย และทันโลกปัจจุบัน</strong>
+                ไม่ได้แค่หน้าตาดีแต่ใช้งานยาก
               </p>
               <p>
-                ตอนนี้กำลังมองหาตำแหน่งฝึกงาน Backend Developer
-                เพื่อร่วมงานกับทีมมืออาชีพและสร้างผลงานที่มีคุณค่าจริง ๆ
+                ตอนนี้ผมกำลังมองหาโอกาส{' '}
+                <span className="text-cyan-300/95 font-semibold">ฝึกงาน Full-Stack Developer</span>
+                {' '}เพื่อเข้าไปเรียนรู้กับทีมมืออาชีพที่ทำของจริง มีมาตรฐาน และมีโจทย์ที่วัดผลได้
+                ผมพร้อมถาม รับฟีดแบ็ก และส่งมอบงานให้จบอย่างมีเหตุผล — ถ้าคุณมองหาคนที่อยากเติบโตไปกับทีม
+                <strong className="text-slate-200 font-medium"> ผมพร้อมคุยและลงมือทำร่วมกันครับ</strong>
               </p>
             </div>
           </div>
@@ -83,7 +91,7 @@ export default function AboutPage() {
                   College of Computing · Computer Science
                 </h3>
                 <p className="text-slate-400 mb-1">มหาวิทยาลัยขอนแก่น (KKU)</p>
-                <p className="text-sm text-slate-500 font-mono">{'>'} year-3 // in_progress</p>
+                <p className="text-sm text-slate-500 font-mono">{'>'} year-4 // in_progress</p>
               </div>
             </div>
 
