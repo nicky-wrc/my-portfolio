@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import SkillSection from '@/components/SkillSection';
 import Footer from '@/components/Footer';
 import GridBackground from '@/components/GridBackground';
@@ -18,7 +17,6 @@ export default function AboutPage() {
   return (
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
       <GridBackground />
-      <Navigation />
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-6 relative overflow-hidden z-10">

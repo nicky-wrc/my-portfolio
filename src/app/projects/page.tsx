@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
 import ProjectCard from '@/components/ProjectCard';
 import Footer from '@/components/Footer';
 import GridBackground from '@/components/GridBackground';
@@ -28,7 +27,6 @@ export default function ProjectsPage() {
   return (
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
       <GridBackground />
-      <Navigation />
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 relative overflow-hidden z-10">

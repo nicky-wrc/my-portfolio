@@ -1,6 +1,5 @@
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressBar from "@/components/ProgressBar";
@@ -21,7 +20,6 @@ export default function Home() {
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-x-clip overflow-y-visible">
       <GridBackground />
       <ProgressBar />
-      <Navigation />
 
       {/* ============================================================
           HERO

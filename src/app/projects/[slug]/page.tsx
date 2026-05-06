@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProjectImage from "@/components/ProjectImage";
@@ -66,7 +65,6 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
   return (
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
       <GridBackground />
-      <Navigation />
 
       <div className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">

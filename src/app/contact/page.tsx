@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import GridBackground from '@/components/GridBackground';
@@ -61,7 +60,6 @@ export default function ContactPage() {
   return (
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
       <GridBackground />
-      <Navigation />
 
       <section className="pt-32 pb-16 px-6 relative overflow-hidden z-10">
         <div className="max-w-4xl mx-auto text-center relative z-10">

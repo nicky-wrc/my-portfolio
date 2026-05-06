@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import GridBackground from '@/components/GridBackground';
 
@@ -7,7 +6,6 @@ export default function NotFound() {
   return (
     <main id="main-content" className="min-h-screen text-slate-100 flex flex-col relative overflow-hidden">
       <GridBackground />
-      <Navigation />
 
       <div className="flex-grow flex items-center justify-center px-6 relative z-10">
         <div className="text-center max-w-lg">
