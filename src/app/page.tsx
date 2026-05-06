@@ -1,3 +1,4 @@
+import AboutOverviewContent from "@/components/AboutOverviewContent";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
 import Footer from "@/components/Footer";
@@ -10,7 +11,6 @@ import SocialIcons from "@/components/SocialIcons";
 import IllustrationSection from "@/components/IllustrationSection";
 import ContactForm from "@/components/ContactForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import ProfileAvatar from "@/components/ProfileAvatar";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -135,143 +135,61 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          ABOUT
+          ABOUT — full overview lives here (#about)
           ============================================================ */}
       <section
         id="about"
-        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden"
+        className="relative z-10 flex flex-col items-center justify-center overflow-hidden px-6 py-20 md:py-28"
       >
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-500/15 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
-        <div className="max-w-6xl mx-auto w-full relative z-10">
+        <div className="relative z-10 mx-auto w-full max-w-6xl">
           <ScrollReveal direction="up" delay={0}>
-            <div className="text-center mb-14">
-              {/* Avatar */}
-              <div className="mb-8 flex justify-center">
-                <ProfileAvatar size="compact" />
-              </div>
-
-              <p className="font-script text-2xl text-cyan-200/90 mb-2">— get to know —</p>
-              <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tight">
-                <span className="text-white">About </span>
-                <span className="text-holo">Me</span>
-              </h2>
-              <p className="text-slate-300/90 max-w-2xl mx-auto mt-6 leading-relaxed">
-                To be reborn, you must first accept the death of who you used to be.
-              </p>
-            </div>
+            <AboutOverviewContent showCtas={false} />
           </ScrollReveal>
+        </div>
 
-          <ScrollReveal direction="up" delay={150}>
-            <div className="cyber-card p-8 md:p-12 mb-12">
-              <div className="scan-line" />
-              <h3 className="font-display text-2xl md:text-3xl tracking-wider uppercase mb-6">
-                <span className="text-holo-cyan">Who</span>{' '}
-                <span className="text-white">I Am</span>
-              </h3>
-              <div className="space-y-5 text-slate-300 leading-relaxed text-lg">
-                <p>
-                  สวัสดีครับ ผมชื่อ{' '}
-                  <span className="text-holo-pink font-semibold">วรชาติ ปรัญญา</span>{' '}
-                  เป็นนักศึกษามหาวิทยาลัยขอนแก่น คณะวิทยาลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 4
-                </p>
-                <p>
-                  ผมหลงใหลใน <span className="text-cyan-300 font-semibold">Full-Stack Development</span>,{' '}
-                  <span className="text-fuchsia-300 font-semibold">AI/ML</span> และการออกแบบระบบที่สามารถ
-                  ขยายตัวได้ พร้อมพัฒนาประสบการณ์ผู้ใช้ที่ลื่นไหลและทันสมัย
-                </p>
-                <p>
-                  ตอนนี้กำลังมองหาตำแหน่งฝึกงาน Full-Stack Developer
-                  เพื่อเรียนรู้กับทีมงานมืออาชีพ และร่วมสร้างโปรเจกต์ที่มีคุณภาพขึ้นมาได้จริง ๆ
-                </p>
-              </div>
-            </div>
+        <div className="relative z-10 mx-auto mt-12 w-full max-w-6xl md:mt-16">
+          <ScrollReveal direction="up" delay={120}>
+            <SkillSection />
           </ScrollReveal>
+        </div>
 
-          {/* Education + Interests */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <ScrollReveal direction="right" delay={300}>
-              <div className="cyber-card p-8 h-full">
-                <h3 className="font-display text-xl md:text-2xl tracking-wider uppercase mb-6 text-white flex items-center gap-3">
-                  <span className="w-2 h-6 rounded-full bg-gradient-to-b from-cyan-400 to-fuchsia-400" />
-                  Education
-                </h3>
-                <div className="border-l-2 border-cyan-400/50 pl-6">
-                  <h4 className="font-display text-lg text-holo-cyan mb-2">
-                    College of Computing · Computer Science
-                  </h4>
-                  <p className="text-slate-400 mb-1">มหาวิทยาลัยขอนแก่น (KKU)</p>
-                  <p className="text-sm text-slate-500 font-mono">{'>'} year-4 // in_progress</p>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="left" delay={300}>
-              <div className="cyber-card p-8 h-full">
-                <h3 className="font-display text-xl md:text-2xl tracking-wider uppercase mb-6 text-white flex items-center gap-3">
-                  <span className="w-2 h-6 rounded-full bg-gradient-to-b from-fuchsia-400 to-violet-500" />
-                  Interests &amp; Goals
-                </h3>
-                <div className="space-y-3">
-                  {[
-                    'Backend Engineering & API Design',
-                    'AI / ML Integration',
-                    'Full-Stack Web & Mobile',
-                    'System Architecture & Scalability',
-                    'Clean Code & Best Practices',
-                  ].map((it, i) => (
-                    <div key={i} className="flex items-center gap-3 group hover:translate-x-1 transition-transform">
-                      <span className="font-display text-fuchsia-400 group-hover:text-cyan-300 transition-colors">
-                        ▸
-                      </span>
-                      <p className="text-slate-300 group-hover:text-white transition-colors">{it}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          <SkillSection />
-
-          {/* What I Do */}
-          <ScrollReveal direction="up" delay={400}>
-            <div className="mt-16">
-              <h3 className="font-display text-3xl md:text-4xl uppercase tracking-tight text-center mb-12">
+        <div className="relative z-10 mx-auto mt-12 w-full max-w-6xl md:mt-16">
+          <ScrollReveal direction="up" delay={200}>
+            <div>
+              <h3 className="font-display mb-12 text-center text-3xl uppercase tracking-tight md:text-4xl">
                 <span className="text-white">What </span>
                 <span className="text-holo">I Do</span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {[
                   {
                     title: 'Web Development',
                     desc: 'สร้างเว็บแอปพลิเคชันสมัยใหม่ที่รวดเร็วและสวยงามด้วย React, Next.js และเทคโนโลยีล่าสุด',
-                    accent: 'cyan',
                   },
                   {
                     title: 'Mobile Development',
                     desc: 'พัฒนาแอปมือถือทั้ง iOS และ Android ด้วย Flutter และ Kotlin Multiplatform Mobile',
-                    accent: 'fuchsia',
                   },
                   {
                     title: 'AI & Backend',
                     desc: 'ออกแบบ Backend ที่เสถียร พร้อมรวม AI / ML เข้ากับแอปพลิเคชันเพื่อประสบการณ์อัจฉริยะ',
-                    accent: 'violet',
                   },
                 ].map((item, idx) => (
-                  <ScrollReveal key={idx} direction="up" delay={400 + idx * 100} className="h-full">
-                    <div className="cyber-card p-7 h-full text-center group">
+                  <ScrollReveal key={idx} direction="up" delay={260 + idx * 80} className="h-full">
+                    <div className="group cyber-card h-full p-7 text-center">
                       <div className="scan-line" />
-                      <div className={`mx-auto mb-4 w-14 h-14 rounded-xl flex items-center justify-center cyber-border bg-[#050816]/50`}>
-                        <span className="font-display font-extrabold text-lg text-holo">{idx + 1}</span>
+                      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#050816]/50 cyber-border">
+                        <span className="font-display text-lg font-extrabold text-holo">{idx + 1}</span>
                       </div>
-                      <h4 className="font-display text-xl uppercase tracking-wide text-white mb-3 group-hover:text-holo-cyan transition-colors">
+                      <h4 className="font-display mb-3 text-xl uppercase tracking-wide text-white transition-colors group-hover:text-holo-cyan">
                         {item.title}
                       </h4>
-                      <p className="text-slate-300 leading-relaxed">{item.desc}</p>
+                      <p className="leading-relaxed text-slate-300">{item.desc}</p>
                     </div>
                   </ScrollReveal>
                 ))}

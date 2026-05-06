@@ -397,6 +397,11 @@ p { line-height: 1.8; color: #c8d3f0; }
 }
 
 /* Selection */
+/* Custom cursor (desktop only; toggled by CursorFollower) */
+body.using-custom-cursor {
+  cursor: none !important;
+}
+
 ::selection {
   background: rgba(255, 46, 209, 0.35);
   color: #ffffff;
@@ -414,6 +419,18 @@ p { line-height: 1.8; color: #c8d3f0; }
   50%      { transform: translateY(-18px); }
 }
 .animate-float-y { animation: float-y 6s ease-in-out infinite; }
+
+@keyframes about-dot-pulse {
+  0%, 100% { opacity: 0.45; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.35); }
+}
+.animate-about-dot-pulse { animation: about-dot-pulse 2.8s ease-in-out infinite; }
+
+@keyframes about-orbit-glow-kf {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.72; }
+}
+.animate-about-orbit-glow { animation: about-orbit-glow-kf 5.5s ease-in-out infinite; }
 
 @keyframes gradient {
   0%, 100% { background-position: 0% 50%; }
@@ -986,5 +1003,9 @@ details.project-overview-details[open] .project-overview-caret {
   .page-transition-shell::after {
     animation: none !important;
     opacity: 0 !important;
+  }
+  .animate-about-dot-pulse,
+  .animate-about-orbit-glow {
+    animation: none !important;
   }
 }

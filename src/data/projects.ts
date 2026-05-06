@@ -39,10 +39,10 @@ export const projects: Project[] = [
   {
     slug: "smart-moto-service",
     title: "Smart Moto Service Center",
-    description: "ระบบบริหารจัดการศูนย์บริการรถจักรยานยนต์ครบวงจร กำลังดำเนินการทำโปรเจคภายใน 4 เดือนนี้",
+    description: "ระบบบริหารจัดการศูนย์บริการรถจักรยานยนต์ครบวงจร รองรับตั้งแต่การรับรถ งานซ่อม การจัดการอะไหล่ การชำระเงิน ไปจนถึงรายงานและการบริหารบุคลากร",
     content: "ระบบ Web Application สำหรับบริหารจัดการศูนย์บริการรถจักรยานยนต์แบบครบวงจร กำลังอยู่ในขั้นตอนการพัฒนาและคาดว่าจะแล้วเสร็จภายใน 4 เดือนนี้. ระบบนี้จะครอบคลุมการจัดการลูกค้า การจัดการบริการ การติดตามสถานะการซ่อม และรายงานต่างๆ. โปรเจกต์นี้จะใช้เทคโนโลยี Full-Stack Modern เพื่อสร้างระบบที่ทันสมัยและมีประสิทธิภาพ. ระบบจะรองรับการจัดการข้อมูลลูกค้า ประวัติการซ่อม การจัดการอะไหล่ และระบบรายงาน. กำลังดำเนินการวิเคราะห์ระบบ ออกแบบ Database Schema และพัฒนาโซลูชันแบบ Full-Stack สำหรับการติดตามและจัดการบริการ.",
     role: "Full-Stack Developer",
-    tags: ["System Analysis", "Web App", "Full-Stack", "In Progress"],
+    tags: ["React (Vite + TypeScript)", "React Router", "Tailwind CSS", "Context API (AuthContext, RequestHistoryContext)", "Custom hooks and Service", "Recharts", "Node.js", "NestJS", "PostgreSQL", "Prisma ORM", "JWT Authentication", "Role-based Access Control (RBAC)", "Swagger", "Docker"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg", 
     githubUrl: "https://github.com/nicky-wrc/smart-moto-service-center",

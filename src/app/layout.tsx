@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import AppBootSequence from "@/components/AppBootSequence";
+import CursorFollower from "@/components/CursorFollower";
 import Navigation from "@/components/Navigation";
 import RouteTransitionOrchestrator from "@/components/RouteTransitionOrchestrator";
 import "./globals.css";
@@ -75,6 +76,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AppBootSequence />
+        <CursorFollower />
         <RouteTransitionOrchestrator>
           <>
             <Navigation />
