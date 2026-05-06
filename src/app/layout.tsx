@@ -39,10 +39,6 @@ export const metadata: Metadata = {
   keywords: ["Backend Developer", "Full-Stack Developer", "AI Developer", "Robotics", "Web Developer", "Mobile Developer", "React", "Next.js", "Python", "Java", "Portfolio"],
   authors: [{ name: "Worachat Paranya" }],
   creator: "Worachat Paranya",
-  icons: {
-    icon: [{ url: "/nicky_profile.png", type: "image/png" }],
-    apple: "/nicky_profile.png",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
