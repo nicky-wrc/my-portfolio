@@ -30,7 +30,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-orbitron);
-  --font-script: var(--font-dancing-script);
+  --font-script: var(--font-geist-sans);
 }
 
 html {
@@ -99,8 +99,9 @@ body::after {
   letter-spacing: 0.04em;
 }
 .font-script {
-  font-family: var(--font-dancing-script), 'Brush Script MT', cursive;
-  letter-spacing: 0.01em;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 h1, h2, h3 {
@@ -337,6 +338,41 @@ p { line-height: 1.8; color: #c8d3f0; }
           mask-composite: exclude;
   animation: border-spin 8s linear infinite;
 }
+
+/* Circular profile — conic “energy” ring + glow (About / avatars) */
+.profile-avatar-frame {
+  position: relative;
+  border-radius: 9999px;
+  background: #050816;
+  overflow: hidden;
+  isolation: isolate;
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+.profile-avatar-frame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    #00e5ff 0deg,
+    #8b5cf6 100deg,
+    #ff2ed1 200deg,
+    #00ffa3 280deg,
+    #00e5ff 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: border-spin 5.5s linear infinite;
+}
+.profile-avatar-frame:hover::after {
+  animation-duration: 3.5s;
+}
 @property --angle {
   syntax: '<angle>';
   inherits: false;
@@ -518,3 +554,429 @@ p { line-height: 1.8; color: #c8d3f0; }
   to   { transform: rotate(360deg); }
 }
 .animate-rotate-slow { animation: rotate-slow 22s linear infinite; }
+
+/* ============================================================
+   Initial boot splash (first paint — layout client island)
+   ============================================================ */
+.app-boot-root {
+  position: fixed;
+  inset: 0;
+  z-index: 280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  pointer-events: auto;
+  animation: app-boot-enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.app-boot-root--exit {
+  animation: app-boot-exit 0.82s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  pointer-events: none;
+}
+.app-boot-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(139, 92, 246, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(0, 229, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 15% 75%, rgba(255, 46, 209, 0.1), transparent 45%),
+    #02030a;
+}
+.app-boot-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 46, 209, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, black 20%, transparent 70%);
+}
+.app-boot-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: app-boot-float 10s ease-in-out infinite;
+}
+.app-boot-aurora--a {
+  width: min(90vw, 520px);
+  height: min(90vw, 520px);
+  left: -15%;
+  top: 10%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.35), transparent 65%);
+}
+.app-boot-aurora--b {
+  width: min(85vw, 480px);
+  height: min(85vw, 480px);
+  right: -20%;
+  bottom: 5%;
+  background: radial-gradient(circle, rgba(255, 46, 209, 0.3), transparent 65%);
+  animation-delay: -5s;
+}
+.app-boot-beam {
+  position: absolute;
+  left: -20%;
+  top: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(0, 229, 255, 0.04) 40%,
+    rgba(255, 46, 209, 0.06) 50%,
+    transparent 70%
+  );
+  animation: app-boot-beam-sweep 1.9s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+.app-boot-sparks {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><circle cx='20' cy='40' r='0.8' fill='%2300e5ff' opacity='0.35'/><circle cx='90' cy='25' r='0.6' fill='%23ff2ed1' opacity='0.4'/><circle cx='70' cy='95' r='0.5' fill='%2300ffa3' opacity='0.3'/></svg>");
+  opacity: 0.4;
+  animation: app-boot-spark-drift 16s linear infinite;
+  pointer-events: none;
+}
+.app-boot-rings-wrap {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  width: min(78vw, 360px);
+  height: min(78vw, 360px);
+  pointer-events: none;
+}
+.app-boot-rings {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.app-boot-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#050816, #050816) padding-box,
+    conic-gradient(from 0deg, #00e5ff, #8b5cf6, #ff2ed1, #00ffa3, #00e5ff) border-box;
+  opacity: 0.85;
+}
+.app-boot-ring--outer {
+  animation: app-boot-spin 4.2s linear infinite;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.4));
+}
+.app-boot-ring--mid {
+  inset: 10%;
+  animation: app-boot-spin 3.2s linear infinite reverse;
+  opacity: 0.72;
+}
+.app-boot-ring--inner {
+  inset: 22%;
+  animation: app-boot-spin 2.4s linear infinite;
+  border-width: 1px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 14px rgba(255, 46, 209, 0.45));
+}
+.app-boot-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 28rem;
+}
+.app-boot-title {
+  text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+}
+.app-boot-fade-in {
+  animation: app-boot-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+.app-boot-fade-in--delay {
+  animation-delay: 0.35s;
+}
+.app-boot-progress {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+.app-boot-progress-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(5, 8, 22, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 12px rgba(0, 229, 255, 0.15),
+    0 0 24px rgba(255, 46, 209, 0.12);
+}
+.app-boot-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #00e5ff, #8b5cf6, #ff2ed1, #00ffa3);
+  background-size: 200% 100%;
+  animation:
+    app-boot-progress-fill 1.55s cubic-bezier(0.45, 0, 0.15, 1) 0.2s forwards,
+    app-boot-progress-shine 1.2s linear 0.2s infinite;
+}
+.app-boot-progress-glow {
+  position: absolute;
+  inset: -6px -4px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.2), rgba(255, 46, 209, 0.15));
+  filter: blur(8px);
+  opacity: 0.7;
+  z-index: -1;
+  animation: app-boot-glow-pulse 1.4s ease-in-out infinite;
+}
+.app-boot-progress-edge {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  pointer-events: none;
+}
+.app-boot-log {
+  opacity: 0;
+  animation: app-boot-log-in 0.45s ease-out both;
+}
+.app-boot-log--1 { animation-delay: 0.45s; }
+.app-boot-log--2 { animation-delay: 0.75s; }
+.app-boot-log--3 { animation-delay: 1.05s; }
+
+@keyframes app-boot-enter {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes app-boot-exit {
+  to {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: blur(12px) brightness(1.4);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes app-boot-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(24px, -20px) scale(1.05); }
+}
+@keyframes app-boot-beam-sweep {
+  0%, 100% { transform: translateX(-8%) skewX(-6deg); opacity: 0.5; }
+  50% { transform: translateX(12%) skewX(-4deg); opacity: 0.85; }
+}
+@keyframes app-boot-spark-drift {
+  from { background-position: 0 0; }
+  to { background-position: 240px 180px; }
+}
+@keyframes app-boot-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes app-boot-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes app-boot-progress-fill {
+  to { width: 100%; }
+}
+@keyframes app-boot-progress-shine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes app-boot-glow-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.9; }
+}
+@keyframes app-boot-log-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Route warp burst — orchestrator (below fixed nav z-50) */
+.route-warp-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.route-warp-layer--on {
+  visibility: visible;
+  animation: route-warp-burst 0.82s cubic-bezier(0.33, 0.84, 0.36, 1) both;
+}
+@keyframes route-warp-burst {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0) hue-rotate(0deg);
+    background:
+      radial-gradient(circle at 50% 50%, transparent 30%, rgba(2, 3, 10, 0) 70%),
+      linear-gradient(180deg, rgba(0, 229, 255, 0), rgba(0, 229, 255, 0));
+  }
+  12% {
+    opacity: 1;
+    backdrop-filter: blur(6px) hue-rotate(25deg);
+    background:
+      radial-gradient(circle at 50% 45%, rgba(0, 229, 255, 0.14) 0%, transparent 52%),
+      radial-gradient(circle at 40% 60%, rgba(255, 46, 209, 0.12) 0%, transparent 48%),
+      rgba(2, 3, 10, 0.45);
+  }
+  35% {
+    backdrop-filter: blur(3px) hue-rotate(-12deg);
+    opacity: 0.95;
+    background:
+      conic-gradient(from 120deg at 50% 50%, rgba(0, 229, 255, 0.12), transparent 40%, rgba(255, 46, 209, 0.1), transparent 75%),
+      rgba(2, 3, 10, 0.32);
+  }
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0);
+    background: transparent;
+  }
+}
+
+/* ============================================================
+   Route page shell — template remount per navigation
+   ============================================================ */
+.page-transition-shell {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  animation: page-route-enter 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-transition-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  opacity: 0;
+  background:
+    linear-gradient(
+      125deg,
+      transparent 30%,
+      rgba(0, 229, 255, 0.1) 46%,
+      rgba(255, 46, 209, 0.12) 52%,
+      rgba(139, 92, 246, 0.08) 58%,
+      transparent 72%
+    ),
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(0, 229, 255, 0.06), transparent 55%);
+  background-size: 280% 100%, 100% 100%;
+  animation: page-route-chromatic 0.72s cubic-bezier(0.33, 1, 0.36, 1) forwards;
+  mix-blend-mode: screen;
+}
+
+.page-transition-shell::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -35%;
+  height: 26%;
+  pointer-events: none;
+  z-index: 34;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 229, 255, 0.22) 42%,
+    rgba(255, 46, 209, 0.12) 55%,
+    transparent
+  );
+  filter: blur(1.5px);
+  box-shadow: 0 0 40px rgba(0, 229, 255, 0.15);
+  animation: page-route-scan 0.62s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes page-route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97) perspective(900px) rotateX(4deg);
+    filter: blur(10px) brightness(1.2) saturate(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0) brightness(1) saturate(1);
+  }
+}
+
+@keyframes page-route-scan {
+  0% {
+    transform: translateY(-110vh);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+@keyframes page-route-chromatic {
+  0% {
+    background-position: 140% 0, 50% 0;
+    opacity: 0.9;
+  }
+  100% {
+    background-position: -100% 0, 50% 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-boot-root,
+  .app-boot-root--exit,
+  .app-boot-aurora,
+  .app-boot-beam,
+  .app-boot-sparks,
+  .app-boot-ring--outer,
+  .app-boot-ring--mid,
+  .app-boot-ring--inner,
+  .app-boot-fade-in,
+  .app-boot-fade-in--delay,
+  .app-boot-progress-fill,
+  .app-boot-progress-glow,
+  .app-boot-log {
+    animation: none !important;
+  }
+  .app-boot-progress-fill {
+    width: 100% !important;
+  }
+  .app-boot-log {
+    opacity: 1;
+  }
+  .route-warp-layer--on {
+    animation: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  .page-transition-shell {
+    animation: none;
+  }
+  .page-transition-shell::before,
+  .page-transition-shell::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}

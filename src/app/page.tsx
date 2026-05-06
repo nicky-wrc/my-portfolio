@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
 import Navigation from "@/components/Navigation";
@@ -12,6 +11,7 @@ import SocialIcons from "@/components/SocialIcons";
 import IllustrationSection from "@/components/IllustrationSection";
 import ContactForm from "@/components/ContactForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import ProfileAvatar from "@/components/ProfileAvatar";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -40,22 +40,22 @@ export default function Home() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={150}>
-              <div className="space-y-2">
-                <p className="font-script text-2xl md:text-3xl text-cyan-200/90 -mb-2">
+              <div className="space-y-3 md:space-y-4">
+                <p className="font-script text-xl md:text-2xl text-cyan-200/90">
                   Hello, I&apos;m Worachat —
                 </p>
                 <h1
-                  className="font-display font-extrabold uppercase leading-[1.03] w-full min-w-0 max-w-full"
-                  style={{ letterSpacing: '-0.048em' }}
+                  className="font-display font-extrabold uppercase w-full min-w-0 max-w-full flex flex-col gap-2 md:gap-2.5"
+                  style={{ letterSpacing: '-0.02em' }}
                 >
-                  <span className="block text-white drop-shadow-[0_0_22px_rgba(0,229,255,0.35)] text-[clamp(1.85rem,calc(0.88rem+4.2vw),3.45rem)] xl:text-[clamp(1.95rem,calc(0.82rem+2.55vw),3.65rem)]">
+                  <span className="block text-white drop-shadow-[0_0_22px_rgba(0,229,255,0.35)] leading-none text-[clamp(1.72rem,calc(0.82rem+3.6vw),3.1rem)] xl:text-[clamp(1.8rem,calc(0.78rem+2.4vw),3.25rem)]">
                     Full-Stack
                   </span>
-                  <span className="block text-holo pr-1 sm:pr-2 text-balance text-[clamp(1.72rem,calc(0.82rem+3.85vw),3.2rem)] xl:text-[clamp(1.8rem,calc(0.78rem+2.35vw),3.35rem)]">
+                  <span className="block text-holo pr-1 sm:pr-2 text-pretty leading-none text-[clamp(1.65rem,calc(0.78rem+3.35vw),2.95rem)] xl:text-[clamp(1.72rem,calc(0.74rem+2.2vw),3.05rem)]">
                     Developer
                   </span>
                 </h1>
-                <p className="font-script text-2xl md:text-3xl text-slate-200/90 pt-2">
+                <p className="font-script text-lg md:text-xl text-slate-200/90 leading-snug md:leading-normal mt-1">
                   Designing &amp; crafting{' '}
                   <span className="text-holo-pink font-semibold">intelligent systems</span>
                 </p>
@@ -152,24 +152,8 @@ export default function Home() {
           <ScrollReveal direction="up" delay={0}>
             <div className="text-center mb-14">
               {/* Avatar */}
-              <div className="mb-8 relative inline-block group">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-fuchsia-400 to-violet-500 blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
-                <div className="relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-violet-500 shadow-2xl shadow-fuchsia-500/30 animate-glow-pulse group-hover:scale-105 transition-transform duration-500">
-                  <div className="w-full h-full rounded-full bg-[#0a0e2c] border-2 border-[#050816] overflow-hidden relative">
-                    <Image
-                      src="/profile.jpg"
-                      alt="Worachat Paranya"
-                      fill
-                      sizes="176px"
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      priority
-                    />
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-9 h-9 bg-emerald-400 rounded-full border-4 border-[#050816] flex items-center justify-center">
-                  <div className="w-3 h-3 bg-emerald-300 rounded-full animate-ping absolute" />
-                  <div className="w-2 h-2 bg-white rounded-full" />
-                </div>
+              <div className="mb-8 flex justify-center">
+                <ProfileAvatar size="compact" />
               </div>
 
               <p className="font-script text-2xl text-cyan-200/90 mb-2">— get to know —</p>

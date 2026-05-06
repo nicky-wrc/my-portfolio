@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Orbitron, Dancing_Script } from "next/font/google";
+import { Geist, Geist_Mono, Orbitron } from "next/font/google";
+import AppBootSequence from "@/components/AppBootSequence";
+import RouteTransitionOrchestrator from "@/components/RouteTransitionOrchestrator";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,13 +20,6 @@ const orbitron = Orbitron({
   variable: "--font-orbitron",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const dancingScript = Dancing_Script({
-  variable: "--font-dancing-script",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -70,15 +65,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${dancingScript.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} antialiased`}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-white focus:rounded-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[320] focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-white focus:rounded-lg focus:outline-none"
         >
           Skip to main content
         </a>
-        {children}
+        <AppBootSequence />
+        <RouteTransitionOrchestrator>{children}</RouteTransitionOrchestrator>
       </body>
     </html>
   );

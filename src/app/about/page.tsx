@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SkillSection from '@/components/SkillSection';
 import Footer from '@/components/Footer';
 import GridBackground from '@/components/GridBackground';
+import ProfileAvatar from '@/components/ProfileAvatar';
 
 export const metadata: Metadata = {
   title: 'About | Worachat Paranya - Developer Portfolio',
@@ -23,29 +23,20 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="pt-32 pb-20 px-6 relative overflow-hidden z-10">
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="mb-8 relative inline-block group">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-fuchsia-400 to-violet-500 blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
-            <div className="relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-violet-500 shadow-2xl shadow-fuchsia-500/30 animate-glow-pulse">
-              <div className="w-full h-full rounded-full bg-[#0a0e2c] border-2 border-[#050816] overflow-hidden relative">
-                <Image
-                  src="/profile.jpg"
-                  alt="Worachat Paranya"
-                  fill
-                  sizes="176px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
+          <ProfileAvatar priority size="hero" className="mb-10" />
+          <div className="space-y-4 md:space-y-5">
+            <p className="font-script text-xl md:text-2xl text-cyan-200/90">— get to know —</p>
+            <h1
+              className="font-display text-4xl md:text-5xl lg:text-6xl uppercase flex flex-wrap justify-center items-baseline gap-x-3 gap-y-0"
+              style={{ letterSpacing: '-0.02em' }}
+            >
+              <span className="text-white">About</span>
+              <span className="text-holo">Me</span>
+            </h1>
+            <p className="text-slate-300/90 max-w-2xl mx-auto leading-snug md:leading-relaxed text-base md:text-lg">
+              To be reborn, you must first accept the death of who you used to be.
+            </p>
           </div>
-          <p className="font-script text-2xl text-cyan-200/90 mb-2">— get to know —</p>
-          <h1 className="font-display text-4xl md:text-6xl uppercase tracking-tight mb-6">
-            <span className="text-white">About </span>
-            <span className="text-holo">Me</span>
-          </h1>
-          <p className="text-slate-300/85 max-w-2xl mx-auto leading-relaxed">
-            To be reborn, you must first accept the death of who you used to be.
-          </p>
         </div>
       </section>
 
