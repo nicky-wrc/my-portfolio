@@ -1,12 +1,27 @@
 'use client';
 
 import { useEffect, useRef, useState, ReactNode } from 'react';
+import { MOTION_RESUME_EVENT } from '@/components/MotionResume';
 
 interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right' | 'fade';
   className?: string;
+}
+
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => setReduce(mq.matches);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
+
+  return reduce;
 }
 
 export default function ScrollReveal({ 
@@ -17,27 +32,50 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) {
+      setIsVisible(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -4% 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+  /** After a long background tab, replay enter transition for elements still on screen. */
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const replayIfInView = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      const inView = rect.top < h * 0.92 && rect.bottom > h * 0.08;
+      if (!inView) return;
+      setIsVisible(false);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setIsVisible(true));
+      });
     };
-  }, []);
+
+    window.addEventListener(MOTION_RESUME_EVENT, replayIfInView);
+    return () => window.removeEventListener(MOTION_RESUME_EVENT, replayIfInView);
+  }, [reduceMotion]);
 
   const getDirectionClass = () => {
     if (!isVisible) {

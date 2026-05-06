@@ -34,6 +34,7 @@ const iconMapping: Record<string, IconCfg> = {
   'Kotlin Multiplatform Mobile': { type: 'simpleicons', name: 'kotlin' },
   'PyTorch': { type: 'simpleicons', name: 'pytorch' },
   'Next.js': { type: 'simpleicons', name: 'nextdotjs' },
+  'WordPress': { type: 'simpleicons', name: 'wordpress' },
   'MySQL': { type: 'simpleicons', name: 'mysql' },
   'PostgreSQL': { type: 'simpleicons', name: 'postgresql' },
   'Firebase': { type: 'simpleicons', name: 'firebase' },
@@ -56,6 +57,7 @@ const colorMap: Record<string, string> = {
   'React': '61DAFB', 'Angular': 'DD0031', 'Vue.js': '4FC08D', 'Laravel': 'FF2D20',
   'Spring Boot': '6DB33F', 'Express': 'FFFFFF', 'PyTorch': 'EE4C2C',
   'Next.js': 'FFFFFF',
+  'WordPress': '21759B',
   'MySQL': '4479A1', 'PostgreSQL': '4169E1', 'Firebase': 'FFCA28',
   'Git & GitHub': 'F0F0F0', 'VS Code': '007ACC', 'Postman': 'FF6C37',
   'Figma': 'F24E1E', 'Docker': '2496ED',
@@ -279,8 +281,7 @@ const SkillSection = () => {
               <span className="text-holo">Skills</span>
             </h2>
             <p className="text-slate-300/85 mt-4 leading-relaxed">
-              เครื่องมือทุกชิ้นในคลังแสงของผม — ตั้งแต่ภาษาโปรแกรม, framework
-              ไปจนถึงเครื่องมือที่ใช้ส่ง production จริง
+              Every tool in my arsenal — from programming languages and frameworks, to the tools I actually ship production with.
             </p>
 
             {/* Stats row */}

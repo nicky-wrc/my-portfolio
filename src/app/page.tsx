@@ -169,15 +169,15 @@ export default function Home() {
                 {[
                   {
                     title: 'Web Development',
-                    desc: 'สร้างเว็บแอปพลิเคชันสมัยใหม่ที่รวดเร็วและสวยงามด้วย React, Next.js และเทคโนโลยีล่าสุด',
+                    desc: 'Build modern, fast, and beautiful web applications with React, Next.js, and the latest technologies.',
                   },
                   {
                     title: 'Mobile Development',
-                    desc: 'พัฒนาแอปมือถือทั้ง iOS และ Android ด้วย Flutter และ Kotlin Multiplatform Mobile',
+                    desc: 'Develop mobile apps for both iOS and Android with Flutter and Kotlin Multiplatform Mobile.',
                   },
                   {
                     title: 'AI & Backend',
-                    desc: 'ออกแบบ Backend ที่เสถียร พร้อมรวม AI / ML เข้ากับแอปพลิเคชันเพื่อประสบการณ์อัจฉริยะ',
+                    desc: 'Design robust backends and integrate AI/ML into applications for intelligent, cutting-edge experiences.',
                   },
                 ].map((item, idx) => (
                   <ScrollReveal key={idx} direction="up" delay={260 + idx * 80} className="h-full">
@@ -220,8 +220,7 @@ export default function Home() {
                 <span className="text-holo">Projects</span>
               </h2>
               <p className="text-slate-300/85 max-w-2xl mx-auto mt-6 leading-relaxed">
-                ผลงานคัดสรรที่ออกแบบและสร้างขึ้นมาทั้งโปรเจกต์ส่วนตัวและงานทีม
-                — แต่ละชิ้นถูกฝึกฝนเหมือนหุ่นยนต์ที่พร้อมรบในสนามจริง
+                A curated collection of work — personal projects and team endeavors alike — each one battle-hardened and built to perform in the real world.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <div className="cyber-chip">
@@ -271,7 +270,7 @@ export default function Home() {
                 <span className="text-holo-pink">Touch</span>
               </h2>
               <p className="text-slate-300/85 max-w-2xl mx-auto mt-6 leading-relaxed">
-                มีคำถามหรือสนใจในผลงานของผม? ส่งข้อความหา robot ตัวนี้ได้เลย — ผมตอบทุกข้อความครับ
+                Have a question or interested in my work? Drop this robot a message — I reply to every single one.
               </p>
             </div>
           </ScrollReveal>

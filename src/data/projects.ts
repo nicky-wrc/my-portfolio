@@ -27,7 +27,7 @@ export const projects: Project[] = [
   },
   {
     slug: "food-order-app",
-    title: "Food Order App",
+    title: "Food Order App Admin & User",
     description: "แอพสั่งอาหารที่มีระบบจัดการ 2 ฝั่ง (Admin/User) รองรับสถานะออเดอร์ Real-time",
     content: "แอปพลิเคชันสั่งอาหารแบบครบวงจรพร้อมระบบจัดการ 2 ฝั่ง (Admin/User) พัฒนาด้วย Flutter และ Firebase. ระบบจัดการผู้ใช้ (User Management) ด้วย Firebase Authentication สำหรับการลงทะเบียนและเข้าสู่ระบบ. ระบบจัดการเมนูอาหาร (Menu Management) สำหรับ Admin เพิ่ม/แก้ไข/ลบเมนูอาหารพร้อมรูปภาพและราคา. ระบบสั่งอาหาร (Order System) ที่ผู้ใช้สามารถเลือกเมนู เพิ่มลงตะกร้า และสั่งอาหารได้. ระบบอัปเดตสถานะออเดอร์แบบ Real-time (Real-time Order Status) ด้วย Firebase Realtime Database แสดงสถานะออเดอร์แบบทันที. ระบบจัดการออเดอร์ (Order Management) สำหรับ Admin ดูและจัดการออเดอร์ทั้งหมด พร้อมอัปเดตสถานะการจัดส่ง. ระบบแจ้งเตือน (Push Notifications) แจ้งเตือนผู้ใช้เมื่อออเดอร์มีการอัปเดตสถานะ. ระบบประวัติการสั่งอาหาร (Order History) สำหรับผู้ใช้ดูประวัติการสั่งอาหารทั้งหมด. ระบบโปรไฟล์ผู้ใช้ (User Profile) สำหรับจัดการข้อมูลส่วนตัวและที่อยู่จัดส่ง. ระบบค้นหาและกรองเมนู (Search & Filter) สำหรับค้นหาเมนูอาหารตามชื่อหรือหมวดหมู่. ระบบตะกร้าสินค้า (Shopping Cart) สำหรับจัดการรายการอาหารก่อนสั่ง. พัฒนาด้วย Flutter, Dart, Firebase Authentication, Firebase Realtime Database, Firebase Storage, Firebase Cloud Messaging, และ Kotlin สำหรับ Native Features. ใช้ State Management (Provider/Bloc), Real-time Database, Cloud Storage, และ Push Notifications.",
     role: "Mobile Developer",
