@@ -129,7 +129,7 @@ export default function Footer() {
               <div>
                 <p className="text-[0.65rem] tracking-[0.22em] uppercase font-display text-slate-400">Phone</p>
                 <p className="text-white font-medium group-hover:text-holo-cyan transition-colors text-sm">
-                  082-8814470
+                  082-881-4470
                 </p>
               </div>
             </a>
