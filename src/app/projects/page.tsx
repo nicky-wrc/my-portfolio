@@ -6,10 +6,10 @@ import GridBackground from '@/components/GridBackground';
 import { projects } from '@/data/projects';
 
 export const metadata: Metadata = {
-  title: 'Projects | Worachat Paranya - Developer Portfolio',
+  title: 'Projects',
   description: 'Explore projects by Worachat Paranya including web applications, mobile apps, AI/ML projects, and backend systems.',
   openGraph: {
-    title: 'Projects | Worachat Paranya',
+    title: 'Projects | Worachat',
     description: 'Web applications, mobile apps, and AI/ML projects.',
   },
 };

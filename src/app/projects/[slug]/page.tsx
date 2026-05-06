@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: ProjectDetailProps): Promise<
 
   if (!project) {
     return {
-      title: 'Project Not Found | Worachat Paranya',
+      title: 'Not Found',
     };
   }
 
   return {
-    title: `${project.title} | Worachat Paranya - Developer Portfolio`,
+    title: project.title,
     description: project.description,
     openGraph: {
       title: project.title,

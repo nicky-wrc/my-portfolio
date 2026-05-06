@@ -32,23 +32,27 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://worachat.dev'),
   title: {
-    default: "Worachat Paranya — Backend Engineer & AI Developer",
-    template: "%s | Worachat Paranya",
+    default: "Worachat - Developer",
+    template: "%s | Worachat",
   },
   description: "Futuristic developer portfolio of Worachat Paranya — Backend, Full-Stack & AI engineer crafting scalable systems and delightful experiences.",
   keywords: ["Backend Developer", "Full-Stack Developer", "AI Developer", "Robotics", "Web Developer", "Mobile Developer", "React", "Next.js", "Python", "Java", "Portfolio"],
   authors: [{ name: "Worachat Paranya" }],
   creator: "Worachat Paranya",
+  icons: {
+    icon: [{ url: "/nicky_profile.png", type: "image/png" }],
+    apple: "/nicky_profile.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Worachat Paranya — Backend Engineer & AI Developer",
+    title: "Worachat - Developer",
     description: "Futuristic developer portfolio. Backend, Full-Stack and AI engineering, with a robotic flair.",
     siteName: "Worachat Paranya Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worachat Paranya — Backend Engineer & AI Developer",
+    title: "Worachat - Developer",
     description: "Futuristic developer portfolio. Backend, Full-Stack and AI engineering, with a robotic flair.",
   },
   robots: {

@@ -6,10 +6,10 @@ import ContactForm from '@/components/ContactForm';
 import GridBackground from '@/components/GridBackground';
 
 export const metadata: Metadata = {
-  title: 'Contact | Worachat Paranya - Developer Portfolio',
+  title: 'Contact',
   description: 'Get in touch with Worachat Paranya. Open for internship opportunities, collaborations, and freelance projects in web and mobile development.',
   openGraph: {
-    title: 'Contact | Worachat Paranya',
+    title: 'Contact | Worachat',
     description: 'Get in touch with Worachat Paranya for development opportunities.',
   },
 };

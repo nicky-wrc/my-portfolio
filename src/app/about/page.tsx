@@ -6,10 +6,10 @@ import GridBackground from '@/components/GridBackground';
 import ProfileAvatar from '@/components/ProfileAvatar';
 
 export const metadata: Metadata = {
-  title: 'About | Worachat Paranya - Developer Portfolio',
+  title: 'About',
   description: 'Learn about Worachat Paranya, a Computer Science student at Khon Kaen University specializing in Backend Development, AI/ML, and Full-Stack applications.',
   openGraph: {
-    title: 'About | Worachat Paranya',
+    title: 'About | Worachat',
     description: 'Computer Science student passionate about Backend Development and AI/ML.',
   },
 };
