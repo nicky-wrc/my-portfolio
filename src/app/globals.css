@@ -855,6 +855,14 @@ p { line-height: 1.8; color: #c8d3f0; }
   }
 }
 
+details.project-overview-details[open] .project-overview-caret {
+  transform: rotate(90deg);
+}
+.project-overview-caret {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
 /* ============================================================
    Route page shell — template remount per navigation
    ============================================================ */

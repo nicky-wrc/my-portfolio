@@ -8,6 +8,8 @@ import ProjectImage from "@/components/ProjectImage";
 import GridBackground from "@/components/GridBackground";
 import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
+import { countOverviewBlocks, parseProjectContent } from "@/lib/projectContent";
+import ProjectOverview from "@/components/ProjectOverview";
 
 interface ProjectDetailProps {
   params: Promise<{ slug: string }>;
@@ -47,7 +49,19 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
   if (!project) notFound();
 
   const totalTechnologies = project.tags.length;
-  const mainFeatures = project.content.split('.').filter(s => s.trim().length > 0).length;
+  const mainFeatures = countOverviewBlocks(project.content);
+  const { blocks: overviewBlocks } = parseProjectContent(project.content);
+  const titledBlocks = overviewBlocks.filter((b) => b.title);
+  const quickFeatures =
+    titledBlocks.length > 0
+      ? titledBlocks.slice(0, 5).map((b) => ({
+          title: b.title,
+          preview: b.body.length > 120 ? `${b.body.slice(0, 118)}…` : b.body,
+        }))
+      : overviewBlocks.slice(0, 4).map((b) => ({
+          title: `${b.body.slice(0, 96)}${b.body.length > 96 ? '…' : ''}`,
+          preview: '',
+        }));
 
   return (
     <main id="main-content" className="min-h-screen text-slate-100 relative overflow-hidden">
@@ -73,9 +87,9 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
             </Link>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left */}
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left: meta */}
+            <div className="space-y-8 min-w-0">
               <ScrollReveal direction="up" delay={100}>
                 <div>
                   <p className="font-script text-2xl text-cyan-200/90 mb-1">— mission file —</p>
@@ -100,7 +114,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                   <div className="cyber-card p-5 text-center">
                     <div className="font-display text-3xl text-holo-pink">{mainFeatures}</div>
                     <div className="text-[0.65rem] tracking-[0.22em] uppercase font-display text-slate-400 mt-1">
-                      Main Feature
+                      Highlights
                     </div>
                   </div>
                 </div>
@@ -156,27 +170,38 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
               </ScrollReveal>
             </div>
 
-            {/* Right */}
-            <div className="space-y-8">
+            {/* Right: image + Key Features */}
+            <div className="min-w-0 space-y-8 lg:sticky lg:top-28 lg:self-start">
               <ScrollReveal direction="right" delay={200}>
                 <ProjectImage src={project.image} alt={project.title} />
               </ScrollReveal>
 
               <ScrollReveal direction="right" delay={300}>
-                <div className="cyber-card p-7">
+                <div className="cyber-card p-6 md:p-7">
                   <div className="scan-line" />
                   <h3 className="font-display text-lg uppercase tracking-[0.2em] text-white mb-5 flex items-center gap-2">
                     <span className="w-2 h-5 rounded-full bg-gradient-to-b from-cyan-400 via-fuchsia-400 to-violet-400" />
                     Key <span className="text-holo-pink">Features</span>
                   </h3>
                   <div className="space-y-3">
-                    {project.content.split('.').filter(s => s.trim().length > 20).slice(0, 3).map((feature, index) => (
-                      <div key={index} className="flex items-start gap-3 group">
-                        <span className="font-display text-fuchsia-400 mt-1 group-hover:text-cyan-300 transition-colors">▸</span>
-                        <p className="text-slate-300 leading-relaxed">{feature.trim()}.</p>
-                      </div>
-                    ))}
-                    {project.content.split('.').filter(s => s.trim().length > 20).length === 0 && (
+                    {quickFeatures.length > 0 ? (
+                      quickFeatures.map((feature, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start gap-3 group rounded-lg p-2 -mx-2 motion-safe:transition-colors motion-safe:duration-300 hover:bg-cyan-400/[0.04]"
+                        >
+                          <span className="font-display text-fuchsia-400 mt-0.5 group-hover:text-cyan-300 motion-safe:transition-colors shrink-0">
+                            ▸
+                          </span>
+                          <div className="min-w-0">
+                            <p className="text-slate-100/95 font-medium text-sm leading-snug">{feature.title}</p>
+                            {feature.preview ? (
+                              <p className="text-slate-500 text-xs leading-relaxed mt-1">{feature.preview}</p>
+                            ) : null}
+                          </div>
+                        </div>
+                      ))
+                    ) : (
                       <div className="flex items-start gap-3">
                         <span className="font-display text-fuchsia-400 mt-1">▸</span>
                         <p className="text-slate-300 leading-relaxed">{project.description}</p>
@@ -185,19 +210,12 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                   </div>
                 </div>
               </ScrollReveal>
-
-              <ScrollReveal direction="right" delay={400}>
-                <div className="cyber-card p-7">
-                  <h3 className="font-display text-lg uppercase tracking-[0.2em] text-white mb-4">
-                    Project <span className="text-holo-cyan">Overview</span>
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed">
-                    {project.content}
-                  </p>
-                </div>
-              </ScrollReveal>
             </div>
           </div>
+
+          <ScrollReveal direction="up" delay={350} className="mt-14 lg:mt-20">
+            <ProjectOverview content={project.content} />
+          </ScrollReveal>
         </div>
       </div>
 
