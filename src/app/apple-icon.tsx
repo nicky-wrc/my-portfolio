@@ -1,8 +1,14 @@
 import { ImageResponse } from "next/og";
+
+import { getProfileIconDataUrl } from "@/lib/profileIconDataUrl";
+
+export const runtime = "nodejs";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-export default function AppleIcon() {
+export default async function AppleIcon() {
+  const src = await getProfileIconDataUrl();
+
   return new ImageResponse(
     (
       <div
@@ -12,28 +18,22 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          position: "relative",
           background: "#0d0f12",
-          border: "6px solid #29313a",
-          color: "#f1f3f5",
-          fontFamily: "Arial, sans-serif",
-          fontSize: 68,
-          fontWeight: 700,
-          letterSpacing: "-5px",
+          overflow: "hidden",
         }}
       >
-        <span style={{ display: "flex", transform: "translateX(-2px)" }}>
-          WP
-        </span>
-        <div
+        {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse requires a native image element. */}
+        <img
+          src={src}
+          alt=""
+          width={180}
+          height={180}
           style={{
-            position: "absolute",
-            right: 25,
-            bottom: 22,
-            width: 29,
-            height: 7,
-            borderRadius: 4,
-            background: "#6f95b5",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "58% 59%",
+            transform: "scale(2.05)",
           }}
         />
       </div>

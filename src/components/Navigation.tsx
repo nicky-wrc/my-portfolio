@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -124,7 +125,14 @@ export default function Navigation() {
           onClick={() => setMenuOpen(false)}
         >
           <span className="brand-mark" aria-hidden="true">
-            WP
+            <Image
+              src="/nicky_dev.jpg"
+              alt=""
+              width={34}
+              height={34}
+              sizes="34px"
+              className="brand-photo"
+            />
           </span>
           <span className="brand-name">Worachat Paranya</span>
         </Link>
