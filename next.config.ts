@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Store generated output in the production directory already ignored by Git.
+  distDir: "build",
   reactCompiler: true,
 };
 

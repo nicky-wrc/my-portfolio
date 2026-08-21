@@ -1,18 +1,84 @@
 export const skills = [
   {
-    category: "Programming Skills",
-    items: ["JavaScript", "TypeScript", "Python", "PHP", "SQL" , "HTML" , "CSS" , "C" , "Java" , "Kotlin"]
+    category: "Languages",
+    items: [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Java",
+      "PHP",
+      "Kotlin",
+      "Dart",
+      "C",
+      "SQL",
+    ],
   },
   {
-    category: "Frameworks",
-    items: ["React", "Angular", "Vue.js", "Laravel", "Spring Boot", "Express", "Kotlin Multiplatform Mobile", "PyTorch", "Next.js", "WordPress"]
+    category: "Frontend",
+    items: [
+      "React",
+      "Next.js",
+      "Angular",
+      "Vue.js",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Flutter",
+    ],
   },
   {
-    category: "Database",
-    items: ["MySQL", "PostgreSQL", "Firebase", "Oracle Database", "SQLite", "Mongo DB"]
+    category: "Backend",
+    items: [
+      "Node.js",
+      "Express",
+      "NestJS",
+      "Spring Boot",
+      "Laravel",
+      "FastAPI",
+      "Socket.io",
+      "Prisma ORM",
+      "SQLAlchemy",
+    ],
   },
   {
-    category: "Tools",
-    items: ["Git & GitHub", "VS Code", "Antigravity", "Android Studio",  "Postman", "Figma", "Canva", "Docker"]
-  }
+    category: "Data & AI",
+    items: [
+      "OpenCV",
+      "PyTorch",
+      "NumPy",
+      "Pandas",
+      "Scikit-learn",
+      "Apache Spark",
+      "MLflow",
+      "Sentence Transformers",
+    ],
+  },
+  {
+    category: "Databases",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "Firebase",
+      "SQLite",
+      "MongoDB",
+      "Oracle Database",
+      "Redis",
+      "pgvector",
+    ],
+  },
+  {
+    category: "Tools & DevOps",
+    items: [
+      "Git & GitHub",
+      "Docker",
+      "Postman",
+      "VS Code",
+      "Android Studio",
+      "GitHub Actions",
+      "Vercel",
+      "Railway",
+      "Figma",
+    ],
+  },
 ];

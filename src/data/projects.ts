@@ -8,17 +8,33 @@ export interface Project {
   role: string;
   tags: string[];
   category: string;
-  image: string; // <--- เพิ่มบรรทัดนี้
+  image: string;
   githubUrl?: string;
   demoUrl?: string;
+  featured?: boolean;
+  featuredRank?: number;
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    highlights: string[];
+  };
 }
 
 export const projects: Project[] = [
   {
     slug: "face-recognition-attendance",
     title: "Face Recognition Attendance",
-    description: "ระบบเช็คชื่อด้วยใบหน้าแม่นยำสูง ลดเวลาตรวจสอบและป้องกันการลงชื่อแทน",
-    content: "ระบบเช็คชื่ออัตโนมัติด้วยการจดจำใบหน้า พัฒนาด้วย Python และ OpenCV เพื่อแก้ปัญหาการลงชื่อแทนกันในห้องเรียน. ระบบ Face Detection และ Recognition ที่ใช้ OpenCV และ Deep Learning สำหรับการตรวจจับและจดจำใบหน้า. ระบบจัดการฐานข้อมูลใบหน้า (Face Database) สำหรับบันทึกและจัดการข้อมูลใบหน้าของนักเรียน. ระบบเช็คชื่ออัตโนมัติ (Automatic Attendance) ที่สามารถเช็คชื่อได้อัตโนมัติเมื่อนักเรียนเข้ามาในห้องเรียน. ระบบรายงานการเช็คชื่อ (Attendance Report) สำหรับดูประวัติการเช็คชื่อและสถิติการเข้าเรียน. ระบบจัดการผู้ใช้ (User Management) สำหรับเพิ่ม/แก้ไข/ลบข้อมูลนักเรียน. ระบบ Export ข้อมูล (Data Export) สำหรับส่งออกข้อมูลการเช็คชื่อเป็นไฟล์ Excel หรือ CSV. ระบบแจ้งเตือน (Notification System) เมื่อตรวจพบใบหน้าที่ไม่รู้จักหรือมีปัญหาในการจดจำ. ระบบ Dashboard สำหรับแสดงสถิติการเช็คชื่อและกราฟการเข้าเรียน. พัฒนาด้วย Python 3.x, OpenCV, NumPy, Pandas, Tkinter, SQLite/MySQL, และ Face Recognition Library. ใช้ Face Detection Algorithm, Face Recognition Model, Database Management System, และ GUI Application Framework.",
+    caseStudy: {
+      problem: "Manual classroom attendance can allow proxy sign-ins and makes attendance records harder to manage.",
+      solution: "A Python and OpenCV desktop system that recognizes registered faces, records attendance, and manages student data.",
+      highlights: [
+        "Face detection and recognition with OpenCV and deep learning",
+        "Attendance history, dashboards, and Excel or CSV export",
+        "Unknown-face notifications and face database management",
+      ],
+    },
+    description: "A high-accuracy facial-recognition attendance system that reduces verification time and helps prevent proxy attendance.",
+    content: "An automated facial-recognition attendance system built with Python and OpenCV to address proxy attendance in classrooms. It uses OpenCV and deep learning for face detection and recognition, with a face database for storing and managing student profiles. Attendance is recorded automatically when students enter the classroom. The system provides attendance history and statistics, student record management, Excel or CSV data export, alerts for unknown faces or recognition failures, and a dashboard with attendance statistics and charts. It was developed with Python 3.x, OpenCV, NumPy, Pandas, Tkinter, SQLite/MySQL, and the Face Recognition library, using face-detection and recognition models, database management, and a GUI application framework.",
     role: "AI & Backend Developer",
     tags: ["Python", "OpenCV", "Deep Learning", "NumPy", "Pandas", "Tkinter", "SQLite", "Face Recognition", "Computer Vision", "AI"],
     category: "Web App",
@@ -28,8 +44,8 @@ export const projects: Project[] = [
   {
     slug: "food-order-app",
     title: "Food Order App Admin & User",
-    description: "แอพสั่งอาหารที่มีระบบจัดการ 2 ฝั่ง (Admin/User) รองรับสถานะออเดอร์ Real-time",
-    content: "แอปพลิเคชันสั่งอาหารแบบครบวงจรพร้อมระบบจัดการ 2 ฝั่ง (Admin/User) พัฒนาด้วย Flutter และ Firebase. ระบบจัดการผู้ใช้ (User Management) ด้วย Firebase Authentication สำหรับการลงทะเบียนและเข้าสู่ระบบ. ระบบจัดการเมนูอาหาร (Menu Management) สำหรับ Admin เพิ่ม/แก้ไข/ลบเมนูอาหารพร้อมรูปภาพและราคา. ระบบสั่งอาหาร (Order System) ที่ผู้ใช้สามารถเลือกเมนู เพิ่มลงตะกร้า และสั่งอาหารได้. ระบบอัปเดตสถานะออเดอร์แบบ Real-time (Real-time Order Status) ด้วย Firebase Realtime Database แสดงสถานะออเดอร์แบบทันที. ระบบจัดการออเดอร์ (Order Management) สำหรับ Admin ดูและจัดการออเดอร์ทั้งหมด พร้อมอัปเดตสถานะการจัดส่ง. ระบบแจ้งเตือน (Push Notifications) แจ้งเตือนผู้ใช้เมื่อออเดอร์มีการอัปเดตสถานะ. ระบบประวัติการสั่งอาหาร (Order History) สำหรับผู้ใช้ดูประวัติการสั่งอาหารทั้งหมด. ระบบโปรไฟล์ผู้ใช้ (User Profile) สำหรับจัดการข้อมูลส่วนตัวและที่อยู่จัดส่ง. ระบบค้นหาและกรองเมนู (Search & Filter) สำหรับค้นหาเมนูอาหารตามชื่อหรือหมวดหมู่. ระบบตะกร้าสินค้า (Shopping Cart) สำหรับจัดการรายการอาหารก่อนสั่ง. พัฒนาด้วย Flutter, Dart, Firebase Authentication, Firebase Realtime Database, Firebase Storage, Firebase Cloud Messaging, และ Kotlin สำหรับ Native Features. ใช้ State Management (Provider/Bloc), Real-time Database, Cloud Storage, และ Push Notifications.",
+    description: "A food-ordering application with separate administrator and customer experiences and real-time order status updates.",
+    content: "A complete food-ordering application with separate administrator and customer experiences, built with Flutter and Firebase. Firebase Authentication handles registration and sign-in. Administrators can add, edit, and remove menu items with images and prices, manage every order, and update delivery status. Customers can browse and filter menus by name or category, add items to a shopping cart, place orders, manage profile and delivery information, and review their complete order history. Firebase Realtime Database provides immediate order-status updates, while push notifications alert customers when an order changes. The application uses Flutter, Dart, Firebase Authentication, Firebase Realtime Database, Firebase Storage, Firebase Cloud Messaging, Kotlin for native features, Provider or Bloc for state management, cloud storage, and push notifications.",
     role: "Mobile Developer",
     tags: ["Flutter", "Dart", "Firebase", "Firebase Authentication", "Firebase Realtime Database", "Firebase Storage", "Kotlin", "Mobile App", "State Management"],
     category: "Mobile App",
@@ -39,8 +55,19 @@ export const projects: Project[] = [
   {
     slug: "smart-moto-service",
     title: "Smart Moto Service Center",
-    description: "ระบบบริหารจัดการศูนย์บริการรถจักรยานยนต์ครบวงจร รองรับตั้งแต่การรับรถ งานซ่อม การจัดการอะไหล่ การชำระเงิน ไปจนถึงรายงานและการบริหารบุคลากร",
-    content: "ระบบ Web Application สำหรับบริหารจัดการศูนย์บริการรถจักรยานยนต์แบบครบวงจร กำลังอยู่ในขั้นตอนการพัฒนาและคาดว่าจะแล้วเสร็จภายใน 4 เดือนนี้. ระบบนี้จะครอบคลุมการจัดการลูกค้า การจัดการบริการ การติดตามสถานะการซ่อม และรายงานต่างๆ. โปรเจกต์นี้จะใช้เทคโนโลยี Full-Stack Modern เพื่อสร้างระบบที่ทันสมัยและมีประสิทธิภาพ. ระบบจะรองรับการจัดการข้อมูลลูกค้า ประวัติการซ่อม การจัดการอะไหล่ และระบบรายงาน. กำลังดำเนินการวิเคราะห์ระบบ ออกแบบ Database Schema และพัฒนาโซลูชันแบบ Full-Stack สำหรับการติดตามและจัดการบริการ.",
+    featured: true,
+    featuredRank: 4,
+    caseStudy: {
+      problem: "A motorcycle service center needs to coordinate vehicle intake, repairs, parts, payments, reporting, and personnel across one workflow.",
+      solution: "An in-progress full-stack management system for customer records, service tracking, repair history, parts, and operational reporting.",
+      highlights: [
+        "Customer records, service requests, and repair-status tracking",
+        "Parts, payments, reporting, and personnel workflows",
+        "React and NestJS architecture with PostgreSQL, Prisma, RBAC, Swagger, and Docker",
+      ],
+    },
+    description: "An end-to-end motorcycle service-center management system covering vehicle intake, repairs, parts, payments, reporting, and personnel operations.",
+    content: "A comprehensive web application for managing a motorcycle service center. The project is currently in development and is expected to be completed within four months. It covers customer and service management, repair-status tracking, repair history, parts inventory, and operational reporting. The system uses a modern full-stack architecture to deliver an efficient workflow. Current work includes system analysis, database schema design, and development of the full-stack service tracking and management solution.",
     role: "Full-Stack Developer",
     tags: ["React (Vite + TypeScript)", "React Router", "Tailwind CSS", "Context API (AuthContext, RequestHistoryContext)", "Custom hooks and Service", "Recharts", "Node.js", "NestJS", "PostgreSQL", "Prisma ORM", "JWT Authentication", "Role-based Access Control (RBAC)", "Swagger", "Docker"],
     category: "Web App",
@@ -50,8 +77,8 @@ export const projects: Project[] = [
   {
     slug: "pos-pharmacy",
     title: "POS Pharmacy System",
-    description: "ระบบ Point of Sale (POS) สำหรับร้านขายยา พัฒนาด้วย Laravel 8 และ MySQL จัดการสินค้า การซื้อ-ขาย สต็อก และรายงานแบบครบวงจร",
-    content: "ระบบ Point of Sale (POS) ที่ออกแบบเฉพาะสำหรับร้านขายยา พัฒนาด้วย Laravel 8 และ MySQL เพื่อช่วยให้ร้านขายยาจัดการสินค้า การซื้อ-ขาย และสต็อกได้อย่างมีประสิทธิภาพ. ระบบจัดการสินค้า (Product Management) ที่มีฟีเจอร์เพิ่ม/แก้ไข/ลบสินค้า, จัดการหมวดหมู่สินค้า, ติดตามสินค้าหมดสต็อกและหมดอายุ, และจัดการราคาและส่วนลด. ระบบจัดการการซื้อ (Purchase Management) ที่รองรับการบันทึกการซื้อสินค้า, Import ข้อมูลการซื้อจาก Excel, แก้ไขและลบข้อมูลการซื้อ, ติดตามประวัติการซื้อทั้งหมด, และ Export ข้อมูลการซื้อ. ระบบขายหน้าร้าน (Sales/POS System) ที่มีฟีเจอร์ขายสินค้าแบบ Point of Sale, คำนวณราคาอัตโนมัติ, บันทึกประวัติการขาย, จัดการส่วนลดการขาย, และ Export ข้อมูลการขาย. ระบบจัดการซัพพลายเออร์ (Supplier Management) สำหรับเพิ่ม/แก้ไข/ลบข้อมูลซัพพลายเออร์, ติดตามการซื้อจากแต่ละซัพพลายเออร์, และจัดการข้อมูลติดต่อ. ระบบจัดการผู้ใช้และสิทธิ์ (User & Access Control) ที่มีระบบ Roles และ Permissions, Profile Management, เปลี่ยนรหัสผ่าน, และระบบ Authentication และ Authorization. Dashboard และรายงาน (Dashboard & Reports) พร้อมกราฟและสถิติ, สร้างรายงานการขายและการซื้อ, Export ข้อมูลเป็น Excel/PDF, และ Data Visualization ด้วย Chart.js. การแจ้งเตือน (Notifications) เมื่อสินค้าหมดสต็อกด้วย Real-time notifications ผ่าน Pusher และระบบ Event & Listener. ระบบสำรองข้อมูล (Backup System) ที่รองรับการสำรองข้อมูลอัตโนมัติ, สำรองฐานข้อมูล, และ Restore ข้อมูล. การตั้งค่า (Settings) สำหรับตั้งค่าทั่วไปของแอปพลิเคชัน, จัดการโลโก้และ Favicon, และตั้งชื่อแอปพลิเคชัน. ระบบอื่นๆ ครอบคลุม Export/Import ข้อมูล, Print ข้อมูล, Responsive Design, และ User-friendly Interface. พัฒนาด้วย PHP 7.3/8.0, Laravel 8.12, MySQL, JavaScript, Bootstrap, Chart.js, Laravel Excel, Laravel Permission, Laravel Backup, Pusher, Axios, และ Laravel Mix. ใช้ MVC Architecture, Eloquent ORM, Role-based Access Control (RBAC), และ Automated Database Backup System.",
+    description: "A pharmacy point-of-sale system built with Laravel 8 and MySQL for end-to-end product, purchasing, sales, inventory, and reporting workflows.",
+    content: "A point-of-sale system designed specifically for pharmacies and built with Laravel 8 and MySQL. Product management supports creating, editing, and removing products; organizing categories; monitoring out-of-stock and expired items; and managing prices and discounts. Purchase management records purchases, imports Excel data, edits or removes records, tracks purchase history, and exports data. The sales interface calculates prices, records sales history, manages discounts, and exports sales data. Additional workflows cover supplier records and contacts, role- and permission-based user access, profile and password management, authentication and authorization, and dashboards with charts and statistics. Reports can be exported to Excel or PDF and visualized with Chart.js. Pusher and event listeners provide real-time out-of-stock notifications. The system also supports automated database backups and restoration, application branding and settings, data import and export, printing, responsive layouts, and a user-friendly interface. It uses PHP 7.3/8.0, Laravel 8.12, MySQL, JavaScript, Bootstrap, Chart.js, Laravel Excel, Laravel Permission, Laravel Backup, Pusher, Axios, and Laravel Mix, following MVC, Eloquent ORM, RBAC, and automated database-backup practices.",
     role: "Backend Developer",
     tags: ["PHP", "Laravel", "MySQL", "JavaScript", "Bootstrap", "Chart.js", "Laravel Excel", "Pusher", "Axios", "POS", "Backend"],
     category: "Web App",
@@ -61,8 +88,8 @@ export const projects: Project[] = [
   {
     slug: "game-key-marketplace",
     title: "Game Key Marketplace",
-    description: "แพลตฟอร์ม E-Commerce สำหรับซื้อขายคีย์เกม (CD-Keys) แบบครบวงจร พัฒนาด้วย Full-Stack Modern Technologies",
-    content: "Game Key Marketplace เป็นแพลตฟอร์ม E-Commerce สำหรับซื้อขายคีย์เกมแบบครบวงจร พัฒนาด้วยเทคโนโลยี Full-Stack ที่ทันสมัย. ระบบ E-Commerce Marketplace ที่รองรับการซื้อขายเกมหลายแพลตฟอร์ม (Steam, PlayStation, Xbox, Nintendo, Epic Games) พร้อมระบบจัดการสต็อกเกมและโค้ดเกม. ระบบกระเป๋าเงินดิจิทัล (Digital Wallet) สำหรับเติมเงินออนไลน์ พร้อมประวัติการทำธุรกรรมและระบบคูปองส่วนลด (Fixed & Percentage Discount). ระบบกล่องสุ่มของขวัญ (Gacha/Mystery Box) ที่ Admin สามารถจัดการได้ พร้อมระบบสุ่มรางวัลเกม. ระบบ User Management & Authentication ด้วย JWT Token Authentication และ Role-based Access Control (User, Seller, Admin). Admin Control Panel ที่มี Dashboard แสดงสถิติภาพรวม จัดการเกม สต็อก คูปอง Gacha Boxes และรายงานยอดขาย. ระบบค้นหาแบบ Real-time พร้อม Advanced Filtering และ Sorting System. ระบบ Wishlist/Favorites, Game Comparison, และ Featured Games. ระบบ Review และ Rating สำหรับเกม. Responsive Design รองรับทุกอุปกรณ์ พร้อม Modern UI/UX ด้วย Tailwind CSS และ Toast Notifications. พัฒนาด้วย React 19, React Router DOM v7, Vite, Tailwind CSS, Axios, Node.js, Express.js, PostgreSQL, JWT, Multer, bcryptjs และ CORS. ใช้ MVC Pattern ในการออกแบบ Backend, RESTful API สำหรับการสื่อสาร, Component-based Architecture ใน Frontend, และ Database Normalization สำหรับจัดการข้อมูลอย่างมีประสิทธิภาพ.",
+    description: "A full-featured e-commerce marketplace for buying and selling game keys across multiple platforms, built with a modern full-stack architecture.",
+    content: "Game Key Marketplace is a complete e-commerce platform for buying and selling game keys. It supports titles from Steam, PlayStation, Xbox, Nintendo, and Epic Games, with inventory management for games and activation codes. A digital wallet supports online balance top-ups, transaction history, and fixed or percentage discount coupons. Administrators can manage gacha or mystery boxes and their randomized game rewards. JWT authentication and role-based access control support user, seller, and administrator roles. The administration dashboard manages games, inventory, coupons, mystery boxes, sales reports, and summary statistics. Other features include real-time search, advanced filtering and sorting, wishlists and favorites, game comparison, featured games, reviews and ratings, responsive design, Tailwind CSS interfaces, and toast notifications. The project uses React 19, React Router DOM v7, Vite, Tailwind CSS, Axios, Node.js, Express.js, PostgreSQL, JWT, Multer, bcryptjs, and CORS. Its architecture combines an MVC backend, RESTful APIs, component-based frontend development, and normalized database design.",
     role: "Full-Stack Developer",
     tags: ["React 19", "Node.js", "Express.js", "PostgreSQL", "JWT", "Vite", "Tailwind CSS", "E-commerce", "Full-Stack"],
     category: "Web App",
@@ -73,8 +100,19 @@ export const projects: Project[] = [
   {
     slug: "ecommerce-springboot",
     title: "E-commerce",
-    description: "RESTful API สำหรับระบบ E-commerce พัฒนาด้วย Spring Boot รองรับการทำงานแบบ Multi-role (Customer, Seller, Admin) พร้อมระบบชำระเงินหลายช่องทางและแชทแบบ Real-time",
-    content: "RESTful API สำหรับระบบ E-commerce พัฒนาด้วย Spring Boot 3.3.2 และ Java 21 รองรับการทำงานแบบ Multi-role User Management 3 บทบาท (Customer, Seller, Admin) พร้อม JWT Authentication และ Role-based Access Control. ระบบ E-Commerce Core ที่มี Shopping Cart Management, Order Management & Tracking, Product & Variant Management, และ Stock Management. Seller Platform สำหรับผู้ขายที่มี Seller Application & Shop Creation, Product & Variant Management, Sales Dashboard & Statistics, และ Customer Chat Support. ระบบ Real-Time Communication ด้วย WebSocket Chat System (STOMP Protocol) พร้อม File & Image Sharing และ Real-time Notifications. Payment Integration ที่รองรับหลายช่องทาง ได้แก่ Credit/Debit Card, PromptPay, TrueMoney, Rabbit LINE Pay, Cash on Delivery, PayPal, Stripe ผ่าน Omise Payment Gateway Integration พร้อม Payment Webhook Support และ Refund Functionality. Customer Features ครอบคลุม ลงทะเบียน/เข้าสู่ระบบ, เรียกดูสินค้าและ Product Variants, Shopping Cart, Order Tracking, Multiple Payment Methods, Product Reviews & Ratings, Wishlist Management, และ Real-time Chat with Sellers. Seller Features มี Seller Application, Shop Creation, Product & Variant Management, Stock Management, Order Management, Sales Dashboard & Statistics, และ Customer Chat Support. Admin Features ประกอบด้วย Admin Dashboard, User Management, Product & Shop Management, Order & Payment Management, Category Management, และ System Statistics. พัฒนาด้วย Java 21, Spring Boot 3.3.2, Spring Security, Spring Data JPA, PostgreSQL 15, JWT, Spring WebSocket, Lombok, Maven สำหรับ Backend และ Next.js 14, TypeScript, Tailwind CSS, React 18, Zustand, Axios สำหรับ Frontend. ใช้ RESTful API Architecture, Product Variants System, Multi-Payment Gateway, Real-time Chat, File Upload & Image Management, Review & Rating System, และ Docker Support.",
+    featured: true,
+    featuredRank: 5,
+    caseStudy: {
+      problem: "An e-commerce platform must coordinate customer, seller, and administrator workflows across orders, inventory, payments, and support.",
+      solution: "A Spring Boot REST API with JWT access control, a Next.js frontend, real-time seller chat, and multiple payment workflows.",
+      highlights: [
+        "Customer, seller, and administrator role workflows",
+        "Product variants, stock, cart, and order tracking",
+        "WebSocket chat, notifications, and payment webhooks",
+      ],
+    },
+    description: "A Spring Boot RESTful API for a multi-role e-commerce platform with customer, seller, and administrator workflows, multiple payment methods, and real-time chat.",
+    content: "A RESTful e-commerce API built with Spring Boot 3.3.2 and Java 21. It supports customer, seller, and administrator roles through JWT authentication and role-based access control. Core commerce workflows include shopping carts, order management and tracking, products and variants, and inventory. Sellers can apply for an account, create a shop, manage products, variants, stock, and orders, review sales dashboards and statistics, and support customers through chat. A WebSocket chat system using STOMP provides file and image sharing and real-time notifications. Payment integration supports credit and debit cards, PromptPay, TrueMoney, Rabbit LINE Pay, cash on delivery, PayPal, and Stripe through the Omise payment gateway, with payment webhooks and refunds. Customers can register, sign in, browse products and variants, manage carts and wishlists, track orders, choose among payment methods, review and rate products, and chat with sellers. Administrators manage users, products, shops, orders, payments, categories, and system statistics. The backend uses Java 21, Spring Boot 3.3.2, Spring Security, Spring Data JPA, PostgreSQL 15, JWT, Spring WebSocket, Lombok, and Maven. The frontend uses Next.js 14, TypeScript, Tailwind CSS, React 18, Zustand, and Axios. The system also supports product variants, multiple payment gateways, file and image management, reviews and ratings, and Docker.",
     role: "Backend Developer",
     tags: ["Java 21", "Spring Boot", "Spring Security", "PostgreSQL", "JWT", "WebSocket", "Next.js", "TypeScript", "React", "E-commerce", "RESTful API"],
     category: "Web App",
@@ -108,6 +146,8 @@ export const projects: Project[] = [
   {
     slug: "ppe-detection-system",
     title: "PPE Detection System",
+    featured: true,
+    featuredRank: 1,
     description: "",
     content: "",
     role: "AI & Backend Developer",
@@ -119,8 +159,19 @@ export const projects: Project[] = [
   {
     slug: "Powered-Product-Recommendation-Engine-Web-app",
     title: "AI-Powered Product Recommendation Engine Web app",
-    description: "ระบบ E-commerce ที่มี AI แนะนำสินค้าแบบ Personalized คล้าย Amazon พัฒนาด้วย Next.js และ FastAPI รองรับ Collaborative Filtering, Content-based Filtering และ LLM Smart Search",
-    content: "ระบบ E-commerce แบบครบวงจรที่ผสาน AI เข้ากับการแนะนำสินค้าแบบ Personalized คล้ายกับ Amazon พัฒนาด้วย Next.js และ FastAPI โดยมีหัวใจหลักคือ Recommendation Engine ที่ใช้หลาย Algorithm ร่วมกัน. ระบบ Collaborative Filtering (ALS) ที่เรียนรู้จากพฤติกรรมของผู้ใช้กลุ่มที่มี Taste คล้ายกัน เพื่อแนะนำสินค้าที่ผู้ใช้ยังไม่เคยเห็น Train โมเดลใหม่ทุกคืนด้วย Cron Job และติดตาม Experiment ด้วย MLflow. ระบบ Content-based Filtering ที่แปลงข้อมูลสินค้า (ชื่อ, รายละเอียด, Tags) เป็น Vector Embedding ด้วย Sentence Transformer และเก็บใน pgvector เพื่อค้นหา Similar Products ด้วย Cosine Similarity. ระบบ Hybrid Recommendation ที่รวม Score จากทั้งสอง Algorithm แบบ Weighted Average เพื่อให้ผลลัพธ์แม่นยำและหลากหลายที่สุด. ระบบ LLM Smart Search ที่ใช้ Claude API ในการแปลงคำค้นหาภาษาธรรมชาติ เช่น ของขวัญวันเกิดสำหรับผู้หญิงงบ 500 ให้เป็น Structured Filter แล้ว Query สินค้าที่ตรงใจได้อัตโนมัติ. ระบบ Behavior Tracking ที่บันทึก User Events ทุกประเภท (View, Click, Add to Cart, Purchase) พร้อม Weight System เพื่อใช้เป็น Input ให้ Recommendation Engine ปรับผลลัพธ์ให้แม่นยำขึ้นเรื่อยๆ. Personalized Homepage ที่แสดงสินค้าแนะนำเฉพาะบุคคล หมวด Trending และสินค้าที่ดูล่าสุด พร้อม Similar Products และ Frequently Bought Together บนหน้า Product Detail. ระบบ Shopping ครบวงจรประกอบด้วย Persistent Cart, Wishlist, Coupon & Promo Codes, Multi-step Checkout, Order Tracking, Returns & Refunds และ Order History. Admin Dashboard ที่แสดง Real-time Analytics เช่น CTR, Conversion Rate และ Revenue พร้อมระบบ A/B Testing สำหรับเปรียบเทียบประสิทธิภาพของแต่ละ Algorithm และ MLflow สำหรับติดตาม Model Version. ระบบ Caching ด้วย Redis สำหรับ Recommendation Results, Similar Products และ Trending Items เพื่อลด Latency และ Computation Cost. พัฒนาด้วย Next.js 14 (App Router), Tailwind CSS สำหรับ Frontend และ FastAPI, SQLAlchemy, PostgreSQL + pgvector, Redis, MLflow, Scikit-learn, Sentence Transformers สำหรับ Backend และ ML Layer. Deploy ด้วย Docker, Vercel (Frontend) และ Railway (Backend) พร้อม CI/CD ผ่าน GitHub Actions.",
+    featured: true,
+    featuredRank: 2,
+    caseStudy: {
+      problem: "A product catalog needs recommendations and search that can respond to both user behavior and product meaning.",
+      solution: "A hybrid recommendation system combining collaborative filtering, semantic product embeddings, and natural-language search in a Next.js and FastAPI commerce app.",
+      highlights: [
+        "ALS collaborative filtering with scheduled retraining and MLflow tracking",
+        "Sentence Transformer embeddings stored with PostgreSQL and pgvector",
+        "Claude-powered query parsing and Redis recommendation caching",
+      ],
+    },
+    description: "An AI-powered e-commerce platform with Amazon-style personalized recommendations, built with Next.js and FastAPI and supporting collaborative filtering, content-based filtering, and LLM-assisted search.",
+    content: "A complete e-commerce platform that combines AI with personalized product recommendations, built with Next.js and FastAPI. Its recommendation engine combines multiple algorithms. ALS collaborative filtering learns from users with similar preferences to recommend products a customer has not yet viewed; the model retrains nightly through a cron job, and MLflow tracks experiments. Content-based filtering converts product names, descriptions, and tags into vector embeddings with Sentence Transformers, stores them in pgvector, and finds similar products through cosine similarity. A hybrid recommender combines both scores with a weighted average to improve accuracy and variety. Claude API powers natural-language search by converting requests such as a birthday gift for a woman with a budget of 500 into structured product filters. Behavior tracking records views, clicks, cart additions, and purchases with weighted events so recommendations can improve over time. The personalized home page includes recommendations, trending products, recently viewed items, similar products, and frequently bought together suggestions. Commerce features include a persistent cart, wishlist, coupons and promotional codes, multi-step checkout, order tracking, returns and refunds, and order history. The administration dashboard reports real-time CTR, conversion rate, and revenue, supports A/B testing across algorithms, and tracks model versions through MLflow. Redis caches recommendation results, similar products, and trending items to reduce latency and computation. The frontend uses Next.js 14 App Router and Tailwind CSS. The backend and machine-learning layer use FastAPI, SQLAlchemy, PostgreSQL with pgvector, Redis, MLflow, Scikit-learn, and Sentence Transformers. Deployment uses Docker, Vercel for the frontend, Railway for the backend, and GitHub Actions for CI/CD.",
     role: "Full-Stack Developer",
     tags: ["FastAPI", "Next.js", "PostgreSQL", "pgvector", "Tailwind CSS", "Docker", "Redis", "MLflow", "Scikit-learn", "Sentence Transformers", "Claude API", "Collaborative Filtering"],
     category: "Web App",
@@ -130,8 +181,19 @@ export const projects: Project[] = [
   {
     slug: "restaurant-qr-system",
     title: "Restaurant QR System",
-    description: "ระบบสั่งอาหารผ่าน QR Code สำหรับร้านอาหาร รองรับการสั่งอาหารแบบ real-time พร้อม Kitchen Display System และ Admin Dashboard แยก role การทำงานชัดเจน",
-    content: "ระบบสั่งอาหารผ่าน QR Code สำหรับร้านอาหารแบบครบวงจร พัฒนาด้วย Next.js 14 และ Node.js + Express เพื่อรองรับการสั่งอาหารและจัดการร้านแบบ real-time. ระบบ QR Code Generation แยกตามโต๊ะ ลูกค้าสแกนแล้วสั่งอาหารได้ทันทีโดยไม่ต้องติดตั้งแอป. ระบบเมนูอาหาร (Menu Management) รองรับการแบ่งหมวดหมู่อาหาร เพิ่ม/แก้ไข/ซ่อนรายการ และ upload รูปผ่าน Cloudinary. ระบบตะกร้าและสั่งอาหาร (Cart & Order System) ที่ลูกค้าสามารถเลือกเมนู ใส่หมายเหตุ และยืนยันออเดอร์ได้. ระบบ Kitchen Display System (KDS) ที่ครัวรับออเดอร์แบบ real-time ผ่าน Socket.io พร้อม confirm และอัปเดตสถานะได้ทันที. ระบบ Role-based Access Control แยก 4 บทบาท ได้แก่ Owner, Manager, Chef และ Waiter แต่ละ role เห็นและทำได้เฉพาะส่วนที่เกี่ยวข้อง. ระบบจัดการโต๊ะ (Table Management) สำหรับเปิด-ปิดโต๊ะ print QR Code และดูสถานะโต๊ะแบบ real-time. ระบบ Sales Dashboard แสดงยอดขายรายวัน/สัปดาห์/เดือน พร้อมประวัติออเดอร์และใบเสร็จดิจิทัล. พัฒนาด้วย Next.js 14 (App Router), TypeScript, Tailwind CSS, Shadcn/ui สำหรับ Frontend และ Node.js, Express, Socket.io, Prisma ORM, PostgreSQL, JWT สำหรับ Backend. ใช้ Socket.io สำหรับ real-time communication, Role-based Access Control สำหรับจัดการสิทธิ์, และ Cloudinary สำหรับจัดการรูปภาพเมนู.",
+    featured: true,
+    featuredRank: 3,
+    caseStudy: {
+      problem: "Restaurant orders need to move clearly from each table to the kitchen while staff retain role-specific controls.",
+      solution: "A QR-based ordering system with real-time Socket.io updates, a kitchen display, table management, and role-based administration.",
+      highlights: [
+        "Per-table QR ordering without app installation",
+        "Kitchen display with real-time order status updates",
+        "Four staff roles, menu media management, and sales reporting",
+      ],
+    },
+    description: "A QR-based restaurant ordering system with real-time order updates, a kitchen display, and an administration dashboard with clearly separated staff roles.",
+    content: "A complete QR-based restaurant ordering system built with Next.js 14, Node.js, and Express for real-time ordering and restaurant operations. The system generates a unique QR code for each table, allowing customers to scan, browse, and order without installing an application. Menu management supports categories, creating, editing, or hiding items, and image uploads through Cloudinary. Customers can add menu items to a cart, include notes, and confirm an order. The Kitchen Display System receives orders in real time through Socket.io and lets kitchen staff confirm and update their status immediately. Role-based access control defines four roles—Owner, Manager, Chef, and Waiter—each limited to the relevant functions. Table management supports opening and closing tables, printing QR codes, and viewing real-time table status. The sales dashboard reports daily, weekly, and monthly revenue with order history and digital receipts. The frontend uses Next.js 14 App Router, TypeScript, Tailwind CSS, and shadcn/ui. The backend uses Node.js, Express, Socket.io, Prisma ORM, PostgreSQL, and JWT. Socket.io provides real-time communication, role-based controls manage permissions, and Cloudinary stores menu images.",
     role: "Full-Stack Developer",
     tags: ["Next.js", "Express", "PostgreSQL", "Prisma", "Socket.io", "TypeScript", "Tailwind CSS"],
     category: "Web App",
@@ -141,8 +203,8 @@ export const projects: Project[] = [
   {
     slug: "first-issue",
     title: "First Issue",
-    description: "Open Source Finder ที่ช่วยแนะนำ GitHub issues ที่เหมาะกับ skill level ของ developer พร้อม AI matching score และ weekly digest email",
-    content: "Open Source Finder แพลตฟอร์มที่ช่วยให้ developer ค้นหา GitHub issues ที่เหมาะกับ skill ของตัวเองได้ง่ายขึ้น พัฒนาด้วย Next.js 14 และ Node.js. ระบบ GitHub OAuth Login ที่วิเคราะห์ repos และภาษาที่ใช้บ่อย เพื่อสร้าง Skill Profile อัตโนมัติโดยไม่ต้องกรอกข้อมูลเอง. ระบบค้นหาและกรอง Issues (Issue Discovery) ที่ดึงข้อมูลจาก GitHub GraphQL API รองรับ filter ตามภาษา, label เช่น good first issue, อายุ issue และจำนวน star ของ repo. ระบบ AI Matching ที่ใช้ Claude API (Anthropic) วิเคราะห์เนื้อหา issue แล้วสรุปสิ่งที่ต้องรู้ก่อน contribute พร้อมคะแนน match score 0-100 เทียบกับ skill ของผู้ใช้. ระบบ Bookmark และติดตามสถานะ (Issue Tracking) ที่บันทึก issue ที่สนใจและอัปเดตสถานะได้ เช่น สนใจ, กำลัง apply และส่ง PR แล้ว. ระบบ Weekly Digest Email ที่ส่ง issues ใหม่ที่ match กับ profile ของผู้ใช้ทุกสัปดาห์ผ่าน Resend. ระบบ Cache ด้วย Upstash Redis สำหรับ GitHub API results เพื่อลด rate limit และเพิ่มความเร็วในการโหลด. พัฒนาด้วย Next.js 14 (App Router), TypeScript, Tailwind CSS, Shadcn/ui, NextAuth.js สำหรับ Frontend และ Node.js, PostgreSQL, Prisma ORM, Upstash Redis สำหรับ Backend. ใช้ GitHub GraphQL API สำหรับดึงข้อมูล, Claude API สำหรับ AI analysis, และ Resend สำหรับ email digest.",
+    description: "An open-source discovery platform that recommends GitHub issues suited to a developer's skill level, with AI match scores and a weekly email digest.",
+    content: "Open Source Finder helps developers discover GitHub issues that match their skills. Built with Next.js 14 and Node.js, it uses GitHub OAuth to analyze repositories and frequently used languages, then creates a skill profile automatically. Issue discovery retrieves data through the GitHub GraphQL API and filters results by language, labels such as good first issue, issue age, and repository star count. Claude API analyzes each issue, summarizes the knowledge needed before contributing, and produces a 0–100 match score against the user's skills. Bookmarking and issue tracking let users save opportunities and update their status, including interested, applying, or pull request submitted. Resend delivers a weekly email digest of new issues matching each profile. Upstash Redis caches GitHub API results to reduce rate-limit pressure and improve loading speed. The frontend uses Next.js 14 App Router, TypeScript, Tailwind CSS, shadcn/ui, and NextAuth.js. The backend uses Node.js, PostgreSQL, Prisma ORM, and Upstash Redis. GitHub GraphQL provides issue data, Claude API handles AI analysis, and Resend sends the email digest.",
     role: "Full-Stack Developer",
     tags: ["Next.js", "Node.js", "PostgreSQL", "Prisma", "GitHub API", "Claude API", "TypeScript", "Redis"],
     category: "Web App",
@@ -150,3 +212,24 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/nicky-wrc/first-issue",
   },
 ];
+
+export const projectSlugAliases = {
+  "smart-moto-service-center": "smart-moto-service",
+  e_commerce: "ecommerce-springboot",
+} as const satisfies Record<string, string>;
+
+export function resolveProjectSlug(slug: string) {
+  return (
+    projectSlugAliases[slug as keyof typeof projectSlugAliases] ?? slug
+  );
+}
+
+export const featuredProjects = projects
+  .filter(
+    (project) => project.featured && project.featuredRank !== undefined,
+  )
+  .sort(
+    (firstProject, secondProject) =>
+      (firstProject.featuredRank ?? Number.MAX_SAFE_INTEGER) -
+      (secondProject.featuredRank ?? Number.MAX_SAFE_INTEGER),
+  );

@@ -1,51 +1,41 @@
 import { ImageResponse } from "next/og";
-import { getProfileIconDataUrl } from "@/lib/profileIconDataUrl";
-
-export const runtime = "nodejs";
-
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-export default async function AppleIcon() {
-  const src = await getProfileIconDataUrl();
-  const dim = 180;
-
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
         style={{
-          width: dim,
-          height: dim,
+          width: "100%",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "transparent",
+          position: "relative",
+          background: "#0d0f12",
+          border: "6px solid #29313a",
+          color: "#f1f3f5",
+          fontFamily: "Arial, sans-serif",
+          fontSize: 68,
+          fontWeight: 700,
+          letterSpacing: "-5px",
         }}
       >
+        <span style={{ display: "flex", transform: "translateX(-2px)" }}>
+          WP
+        </span>
         <div
           style={{
-            width: dim,
-            height: dim,
-            borderRadius: dim / 2,
-            overflow: "hidden",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "absolute",
+            right: 25,
+            bottom: 22,
+            width: 29,
+            height: 7,
+            borderRadius: 4,
+            background: "#6f95b5",
           }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse / Satori */}
-          <img
-            src={src}
-            alt=""
-            width={dim}
-            height={dim}
-            style={{
-              width: dim,
-              height: dim,
-              objectFit: "cover",
-            }}
-          />
-        </div>
+        />
       </div>
     ),
     { ...size },

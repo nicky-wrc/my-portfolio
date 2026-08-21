@@ -1,87 +1,87 @@
-# วรชาติ ปรัญญา
+# Worachat Paranya
 ## Backend Developer
 
 📞 082-881-4470 | ✉️ worachat.pa@kkumail.com | 🌐 www.worachatportfolio.com
 
 ---
 
-## วัตถุประสงค์ในการทำงาน
+## Career Objective
 
-นักพัฒนา Backend ที่มีความหลงใหลและเป็นนักศึกษาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น มีความเชี่ยวชาญในการสร้างเว็บแอปพลิเคชันที่สามารถขยายตัวได้ RESTful APIs และโซลูชันแบบ Full-Stack กำลังมองหาตำแหน่งฝึกงานในตำแหน่ง Backend Developer เพื่อนำทักษะทางเทคนิคมาใช้ เรียนรู้จากทีมงานที่มีประสบการณ์ และมีส่วนร่วมในโปรเจกต์ที่น่าสนใจ มีความเชี่ยวชาญใน Java Spring Boot, Node.js, PostgreSQL และแนวปฏิบัติการพัฒนาที่ทันสมัย
-
----
-
-## การศึกษา
-
-**2564 - ปัจจุบัน**  
-**มหาวิทยาลัยขอนแก่น**  
-**ปริญญาตรี วิทยาการคอมพิวเตอร์**  
-วิทยาลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์ - กำลังศึกษาอยู่ชั้นปีที่ 3 มุ่งเน้นด้าน Backend Development, AI/ML และ System Architecture
+Passionate backend developer and Computer Science student at Khon Kaen University with experience building scalable web applications, RESTful APIs, and full-stack solutions. Seeking a Backend Developer internship to apply technical skills, learn from an experienced team, and contribute to meaningful projects. Proficient in Java and Spring Boot, Node.js, PostgreSQL, and modern development practices.
 
 ---
 
-## ประสบการณ์ / โปรเจกต์
+## Education
 
-**2566 - 2567**  
-**Game Key Marketplace**  
-**Full-Stack Developer**  
-พัฒนาแพลตฟอร์ม E-Commerce สำหรับซื้อขายคีย์เกมแบบครบวงจรด้วยเทคโนโลยีมากกว่า 15 ตัว ได้แก่ React 19, Node.js, Express.js, PostgreSQL และ JWT authentication พัฒนาระบบกระเป๋าเงินดิจิทัล ระบบกล่องสุ่มของขวัญ (Gacha/Mystery Box) การค้นหาแบบ Real-time Admin Control Panel และรองรับหลายแพลตฟอร์ม (Steam, PlayStation, Xbox, Nintendo, Epic Games) ใช้ MVC Pattern, RESTful API architecture และ Database Normalization เพื่อประสิทธิภาพที่ดีที่สุด
-
-**2566 - 2567**  
-**E-commerce Backend API**  
-**Backend Developer**  
-สร้าง RESTful API โดยใช้ Spring Boot 3.3.2 และ Java 21 พร้อมระบบจัดการผู้ใช้หลายบทบาท (Customer, Seller, Admin), JWT Authentication และ Role-based Access Control พัฒนาการรวมระบบชำระเงินหลายช่องทาง (Omise), ระบบแชทแบบ Real-time ด้วย WebSocket (STOMP Protocol), ระบบ Product Variants, การจัดการ Shopping Cart และ Admin Dashboard พร้อม analytics รวมเข้ากับ Next.js 14 frontend โดยใช้ TypeScript และ React 18
-
-**2566**  
-**POS Pharmacy System**  
-**Backend Developer**  
-สร้างระบบ Point of Sale สำหรับร้านขายยาโดยใช้ Laravel 8 และ MySQL พัฒนาฟีเจอร์ครบวงจร ได้แก่ การจัดการสินค้า การจัดการการซื้อพร้อม Import/Export Excel ระบบขายหน้าร้าน (Sales/POS) การจัดการซัพพลายเออร์ การควบคุมผู้ใช้และสิทธิ์ด้วย RBAC Dashboard พร้อมการแสดงผลด้วย Chart.js การแจ้งเตือนแบบ Real-time ผ่าน Pusher และระบบสำรองข้อมูลอัตโนมัติ ใช้ MVC Architecture และ Eloquent ORM
-
-**2565 - 2566**  
-**Food Order App (UserEatAtHome)**  
-**Mobile Developer**  
-พัฒนาแอปพลิเคชันสั่งอาหารแบบครบวงจรพร้อมระบบจัดการ 2 ฝั่ง (Admin/User) โดยใช้ Flutter, Firebase และ Kotlin พัฒนาระบบอัปเดตสถานะออเดอร์แบบ Real-time การจัดการออเดอร์แบบครบวงจร การยืนยันตัวตนผู้ใช้ และระบบแจ้งเตือนแบบทันที รองรับการสั่งอาหารจากร้านค้าและติดตามสถานะการจัดส่งได้แบบ Real-time
-
-**2565**  
-**Smart Moto Service Center**  
-**Full-Stack Developer**  
-พัฒนาเว็บแอปพลิเคชันสำหรับการจัดการศูนย์บริการรถจักรยานยนต์แบบครบวงจร วิเคราะห์ระบบ ออกแบบ database schema และพัฒนาโซลูชันแบบ Full-Stack สำหรับการติดตามและจัดการบริการ
+**2021 - Present**<br>
+**Khon Kaen University**<br>
+**Bachelor of Science in Computer Science**<br>
+College of Computing, Computer Science program — currently a third-year student focusing on backend development, AI/ML, and system architecture.
 
 ---
 
-## ทักษะ
+## Experience / Projects
 
-**เทคโนโลยี Backend:**  
+**2023 - 2024**<br>
+**Game Key Marketplace**<br>
+**Full-Stack Developer**<br>
+Developed an end-to-end e-commerce platform for buying and selling game keys with more than 15 technologies, including React 19, Node.js, Express.js, PostgreSQL, and JWT authentication. Implemented a digital wallet, Gacha and Mystery Box rewards, real-time search, an admin control panel, and support for Steam, PlayStation, Xbox, Nintendo, and Epic Games. Applied the MVC pattern, RESTful API architecture, and database normalization to optimize performance.
+
+**2023 - 2024**<br>
+**E-commerce Backend API**<br>
+**Backend Developer**<br>
+Built a RESTful API with Spring Boot 3.3.2 and Java 21, including multi-role user management for customers, sellers, and administrators, JWT authentication, and role-based access control. Implemented multi-channel payment integration with Omise, real-time chat using WebSocket and the STOMP protocol, product variants, shopping cart management, and an administrator analytics dashboard. Integrated the API with a Next.js 14 frontend using TypeScript and React 18.
+
+**2023**<br>
+**POS Pharmacy System**<br>
+**Backend Developer**<br>
+Built a pharmacy point-of-sale system with Laravel 8 and MySQL. Implemented product management, purchase management with Excel import and export, sales and point-of-sale workflows, supplier management, RBAC user and permission controls, a Chart.js dashboard, real-time notifications through Pusher, and automated backups. Applied MVC architecture and Eloquent ORM.
+
+**2022 - 2023**<br>
+**Food Order App (UserEatAtHome)**<br>
+**Mobile Developer**<br>
+Developed an end-to-end food ordering application with separate admin and user experiences using Flutter, Firebase, and Kotlin. Implemented real-time order status updates, complete order management, user authentication, and instant notifications. Enabled users to order from restaurants and track delivery status in real time.
+
+**2022**<br>
+**Smart Moto Service Center**<br>
+**Full-Stack Developer**<br>
+Developed an end-to-end web application for managing a motorcycle service center. Analyzed system requirements, designed the database schema, and built a full-stack solution for tracking and managing services.
+
+---
+
+## Skills
+
+**Backend Technologies:**<br>
 Java 21 | Spring Boot | Spring Security | Node.js | Express.js | PHP | Laravel
 
-**ฐานข้อมูล:**  
-PostgreSQL | MySQL | การออกแบบฐานข้อมูลและ Normalization
+**Databases:**<br>
+PostgreSQL | MySQL | Database Design and Normalization
 
-**เทคโนโลยี Frontend:**  
+**Frontend Technologies:**<br>
 React 19 | Next.js 14 | TypeScript | Tailwind CSS | JavaScript | HTML/CSS
 
-**การพัฒนา Mobile:**  
+**Mobile Development:**<br>
 Flutter | Kotlin | Firebase
 
-**AI/ML:**  
+**AI/ML:**<br>
 Python | OpenCV | Deep Learning | Machine Learning
 
-**เครื่องมือและแนวปฏิบัติ:**  
-Git | การออกแบบ RESTful API | JWT Authentication | WebSocket | Docker | MVC Architecture | การวิเคราะห์ระบบ | Clean Code
+**Tools and Practices:**<br>
+Git | RESTful API Design | JWT Authentication | WebSocket | Docker | MVC Architecture | System Analysis | Clean Code
 
 ---
 
-## ภาษา
+## Languages
 
-**ไทย** - ภาษาแม่  
-**อังกฤษ** - ระดับใช้งานได้ดี
+**Thai** - Native<br>
+**English** - Working proficiency
 
 ---
 
-## ข้อมูลเพิ่มเติม
+## Additional Information
 
 - **GitHub:** github.com/nicky-wrc
 - **Portfolio:** www.worachatportfolio.com
-- **ความสนใจ:** Backend Development, API Design, System Architecture, การรวม AI/ML, Full-Stack Development
-- **สถานะ:** กำลังมองหาตำแหน่งฝึกงาน Backend Developer
+- **Interests:** Backend Development, API Design, System Architecture, AI/ML Integration, Full-Stack Development
+- **Status:** Seeking a Backend Developer internship
 

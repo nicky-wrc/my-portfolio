@@ -1,90 +1,66 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Orbitron } from "next/font/google";
-import AppBootSequence from "@/components/AppBootSequence";
-import CursorFollower from "@/components/CursorFollower";
-import MotionResume from "@/components/MotionResume";
+import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
-import RouteTransitionOrchestrator from "@/components/RouteTransitionOrchestrator";
+import ScrollRevealController from "@/components/ScrollRevealController";
+import { siteConfig } from "@/data/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
 export const viewport: Viewport = {
-  themeColor: "#02030a",
+  colorScheme: "dark",
+  themeColor: "#080808",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://worachat.dev'),
+  metadataBase: new URL("https://worachat.dev"),
   title: {
-    default: "Worachat - Developer",
-    template: "%s | Worachat",
+    default: `${siteConfig.name} — ${siteConfig.role}`,
+    template: "%s — Worachat Paranya",
   },
-  description: "Futuristic developer portfolio of Worachat Paranya — Backend, Full-Stack & AI engineer crafting scalable systems and delightful experiences.",
-  keywords: ["Backend Developer", "Full-Stack Developer", "AI Developer", "Robotics", "Web Developer", "Mobile Developer", "React", "Next.js", "Python", "Java", "Portfolio"],
+  description:
+    "Portfolio of Worachat Paranya, a backend-focused full-stack developer working across web systems, APIs, and applied AI.",
+  keywords: [
+    "Worachat Paranya",
+    "Backend Developer",
+    "Full-Stack Developer",
+    "AI Developer",
+    "Next.js",
+    "Spring Boot",
+    "Python",
+  ],
   authors: [{ name: "Worachat Paranya" }],
   creator: "Worachat Paranya",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Worachat - Developer",
-    description: "Futuristic developer portfolio. Backend, Full-Stack and AI engineering, with a robotic flair.",
-    siteName: "Worachat Paranya Portfolio",
+    title: `${siteConfig.name} — ${siteConfig.role}`,
+    description:
+      "Backend-focused full-stack development, reliable systems, and applied AI.",
+    siteName: "Worachat Paranya",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worachat - Developer",
-    description: "Futuristic developer portfolio. Backend, Full-Stack and AI engineering, with a robotic flair.",
+    title: `${siteConfig.name} — ${siteConfig.role}`,
+    description:
+      "Backend-focused full-stack development, reliable systems, and applied AI.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} antialiased`}
-      >
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[320] focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-white focus:rounded-lg focus:outline-none"
-        >
+    <html lang="en">
+      <body>
+        <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <AppBootSequence />
-        <MotionResume />
-        <CursorFollower />
-        <RouteTransitionOrchestrator>
-          <>
-            <Navigation />
-            {children}
-          </>
-        </RouteTransitionOrchestrator>
+        <Navigation />
+        {children}
+        <Footer />
+        <ScrollRevealController />
       </body>
     </html>
   );
