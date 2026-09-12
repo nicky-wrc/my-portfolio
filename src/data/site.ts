@@ -23,10 +23,10 @@ export const siteConfig = {
     url: "https://www.facebook.com/nick.worachatz/",
   },
   resume: {
-    pdf: "/Worachat_Resume_Backend_Developer.pdf",
+    pdf: "/Resume_Worachat.pdf",
     download: "/api/resume",
     html: "/resume.html",
-    downloadName: "Worachat_Paranya_Resume.pdf",
+    downloadName: "Resume_Worachat.pdf",
   },
 } as const;
 

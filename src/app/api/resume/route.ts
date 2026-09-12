@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 const resumePath = path.join(
   process.cwd(),
   "public",
-  "Worachat_Resume_Backend_Developer.pdf",
+  siteConfig.resume.pdf.slice(1),
 );
 
 export async function GET() {
@@ -16,8 +16,8 @@ export async function GET() {
 
     return new Response(resume, {
       headers: {
-        "Cache-Control": "public, max-age=3600, must-revalidate",
-        "Content-Disposition": `attachment; filename="${siteConfig.resume.downloadName}"`,
+        "Cache-Control": "no-store",
+        "Content-Disposition": `inline; filename="${siteConfig.resume.downloadName}"`,
         "Content-Length": resume.byteLength.toString(),
         "Content-Type": "application/pdf",
         "X-Content-Type-Options": "nosniff",

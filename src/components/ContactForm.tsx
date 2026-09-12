@@ -31,7 +31,8 @@ export default function ContactForm() {
     ) {
       setStatus({
         state: "error",
-        message: "The contact form is not configured yet. Please email me directly.",
+        message:
+          "The contact form is not configured yet. Please email me directly.",
       });
       return;
     }
@@ -59,7 +60,8 @@ export default function ContactForm() {
       console.error("Unable to send contact form", error);
       setStatus({
         state: "error",
-        message: "The message could not be sent. Please use the email link instead.",
+        message:
+          "The message could not be sent. Please use the email link instead.",
       });
     }
   }
@@ -67,7 +69,11 @@ export default function ContactForm() {
   const isSending = status.state === "sending";
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit} aria-busy={isSending}>
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      aria-busy={isSending}
+    >
       <div className="form-row">
         <label>
           <span>Name</span>
@@ -90,7 +96,11 @@ export default function ContactForm() {
       </label>
 
       <div className="form-footer">
-        <button type="submit" className="button button-primary" disabled={isSending}>
+        <button
+          type="submit"
+          className="button button-primary"
+          disabled={isSending}
+        >
           {isSending ? "Sending…" : "Send message"}
           <span aria-hidden="true">↗</span>
         </button>

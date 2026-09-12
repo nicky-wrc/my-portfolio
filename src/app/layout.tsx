@@ -1,13 +1,52 @@
 import type { Metadata, Viewport } from "next";
-import Footer from "@/components/Footer";
-import Navigation from "@/components/Navigation";
-import ScrollRevealController from "@/components/ScrollRevealController";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
+import {
+  Geist,
+  Geist_Mono,
+  Plus_Jakarta_Sans,
+  Instrument_Serif,
+  Outfit,
+  Playfair_Display,
+} from "next/font/google";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+const mono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+  display: "swap",
+});
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+});
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair-display",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   colorScheme: "dark",
-  themeColor: "#080808",
+  themeColor: "#0F0E0E",
   width: "device-width",
   initialScale: 1,
 };
@@ -52,15 +91,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <Navigation />
-        {children}
-        <Footer />
-        <ScrollRevealController />
+    <html lang="en" className="dark">
+      <body
+        className={[
+          geist.variable,
+          mono.variable,
+          jakarta.variable,
+          instrument.variable,
+          outfit.variable,
+          playfair.variable,
+        ].join(" ")}
+      >
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

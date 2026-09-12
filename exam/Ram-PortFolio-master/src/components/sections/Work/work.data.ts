@@ -1,0 +1,238 @@
+export interface Project {
+  id: number;
+  title: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  techStack: string[];
+  image: string;
+  hoverImage: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  color: string;
+  // Extended case study details for iOS UI design detail sheet
+  longDescription: string;
+  role: string;
+  timeline: string;
+  category: string;
+  challenges: string;
+  solution: string;
+  metrics: string[];
+  screenshots: string[];
+}
+
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: "Developer Portfolio",
+    tagline: "Ultra Performance 3D & Bento Personal Portfolio",
+    description: "An interactive developer portfolio built with Next.js 16 (Turbopack), featuring glassmorphic Bento grid layouts, real-time Upstash Redis visitor analytics, an iOS 18 Terminal CLI sandbox, and butter-smooth Lenis scroll dynamics.",
+    features: [
+      "Obsidian dark glassmorphism Bento Grid layout engine",
+      "Interactive ZSH-style iOS 18 Terminal Sandbox with CLI commands",
+      "Real-time Upstash Redis visitor analytics & GitHub activity heatmap",
+      "Exponential Lenis smooth momentum scroll & GSAP ticker sync",
+      "Responsive PDF Resume Viewer and interactive contact drawers"
+    ],
+    techStack: ["Next.js (App Router)", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Upstash Redis"],
+    image: "/images/projects/portfolio.png",
+    hoverImage: "/images/projects/portfolio-hover.png",
+    liveUrl: "https://rameshwarbhagwat.me",
+    githubUrl: "",
+    color: "255, 140, 0",
+    longDescription: "This modern personal portfolio application showcases developer engineering capabilities, open-source projects, and design systems. Engineered with Next.js 16 (Turbopack) and TypeScript, it incorporates a customizable dark obsidian design system, real-time serverless visitor tracking, interactive 3D visual showcases, a custom terminal CLI sandbox, and butter-smooth Lenis scroll physics.",
+    role: "Creator, Full-Stack Developer & Designer",
+    timeline: "Ongoing (2026)",
+    category: "Personal Portfolio & Showcase",
+    challenges: "Achieving 60-120 FPS fluid animations, instant page loads, and zero scroll stutter despite rich graphics, canvas elements, particle fields, and real-time backend API polling.",
+    solution: "Implemented GPU layer promotions (translateZ), React.memo rendering boundaries, Lenis smooth scroll ticker binding with zero lag smoothing, and serverless edge caching via Upstash Redis.",
+    metrics: ["Lighthouse Performance: 99/100", "Scroll smoothness: 120 FPS", "Terminal CLI response: <10ms"],
+    screenshots: ["/images/projects/portfolio.png", "/images/projects/portfolio-hover.png"]
+  },
+  {
+    id: 2,
+    title: "Devory",
+    tagline: "AI-Powered Student Project Platform",
+    description: "Devory is an AI-driven platform designed to help students discover, build, and manage real-world technical projects with intelligent recommendations and structured workflows.",
+    features: [
+      "AI-based project idea recommendations",
+      "Structured project workflow management",
+      "Progress tracking and portfolio-ready output"
+    ],
+    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "OpenAI API"],
+    image: "/images/projects/project1.png",
+    hoverImage: "/images/projects/project1-hover.png",
+    liveUrl: "https://devoryz.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Devory.git",
+    color: "138, 43, 226",
+    longDescription: "Devory is an AI-powered project mentoring application designed to assist computer science students in building portfolio-grade systems. By analyzing user interests, technical skills, and available hours, Devory leverages OpenAI API models to generate structured project roadmaps, suggest coding resources, and monitor development sprints.",
+    role: "Full-Stack & AI Integration Engineer",
+    timeline: "5 Weeks (November 2025)",
+    category: "AI EdTech SaaS",
+    challenges: "Limiting excessive OpenAI usage costs and structuring LLM natural language prompts into reliable, syntax-compliant database roadmaps.",
+    solution: "Configured structured JSON validation using OpenAI Function Calling and wrapped all prompt generation patterns with server-side caching and dynamic client rate-limiters.",
+    metrics: ["Roadmap generation latency: <2.2s", "Structured parse rate: 99.8%", "User project engagement: +140%"],
+    screenshots: ["/images/projects/project1.png", "/images/projects/project1-hover.png"]
+  },
+  {
+    id: 3,
+    title: "Safecoast",
+    tagline: "Coastal Hazard Intelligence Platform",
+    description: "Safecoast is a coastal hazard intelligence system designed to monitor environmental risk factors and support faster preparedness with real-time alerting insights.",
+    features: [
+      "Real-time hazard monitoring and alert system",
+      "Interactive data visualization dashboard",
+      "Predictive analysis for coastal risk assessment"
+    ],
+    techStack: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS", "OpenWeather API"],
+    image: "/images/projects/safecoast.png",
+    hoverImage: "/images/projects/safecoast-hover.png",
+    liveUrl: "https://safecoast.vercel.app/home",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Costal-Hazards.git",
+    color: "0, 119, 182",
+    longDescription: "Safecoast is an environmental dashboard application created to help rescue organizations and researchers monitor coastal environments. The app integrates data streams from atmospheric, tidal, and marine telemetry sources to model potential flooding, erosion, and storm surges. With a clean map-driven dashboard interface, users can examine historical hazards and configure threshold alerts.",
+    role: "Lead Full-Stack Developer",
+    timeline: "6 Weeks (October 2025)",
+    category: "Geospatial Dashboard",
+    challenges: "Ingesting, normalizing, and rendering complex GIS coordinates and meteorological weather JSON streams without introducing heavy re-renders in the browser viewport.",
+    solution: "Developed an API aggregation server in Node.js that cleans and maps geo-coordinates. The frontend uses highly optimized SVG mappings and debounced state layers to handle real-time spatial analytics updates cleanly.",
+    metrics: ["Data synchronization rate: 5 min", "Map rendering frame rate: 60 FPS", "Alert transmission speed: <2s"],
+    screenshots: ["/images/projects/safecoast.png", "/images/projects/safecoast-hover.png"]
+  },
+  {
+    id: 4,
+    title: "WebCraft",
+    tagline: "Website Builder for Modern Businesses",
+    description: "WebCraft is a client-focused web development solution that helps businesses establish a strong digital presence with fast, responsive, and SEO-ready websites.",
+    features: [
+      "Responsive and performance-optimized websites",
+      "Custom UI/UX design implementation",
+      "SEO-ready architecture and fast loading speed"
+    ],
+    techStack: ["React", "Tailwind CSS", "Firebase", "Node.js"],
+    image: "/images/projects/project4.png",
+    hoverImage: "/images/projects/project4-hover.png",
+    liveUrl: "https://webcraftx.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/WebCraft.git",
+    color: "99, 102, 241",
+    longDescription: "WebCraft is a premium website building solution designed to help modern businesses establish a robust, fast, and highly converting digital presence. By providing modular layout engines and responsive design presets, it empowers businesses to build professional web interfaces without writing complex code. The system integrates seamless content management pipelines and utilizes serverless authentication and hosting solutions to keep maintenance overhead extremely low.",
+    role: "Solo Full-Stack Developer & UI Designer",
+    timeline: "3 Weeks (June 2025)",
+    category: "No-Code SaaS Platform",
+    challenges: "Creating a builder system that generates highly performant, semantic, and clean CSS code rather than bloated, nested stylesheets typically generated by older builder engines.",
+    solution: "Developed a structural template translator using React that stores visual designs as highly structured JSON block hierarchies. At publish time, this state translates into lightweight, static React code, achieving top-tier loading speeds.",
+    metrics: ["Lighthouse Performance: 98/100", "Page load latency: <0.8s", "SEO visibility index: 95%"],
+    screenshots: ["/images/projects/project4.png", "/images/projects/project4-hover.png"]
+  },
+  {
+    id: 5,
+    title: "AI ML Progress Tracker",
+    tagline: "Private Multi-User AI/ML Learning Progress Platform",
+    description: "A full-stack SaaS-style platform that enables users to follow a structured AI/ML roadmap, track daily learning tasks, and monitor progress in real time. Backed by Supabase.",
+    features: [
+      "Structured AI/ML roadmap (Month → Week → Day → Tasks)",
+      "Task-level progress tracking with real-time updates",
+      "Role-based authentication (Admin & Member)",
+      "Admin panel for user management and collaborative views",
+      "Progress analytics with percentage and visual indicators"
+    ],
+    techStack: [
+      "Next.js (App Router)",
+      "TypeScript",
+      "Supabase (PostgreSQL + Auth)",
+      "Tailwind CSS",
+      "Node.js",
+      "REST API"
+    ],
+    image: "/images/projects/aiml-tracker.png",
+    hoverImage: "/images/projects/aiml-tracker-hover.png",
+    liveUrl: "https://mlroadmap.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/Ml-Roadmap.git",
+    color: "34, 197, 94",
+    longDescription: "The AI/ML Progress Tracker is a SaaS-style dashboard built for tracking technical learning milestones. Featuring a comprehensive, hierarchically organized study plan, it enables user groups to log daily study metrics, view peer progress bars, and track task check-offs in real time. The app is built with a focus on authentication controls and data isolation.",
+    role: "Lead Full-Stack Architect",
+    timeline: "4 Weeks (January 2026)",
+    category: "SaaS Dashboard",
+    challenges: "Enforcing strict authorization rules allowing public peer review of tracking stats while locking edit rights to authenticated data owners.",
+    solution: "Designed complex Row Level Security (RLS) policies in PostgreSQL, exposing secure read-only aggregate views while restricting mutation queries behind isolated API routes.",
+    metrics: ["RLS access leakage: 0%", "Analytical updates: Real-time", "Dashboard load index: A+"],
+    screenshots: ["/images/projects/aiml-tracker.png", "/images/projects/aiml-tracker-hover.png"]
+  },
+  {
+    id: 6,
+    title: "Library Management System",
+    tagline: "Full-Stack System for Managing Books, Members, and Transactions",
+    description: "A complete full-stack Library Management System built with a robust backend and modern frontend. The system manages books, members, issue/return workflows, and fine calculations using database triggers and optimized APIs.",
+    features: [
+      "Complete book, member, issue, and fine management system",
+      "Automated fine calculation using database triggers",
+      "Secure and structured backend with Node.js, Express, and MySQL",
+      "Advanced frontend with search, filters, pagination, and dashboard",
+      "Transaction-safe operations ensuring data consistency"
+    ],
+    techStack: ["React", "Node.js", "Express.js", "MySQL", "Tailwind CSS", "Axios"],
+    image: "/images/projects/project6.png",
+    hoverImage: "/images/projects/project6-hover.png",
+    liveUrl: "",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/DBMS-Project.git",
+    color: "37, 99, 235",
+    longDescription: "This Library Management System is a database-first full-stack enterprise application engineered to automate administrative workloads in academic libraries. Built with a robust relational schema, it handles member registration, inventory levels, borrowing history, and transaction states. The application features a real-time admin portal with advanced analytical graphics and robust transactional security safeguards.",
+    role: "Lead Backend Engineer & Database Architect",
+    timeline: "4 Weeks (December 2025)",
+    category: "Enterprise System",
+    challenges: "Preventing race conditions and stock inconsistencies when multiple members attempt to borrow or reserve the same catalog book copy at the same time.",
+    solution: "Designed transactional procedures in MySQL utilizing strict row-level locking techniques (`SELECT ... FOR UPDATE`). This was coupled with automatic database triggers to update status tables and calculate fines dynamically without application logic overhead.",
+    metrics: ["Database query latency: <12ms", "Transaction safety rate: 100%", "Administrative overhead: -75%"],
+    screenshots: ["/images/projects/project6.png", "/images/projects/project6-hover.png"]
+  },
+  {
+    id: 7,
+    title: "Moungiri Store E-Commerce",
+    tagline: "Digital Storefront for Local Kirana Business",
+    description: "Developed a complete e-commerce platform for a local kirana store with product management, cart functionality, and order processing.",
+    features: [
+      "Product catalog and cart management",
+      "Order tracking and checkout system",
+      "Admin dashboard for inventory management"
+    ],
+    techStack: ["Next.js", "MongoDB", "Node.js", "Stripe", "Tailwind CSS"],
+    image: "/images/projects/project5.png",
+    hoverImage: "/images/projects/project5-hover.png",
+    liveUrl: "https://moungiri-store.vercel.app/",
+    githubUrl: "https://github.com/Rameshwar-bhagwat10/DiM-Project.git",
+    color: "16, 185, 129",
+    longDescription: "Moungiri Store is a full-featured e-commerce storefront crafted to help local retail vendors shift their operations online. The platform includes search indexing, a dynamic cart mechanism, inventory management interfaces for administrators, and an integrated payment gateway via Stripe.",
+    role: "Solo Full-Stack Developer",
+    timeline: "5 Weeks (August 2025)",
+    category: "E-Commerce System",
+    challenges: "Implementing a reliable checkout flow that manages stock inventory quantities atomically only upon finalized validation of client payments.",
+    solution: "Designed a checkout pipeline combining Stripe webhooks and MongoDB transactions, ensuring inventory increments or decrements are finalized only when payment confirmation reports arrive successfully.",
+    metrics: ["Checkout success rating: 100%", "Database catalog write speed: <18ms", "Weekly user activity: +200%"],
+    screenshots: ["/images/projects/project5.png", "/images/projects/project5-hover.png"]
+  },
+  {
+    id: 8,
+    title: "Spam Message Detection",
+    tagline: "Machine Learning-Based Text Classification System",
+    description: "Developed a machine learning-based spam message detection system using Python to classify SMS and text messages as spam or legitimate.",
+    features: [
+      "Text preprocessing using NLP techniques",
+      "Trained and evaluated ML models for spam classification",
+      "Real-time message prediction with probability scoring"
+    ],
+    techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "NLTK", "Matplotlib"],
+    image: "/images/projects/project3.png",
+    hoverImage: "/images/projects/project3-hover.png",
+    liveUrl: "",
+    githubUrl: "",
+    color: "220, 53, 69",
+    longDescription: "This machine learning tool classifies short text communications as legitimate (ham) or spam with high statistical confidence. Built with a robust pipeline containing text tokenizers, stop-word filters, and feature extraction components, the application processes messages instantly, generating predictive diagnostics for fraud detection.",
+    role: "Machine Learning Engineer",
+    timeline: "3 Weeks (September 2025)",
+    category: "AI / ML Classifier",
+    challenges: "Handling adversarial spelling adaptations, character substitution tricks (like using slashes/symbols for words), and lexical variance in brief SMS content.",
+    solution: "Designed a clean preprocessing wrapper utilizing NLTK for stem extraction and tokenization, and vectorizing strings with TF-IDF. The system combines Multinomial Naive Bayes and Linear SVM models for optimal results.",
+    metrics: ["Model Classification Accuracy: 99.2%", "F1-Score: 0.985", "Inference speed: <8ms"],
+    screenshots: ["/images/projects/project3.png", "/images/projects/project3-hover.png"]
+  }
+];

@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Worachat Paranya — Portfolio
+
+Personal portfolio built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. The visual design is adapted from the local Ram-PortFolio reference, using Worachat's profile and projects. See [REFACTOR_NOTES.md](REFACTOR_NOTES.md) for architecture, routes, animation behavior, and optional content.
 
 ## Getting Started
 

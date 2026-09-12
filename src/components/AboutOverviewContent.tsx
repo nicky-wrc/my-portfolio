@@ -1,117 +1,189 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Instagram,
+  Code2,
+  GraduationCap,
+  MapPin,
+} from "lucide-react";
+import AboutHeader from "@/components/sections/About/AboutHeader";
 import { siteConfig } from "@/data/site";
+import { projects } from "@/data/projects";
 
+const entrance = {
+  initial: { opacity: 0, y: 45, scale: 0.94 },
+  whileInView: { opacity: 1, y: 0, scale: 1 },
+  viewport: { once: true, amount: 0.15 },
+  transition: { duration: 0.7 },
+};
 export default function AboutOverviewContent() {
   return (
-    <div className="about-grid">
-      <figure className="about-portrait-composition">
-        <div className="about-photo about-photo-main" data-reveal="left">
-          <Image
-            src="/nicky_dev3.jpg"
-            alt="Casual portrait of Worachat Paranya"
-            width={828}
-            height={1472}
-            sizes="(max-width: 640px) 100vw, (max-width: 900px) 55vw, 22vw"
-          />
-        </div>
-        <div
-          className="about-photo about-photo-work"
-          data-reveal="scale"
-          data-reveal-delay="1"
-        >
-          <Image
-            src="/nicky_dev.jpg"
-            alt="Laptop displaying a Photo Booth portrait of Worachat Paranya"
-            width={1086}
-            height={1448}
-            sizes="(max-width: 640px) 48vw, (max-width: 900px) 28vw, 12vw"
-          />
-        </div>
-        <div
-          className="about-photo about-photo-detail"
-          data-reveal="right"
-          data-reveal-delay="2"
-        >
-          <Image
-            src="/nicky_dev2.jpg"
-            alt="Mirror portrait of Worachat Paranya"
-            width={828}
-            height={1472}
-            sizes="(max-width: 640px) 48vw, (max-width: 900px) 28vw, 12vw"
-          />
-        </div>
-        <figcaption data-reveal data-reveal-delay="3">
-          <span>{siteConfig.name}</span>
-          <span>{siteConfig.location}</span>
-        </figcaption>
-      </figure>
-
-      <div className="about-copy" data-reveal="right" data-reveal-delay="1">
-        <p className="eyebrow">About / {siteConfig.role}</p>
-        <h2>Engineering with clarity, from interface to infrastructure.</h2>
-        <p className="about-lead">
-          I’m a final-year Computer Science student at Khon Kaen University and
-          a backend-focused full-stack developer. I enjoy turning complex
-          requirements into software that is understandable, maintainable, and
-          useful.
-        </p>
-        <p>
-          My projects span REST APIs, role-based business systems, real-time
-          applications, data workflows, and computer vision. I care about clear
-          data models, predictable contracts, and technical decisions that a
-          team can continue to own.
-        </p>
-
-        <dl className="work-principles">
+    <section id="about" className="about-section">
+      <motion.div {...entrance}>
+        <AboutHeader />
+      </motion.div>
+      <div
+        className="bento-grid"
+        onPointerMove={(event) => {
+          if (event.pointerType !== "mouse") return;
+          for (const card of event.currentTarget.querySelectorAll<HTMLElement>(
+            ".glass-card",
+          )) {
+            const bounds = card.getBoundingClientRect();
+            card.style.setProperty(
+              "--glow-x",
+              event.clientX - bounds.left + "px",
+            );
+            card.style.setProperty(
+              "--glow-y",
+              event.clientY - bounds.top + "px",
+            );
+          }
+        }}
+      >
+        <motion.article {...entrance} className="glass-card bento-profile">
+          <div className="profile-top">
+            <Image
+              src="/nicky_dev3.jpg"
+              alt="Worachat Paranya"
+              width={260}
+              height={330}
+              className="profile-portrait"
+            />
+            <div>
+              <p className="micro-label">A FULL STACK DEVELOPER</p>
+              <h2>
+                Worachat
+                <br />
+                Paranya<span className="text-orange-400">.</span>
+              </h2>
+              <p>
+                Building dependable web applications, backend systems, and
+                applied AI.
+              </p>
+            </div>
+          </div>
+          <div className="profile-bottom">
+            <span className="status-dot" />
+            Open to internship opportunities <ArrowUpRight size={17} />
+          </div>
+        </motion.article>
+        <motion.div {...entrance} className="glass-card bento-ticker">
+          <div className="ticker-content">
+            BACKEND SYSTEMS · FULL STACK DEVELOPMENT · APPLIED AI · COMPUTER
+            SCIENCE · BACKEND SYSTEMS · FULL STACK DEVELOPMENT · APPLIED AI ·
+            COMPUTER SCIENCE ·{" "}
+          </div>
+        </motion.div>
+        <motion.article {...entrance} className="glass-card bento-small">
+          <GraduationCap className="text-orange-400" size={30} />
           <div>
-            <dt>01</dt>
-            <dd>
-              <strong>Think in systems</strong>
-              <span>Start with the problem, boundaries, data, and failure paths.</span>
-            </dd>
+            <p className="micro-label">EDUCATION</p>
+            <h3>Computer Science</h3>
+            <p>Final year · Khon Kaen University</p>
+          </div>
+        </motion.article>
+        <motion.div {...entrance} className="glass-card bento-small">
+          <Link
+            href="/projects"
+            className="card-cover-link"
+            aria-label="Browse all projects"
+          />
+          <strong className="bento-number">
+            {String(projects.length).padStart(2, "0")}
+            <span>↗</span>
+          </strong>
+          <div>
+            <p className="micro-label">SELECTED & EXPLORATORY WORK</p>
+            <h3>Projects</h3>
+          </div>
+        </motion.div>
+        <motion.article {...entrance} className="glass-card bento-small">
+          <div className="mini-stack">
+            {["Next.js", "React", "Python", "Java", "PostgreSQL", "Docker"].map(
+              (s) => (
+                <span key={s}>{s}</span>
+              ),
+            )}
           </div>
           <div>
-            <dt>02</dt>
-            <dd>
-              <strong>Build end to end</strong>
-              <span>Connect product flows, interfaces, APIs, and persistence.</span>
-            </dd>
+            <p className="micro-label">CORE EXPERTISE</p>
+            <h3>My stack</h3>
+          </div>
+        </motion.article>
+        <motion.article {...entrance} className="glass-card bento-wide">
+          <Code2 className="text-orange-400" />
+          <div>
+            <p className="micro-label">FROM INTERFACE TO INFRASTRUCTURE</p>
+            <h3>
+              Think in systems.
+              <br />
+              Build end to end.
+            </h3>
+            <p>
+              Clear data models, predictable APIs, and software a team can
+              continue to own.
+            </p>
+          </div>
+        </motion.article>
+        <motion.article {...entrance} className="glass-card bento-small">
+          <div className="bento-socials">
+            <a
+              href={siteConfig.github.url}
+              aria-label="GitHub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github />
+            </a>
+            <a
+              href={siteConfig.linkedin.url}
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Linkedin />
+            </a>
+            <a
+              href={siteConfig.instagram.url}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Instagram />
+            </a>
           </div>
           <div>
-            <dt>03</dt>
-            <dd>
-              <strong>Use AI with purpose</strong>
-              <span>Apply models where they solve a real user or operational need.</span>
-            </dd>
+            <p className="micro-label">STAY CONNECTED</p>
+            <h3>Profiles</h3>
           </div>
-        </dl>
-
-        <div className="about-links">
-          <a
-            href={siteConfig.resume.download}
-            className="button button-secondary"
-            aria-label="Download Worachat Paranya's resume as a PDF"
-          >
-            Download résumé
+        </motion.article>
+        <motion.article {...entrance} className="glass-card bento-location">
+          <MapPin size={24} />
+          <div>
+            <p className="micro-label">BASED IN</p>
+            <h3>{siteConfig.location}</h3>
+          </div>
+          <a href="/resume" className="pill-button">
+            View résumé <ArrowUpRight size={15} />
           </a>
-          <a
-            href={siteConfig.linkedin.url}
-            target="_blank"
-            rel="noreferrer"
-            className="text-link"
-          >
-            LinkedIn <span aria-hidden="true">↗</span>
-          </a>
-          <a
-            href={siteConfig.github.url}
-            target="_blank"
-            rel="noreferrer"
-            className="text-link"
-          >
-            GitHub <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+        </motion.article>
       </div>
-    </div>
+      <motion.div {...entrance} className="about-story">
+        <p className="micro-label">THE WAY I WORK</p>
+        <p>
+          I’m a final-year Computer Science student at Khon Kaen University and
+          a backend-focused full-stack developer. My work spans REST APIs,
+          role-based business systems, real-time applications, data workflows,
+          and computer vision. I enjoy turning complex requirements into
+          software that is understandable, maintainable, and useful.
+        </p>
+      </motion.div>
+    </section>
   );
 }

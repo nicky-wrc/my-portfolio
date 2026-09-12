@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ProjectPreview from "@/components/ProjectPreview";
 import { notFound, permanentRedirect } from "next/navigation";
 import {
   projectSlugAliases,
@@ -37,7 +38,8 @@ export async function generateMetadata({
     },
     openGraph: {
       title: project.title,
-      description: project.description || `${project.title} by Worachat Paranya.`,
+      description:
+        project.description || `${project.title} by Worachat Paranya.`,
     },
   };
 }
@@ -50,7 +52,9 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
     permanentRedirect(`/projects/${canonicalSlug}`);
   }
 
-  const projectIndex = projects.findIndex((item) => item.slug === canonicalSlug);
+  const projectIndex = projects.findIndex(
+    (item) => item.slug === canonicalSlug,
+  );
   const project = projects[projectIndex];
 
   if (!project) notFound();
@@ -59,7 +63,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
   const projectNarrative = project.content.trim();
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="project-detail-page">
       <section className="project-detail-hero">
         <div className="site-container">
           <nav aria-label="Breadcrumb">
@@ -90,6 +94,12 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                   <dt>Role</dt>
                   <dd>{project.role}</dd>
                 </div>
+                {project.contributors && (
+                  <div>
+                    <dt>Team</dt>
+                    <dd>{project.contributors.join(" & ")}</dd>
+                  </div>
+                )}
                 <div>
                   <dt>Area</dt>
                   <dd>{project.category}</dd>
@@ -110,6 +120,9 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
         </div>
       </section>
 
+      <div className="detail-preview site-container">
+        <ProjectPreview project={project} priority />
+      </div>
       <section className="section-shell">
         <div className="site-container detail-layout">
           <aside className="detail-aside" data-reveal>
@@ -177,13 +190,22 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
             {projectNarrative ? (
               <section className="detail-section" data-reveal>
                 <h2>
-                  {project.caseStudy ? "Implementation details" : "Project overview"}
+                  {project.caseStudy
+                    ? "Implementation details"
+                    : "Project overview"}
                 </h2>
-                <p className="prose">
-                  {projectNarrative}
-                </p>
+                <p className="prose">{projectNarrative}</p>
               </section>
             ) : null}
+
+            {project.details?.map((section) => (
+              <section key={section.title} className="detail-section" data-reveal>
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="prose mb-4 last:mb-0">{paragraph}</p>
+                ))}
+              </section>
+            ))}
 
             <section className="detail-section" data-reveal>
               <h2>Technology stack</h2>

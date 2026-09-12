@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: "About",
   description:
-    'Worachat Paranya — overview on the home page: full-stack, backend, AI, and internship goals.',
+    "Worachat Paranya — overview on the home page: full-stack, backend, AI, and internship goals.",
   robots: { index: false, follow: true },
 };
 

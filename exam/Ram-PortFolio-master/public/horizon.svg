@@ -1,0 +1,58 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Concentrated, low-profile dark orange atmospheric glow centered at the curve peak (y = 460) with smaller radius -->
+    <radialGradient id="skyGlow" cx="50%" cy="77%" r="42%">
+      <stop offset="0%"   stop-color="#d35400" stop-opacity="0.95"/>
+      <stop offset="15%"  stop-color="#b23b00" stop-opacity="0.75"/>
+      <stop offset="35%"  stop-color="#802000" stop-opacity="0.45"/>
+      <stop offset="60%"  stop-color="#3b0800" stop-opacity="0.15"/>
+      <stop offset="85%"  stop-color="#120100" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Intense dark orange core glow right on the curve peak -->
+    <radialGradient id="coreGlow" cx="50%" cy="77%" r="14%">
+      <stop offset="0%"   stop-color="#ff9100" stop-opacity="1"/>
+      <stop offset="20%"  stop-color="#d35400" stop-opacity="0.9"/>
+      <stop offset="55%"  stop-color="#802000" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3b0800" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Linear gradient for the orange horizon stroke line (brightest in the center) - Dark Orange Accent -->
+    <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#802000" stop-opacity="0"/>
+      <stop offset="20%"  stop-color="#b23b00" stop-opacity="0.6"/>
+      <stop offset="42%"  stop-color="#ff9100" stop-opacity="0.95"/>
+      <stop offset="50%"  stop-color="#ffeaad" stop-opacity="1"/>
+      <stop offset="58%"  stop-color="#ff9100" stop-opacity="0.95"/>
+      <stop offset="80%"  stop-color="#b23b00" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#802000" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="lineBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.8"/>
+    </filter>
+
+    <!-- Mask the glow so it only shines above the horizon arc (curve starting at y = 560, peaking at y = 460) -->
+    <clipPath id="skyClip">
+      <path d="M 0 560 Q 600 360, 1200 560 L 1200 0 L 0 0 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Glowing atmospheric dome above the horizon -->
+  <g clip-path="url(#skyClip)">
+    <rect x="0" y="0" width="1200" height="600" fill="url(#skyGlow)"/>
+    <rect x="0" y="0" width="1200" height="600" fill="url(#coreGlow)"/>
+  </g>
+
+  <!-- Soft glow halo surrounding the horizon line -->
+  <path d="M 0 560 Q 600 360, 1200 560" fill="none" stroke="url(#lineGrad)"
+        stroke-width="12" stroke-linecap="round" filter="url(#softBlur)" opacity="0.65"/>
+
+  <!-- Crisp bright horizon edge -->
+  <path d="M 0 560 Q 600 360, 1200 560" fill="none" stroke="url(#lineGrad)"
+        stroke-width="2" stroke-linecap="round" filter="url(#lineBlur)"/>
+</svg>

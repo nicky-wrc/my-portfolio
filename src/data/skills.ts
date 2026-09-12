@@ -1,5 +1,9 @@
 export const skills = [
   {
+    category: "AI-Assisted Development",
+    items: ["Cursor", "Claude Code", "GitHub Copilot", "Codex"],
+  },
+  {
     category: "Languages",
     items: [
       "TypeScript",
