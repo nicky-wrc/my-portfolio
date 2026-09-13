@@ -9,6 +9,23 @@ body {
   color: #fff;
   font-family: var(--font-outfit), sans-serif;
 }
+.portfolio-scroll-stack {
+  position: relative;
+  isolation: isolate;
+}
+.portfolio-scroll-panel {
+  position: sticky;
+  top: var(--stack-top, 0px);
+  display: flow-root;
+  background: #0f0e0e;
+  isolation: isolate;
+}
+.portfolio-scroll-panel:not([data-scroll-panel="home"]) {
+  border-radius: 32px 32px 0 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-scroll-panel { position: relative; top: auto; }
+}
 button,
 a,
 input,

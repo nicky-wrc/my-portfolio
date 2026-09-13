@@ -116,7 +116,7 @@ function WorkflowVisual({
   );
 }
 export default function WorkflowSection() {
-  const entrance = useScrollReveal();
+  const entrance = useScrollReveal({ distance: 30 });
   const reduced = usePrefersReducedMotion();
   return (
     <section id="workflow" className="workflow-section site-container">
@@ -149,7 +149,7 @@ export default function WorkflowSection() {
             {...entrance}
             transition={{
               ...entrance.transition,
-              delay: reduced ? 0 : (index % 3) * 0.08,
+              delay: reduced ? 0 : (index % 3) * 0.1,
             }}
             whileHover={reduced ? undefined : { y: -4 }}
           >
@@ -167,7 +167,7 @@ export default function WorkflowSection() {
           </motion.article>
         ))}
       </div>
-      <div className="workflow-tags">
+      <motion.div {...entrance} className="workflow-tags">
         {[
           "REST APIs",
           "Role-based access",
@@ -181,7 +181,7 @@ export default function WorkflowSection() {
             {tag}
           </span>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

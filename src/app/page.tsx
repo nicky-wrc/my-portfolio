@@ -9,22 +9,39 @@ import GitHubContributions from "@/components/GitHubContributions";
 import MarqueeBanner from "@/components/sections/About/MarqueeBanner";
 import ContactSection from "@/components/ContactSection";
 import { useIntroAnimation } from "@/context/IntroAnimationContext";
+import { ScrollStack, ScrollPanel } from "@/components/ui/smooth-scroll";
 export default function Home() {
   const { isIntroComplete } = useIntroAnimation();
   return (
     <main id="main-content">
       {!isIntroComplete && <IntroScreen />}
       <div inert={!isIntroComplete}>
-        <Hero />
-        <div className="relative z-20">
-          <AboutOverviewContent />
-          <SkillSection />
-          <WorkSection />
-          <WorkflowSection />
-          <GitHubContributions />
-          <MarqueeBanner />
-          <ContactSection />
-        </div>
+        <ScrollStack>
+          <ScrollPanel anchor="home">
+            <Hero />
+          </ScrollPanel>
+          <ScrollPanel anchor="about">
+            <AboutOverviewContent />
+          </ScrollPanel>
+          <ScrollPanel anchor="skills">
+            <SkillSection />
+          </ScrollPanel>
+          <ScrollPanel anchor="projects">
+            <WorkSection />
+          </ScrollPanel>
+          <ScrollPanel anchor="workflow">
+            <WorkflowSection />
+          </ScrollPanel>
+          <ScrollPanel anchor="github">
+            <GitHubContributions />
+          </ScrollPanel>
+          <ScrollPanel anchor="marquee">
+            <MarqueeBanner />
+          </ScrollPanel>
+          <ScrollPanel anchor="contact">
+            <ContactSection />
+          </ScrollPanel>
+        </ScrollStack>
       </div>
     </main>
   );

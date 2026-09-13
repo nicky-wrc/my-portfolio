@@ -15,6 +15,7 @@ export default function GitHubContributions() {
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const entrance = useScrollReveal({ image: true });
+  const copyEntrance = useScrollReveal({ distance: 25, delay: 0.1 });
   const reduced = usePrefersReducedMotion();
   useEffect(() => {
     const controller = new AbortController();
@@ -43,12 +44,11 @@ export default function GitHubContributions() {
           <Github size={14} /> GITHUB ACTIVITY
         </span>
         <RevealHeading text="My code contributions" />
-        <p>Consistent contributions and continuous learning.</p>
+        <motion.p {...copyEntrance}>
+          Consistent contributions and continuous learning.
+        </motion.p>
       </div>
-      <motion.div
-        className="contributions-panel"
-        {...entrance}
-      >
+      <motion.div className="contributions-panel" {...entrance}>
         <div className="contributions-top">
           <div>
             <Github size={22} />

@@ -24,7 +24,7 @@ export default function WorkSection({
   archive?: boolean;
 }) {
   const entrance = useScrollReveal();
-  const delayedEntrance = useScrollReveal({ delay: 0.08 });
+  const delayedEntrance = useScrollReveal({ delay: 0.1, distance: 25 });
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(archive);

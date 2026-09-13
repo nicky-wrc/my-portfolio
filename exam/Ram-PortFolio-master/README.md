@@ -24,6 +24,7 @@ Modern, high-performance portfolio website built with Next.js 16, TypeScript, an
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
@@ -31,11 +32,13 @@ Modern, high-performance portfolio website built with Next.js 16, TypeScript, an
 - **Icons**: Lucide React, React Icons
 
 ### Backend & APIs
+
 - **Email**: Nodemailer (SMTP)
 - **Database**: Upstash Redis (visitor tracking)
 - **GitHub API**: Contributions data
 
 ### Deployment
+
 - **Hosting**: Vercel
 - **Domain**: rameshwarbhagwat.me
 - **SSL**: Automatic (Let's Encrypt)
@@ -45,6 +48,7 @@ Modern, high-performance portfolio website built with Next.js 16, TypeScript, an
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ installed
 - npm or yarn package manager
 - Git
@@ -52,22 +56,26 @@ Modern, high-performance portfolio website built with Next.js 16, TypeScript, an
 ### Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/Rameshwar-bhagwat10/Ram-PortFolio.git
 cd Ram-PortFolio
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Set up environment variables**
+
 ```bash
 cp .env.example .env
 ```
 
 Edit `.env` and add your credentials:
+
 ```env
 GITHUB_TOKEN=your_github_token
 SMTP_HOST=smtp.gmail.com
@@ -80,6 +88,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 4. **Run development server**
+
 ```bash
 npm run dev
 ```
@@ -93,6 +102,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 Complete documentation is available in the [`docs/`](./docs) folder:
 
 ### Quick Links
+
 - 🚀 **[Vercel Deployment Guide](./docs/VERCEL-DEPLOYMENT-GUIDE.md)** - Deploy to production
 - ✅ **[Production Checklist](./docs/PRODUCTION-CHECKLIST.md)** - Pre-deployment verification
 - 🌐 **[Custom Domain Setup](./docs/CUSTOM-DOMAIN-SETUP.md)** - Configure your domain
@@ -167,6 +177,7 @@ npm run lint         # Run ESLint
 ### Environment Variables for Production
 
 Required variables in Vercel:
+
 ```
 GITHUB_TOKEN
 SMTP_HOST
@@ -186,6 +197,7 @@ UPSTASH_REDIS_REST_TOKEN (auto-added)
 ## 📊 Features Overview
 
 ### Sections
+
 - **Hero**: Animated introduction with typing effect
 - **About**: Profile, stats, timeline, and achievements
 - **Skills**: Tech stack with animated marquee
@@ -194,6 +206,7 @@ UPSTASH_REDIS_REST_TOKEN (auto-added)
 - **Contact**: Form with email notifications
 
 ### Integrations
+
 - **Visitor Counter**: Real-time tracking with Redis
 - **Email Notifications**: Auto-reply and admin alerts
 - **GitHub API**: Live contributions data
@@ -206,6 +219,7 @@ UPSTASH_REDIS_REST_TOKEN (auto-added)
 ### Update Personal Information
 
 Edit `src/lib/constants.ts`:
+
 ```typescript
 export const PERSONAL_INFO = {
   name: 'Your Name',
@@ -217,6 +231,7 @@ export const PERSONAL_INFO = {
 ### Update Projects
 
 Edit `src/components/sections/Work/work.data.ts`:
+
 ```typescript
 export const projects = [
   {
@@ -236,6 +251,7 @@ Edit `src/components/sections/Skills/skills.data.ts`
 ## 🐛 Troubleshooting
 
 ### Build Errors
+
 ```bash
 # Clear cache and rebuild
 rm -rf .next node_modules
@@ -244,9 +260,11 @@ npm run build
 ```
 
 ### Visitor Counter Not Working
+
 See [Visitor Counter Fix](./docs/VISITOR-COUNTER-FIX.md)
 
 ### Email Not Sending
+
 1. Verify SMTP credentials
 2. Use Gmail App Password (not regular password)
 3. Check Vercel function logs
@@ -262,6 +280,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Rameshwar Bhagwat**
+
 - Website: [rameshwarbhagwat.me](https://rameshwarbhagwat.me)
 - Email: rameshwarbhagwat019@gmail.com
 - GitHub: [@Rameshwar-bhagwat10](https://github.com/Rameshwar-bhagwat10)
@@ -282,6 +301,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📞 Support
 
 For detailed guides and troubleshooting:
+
 - 📚 [Documentation](./docs/README.md)
 - 🐛 [Issues](https://github.com/Rameshwar-bhagwat10/Ram-PortFolio/issues)
 

@@ -2,6 +2,7 @@
 
 import { useRef, useMemo, memo } from "react";
 import { motion, useInView } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 // Static data - defined outside component
 const topRowItems = [
@@ -123,6 +124,7 @@ const MarqueeRow = memo(function MarqueeRow({
 });
 
 export default function MarqueeBanner() {
+  const entrance = useScrollReveal({ distance: 30 });
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
@@ -164,7 +166,7 @@ export default function MarqueeBanner() {
       />
 
       {/* Strips Container */}
-      <div className="relative w-full h-32 sm:h-40">
+      <motion.div {...entrance} className="relative w-full h-32 sm:h-40">
         {/* Strip 1 — Primary (slides from right) */}
         <motion.div
           className="marquee-strip absolute left-0 right-0 z-[2]"
@@ -214,7 +216,7 @@ export default function MarqueeBanner() {
             />
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

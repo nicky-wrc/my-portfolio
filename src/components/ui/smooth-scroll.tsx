@@ -1,0 +1,69 @@
+"use client";
+
+import { useLayoutEffect, useRef, type ReactNode } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+/** Section stacking uses the site's existing Lenis instance, not a second root. */
+export function ScrollStack({ children }: { children: ReactNode }) {
+  const root = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const panels = root.current?.querySelectorAll<HTMLElement>(
+      "[data-scroll-panel]",
+    );
+    if (!panels) return;
+    let frame = 0;
+    const measure = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        for (const panel of panels) {
+          // A long section scrolls all the way to its bottom before it sticks.
+          // Short sections stick at the top, as in the supplied reference.
+          const revealRoom = Math.min(200, window.innerHeight * 0.25);
+          panel.style.setProperty(
+            "--stack-top",
+            `${
+              panel.offsetHeight > window.innerHeight
+                ? window.innerHeight - panel.offsetHeight - revealRoom
+                : 0
+            }px`,
+          );
+        }
+        ScrollTrigger.refresh();
+      });
+    };
+    const observer = new ResizeObserver(measure);
+    panels.forEach((panel) => observer.observe(panel));
+    window.addEventListener("resize", measure);
+    measure();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <div ref={root} className="portfolio-scroll-stack">
+      {children}
+    </div>
+  );
+}
+
+export function ScrollPanel({
+  anchor,
+  children,
+}: {
+  anchor: string;
+  children: ReactNode;
+}) {
+  return (
+    <>
+      {/* Navigation targets must stay in normal flow while the panel is sticky. */}
+      <div data-scroll-anchor={anchor} aria-hidden="true" />
+      <div data-scroll-panel={anchor} className="portfolio-scroll-panel">
+        {children}
+      </div>
+    </>
+  );
+}

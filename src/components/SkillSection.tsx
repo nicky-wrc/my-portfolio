@@ -7,9 +7,12 @@ import { skills as groups } from "@/data/skills";
 import { skills } from "@/components/sections/Skills/skills.data";
 import MarqueeRow from "@/components/sections/Skills/MarqueeRow";
 const verbs = ["build with.", "create with.", "explore."];
+const widestVerb = verbs.reduce((longest, verb) =>
+  verb.length > longest.length ? verb : longest,
+);
 export default function SkillSection() {
-  const entrance = useScrollReveal();
-  const delayedEntrance = useScrollReveal({ delay: 0.1 });
+  const entrance = useScrollReveal({ distance: 40 });
+  const delayedEntrance = useScrollReveal({ delay: 0.1, distance: 25 });
   const reducedMotion = usePrefersReducedMotion();
   const [word, setWord] = useState(0);
   useEffect(() => {
@@ -30,17 +33,26 @@ export default function SkillSection() {
   const middle = Math.ceil(visible.length / 2);
   return (
     <section id="skills" className="skills-section">
-      <motion.div
-        {...entrance}
-        className="section-heading"
-      >
+      <div className="section-heading">
         <span className="section-badge">✳ THE TOOLS BEHIND THE WORK</span>
-        <h2>
+        <motion.h2 {...entrance}>
           The stack I{" "}
-          <span className="skill-heading-word" aria-hidden="true">
+          <span
+            className="skill-heading-word"
+            aria-hidden="true"
+            style={{ display: "inline-grid" }}
+          >
+            {/* Reserve the longest existing word so a rotation cannot reflow the page. */}
+            <span
+              className="invisible pointer-events-none"
+              style={{ gridArea: "1 / 1" }}
+            >
+              {widestVerb}
+            </span>
             <AnimatePresence mode="wait">
               <motion.span
                 key={reducedMotion ? 0 : word}
+                style={{ gridArea: "1 / 1" }}
                 initial={{ opacity: 0, y: 15, filter: "blur(7px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -15, filter: "blur(7px)" }}
@@ -51,10 +63,17 @@ export default function SkillSection() {
             </AnimatePresence>
           </span>
           <span className="sr-only">build with.</span>
-        </h2>
-        <p>From the first line of code to a complete working system.</p>
-      </motion.div>
-      <motion.div {...delayedEntrance} className="filter-pills" role="group" aria-label="Skill categories">
+        </motion.h2>
+        <motion.p {...delayedEntrance}>
+          From the first line of code to a complete working system.
+        </motion.p>
+      </div>
+      <motion.div
+        {...delayedEntrance}
+        className="filter-pills"
+        role="group"
+        aria-label="Skill categories"
+      >
         {["All", ...groups.map((g) => g.category)].map((category) => (
           <button
             key={category}
@@ -75,7 +94,11 @@ export default function SkillSection() {
           ))}
         </ul>
       ) : (
-        <motion.div key={selected} {...delayedEntrance} className="skill-marquees">
+        <motion.div
+          key={selected}
+          {...delayedEntrance}
+          className="skill-marquees"
+        >
           <MarqueeRow skills={visible.slice(0, middle)} speed={40} />
           {visible.length > 1 && (
             <MarqueeRow skills={visible.slice(middle)} reverse speed={45} />

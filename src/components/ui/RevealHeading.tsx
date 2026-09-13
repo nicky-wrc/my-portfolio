@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useIntroAnimation } from "@/context/IntroAnimationContext";
 
 /** Word-mask entrance adapted from Ram's Work, Skills and GitHub headings. */
 export default function RevealHeading({
@@ -12,14 +14,16 @@ export default function RevealHeading({
   as?: "h1" | "h2";
 }) {
   const reduced = usePrefersReducedMotion();
+  const { isIntroComplete } = useIntroAnimation();
+  const { viewport, transition } = useScrollReveal({ distance: 40 });
   const Heading = as === "h1" ? motion.h1 : motion.h2;
   return (
     <Heading
       className="reveal-heading"
       initial={reduced ? false : "hidden"}
-      animate={reduced ? "visible" : undefined}
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.15 }}
+      animate={reduced ? "visible" : "hidden"}
+      whileInView={reduced || isIntroComplete ? "visible" : "hidden"}
+      viewport={viewport}
       aria-label={text}
     >
       {text.split(" ").map((word, index) => (
@@ -33,14 +37,13 @@ export default function RevealHeading({
             variants={{
               hidden: {
                 opacity: reduced ? 1 : 0,
-                y: reduced ? 0 : "45%",
+                y: reduced ? 0 : "100%",
               },
               visible: { opacity: 1, y: 0 },
             }}
             transition={{
-              duration: reduced ? 0 : 0.8,
-              delay: reduced ? 0 : index * 0.055,
-              ease: [0.16, 1, 0.3, 1],
+              ...transition,
+              delay: reduced ? 0 : index * 0.08,
             }}
           >
             {word}

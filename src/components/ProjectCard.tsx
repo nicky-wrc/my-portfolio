@@ -14,7 +14,11 @@ type ProjectCardProps = {
 };
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const reduced = usePrefersReducedMotion();
-  const entrance = useScrollReveal({ delay: (index % 3) * 0.08 });
+  const entrance = useScrollReveal({
+    delay: (index % 3) * 0.1,
+    distance: 30,
+    image: true,
+  });
   return (
     <motion.article
       layout

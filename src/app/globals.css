@@ -161,14 +161,16 @@ html.lenis body {
   }
 
   html {
-    overflow-x: hidden;
+    overflow-x: clip;
     scroll-padding-top: 0;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.864) transparent;
   }
 
   body {
-    @apply bg-background text-white overflow-x-hidden;
+    @apply bg-background text-white;
+    /* Clip sideways paint without making body the sticky panels' scroll root. */
+    overflow-x: clip;
     font-family:
       var(--font-geist-sans),
       system-ui,

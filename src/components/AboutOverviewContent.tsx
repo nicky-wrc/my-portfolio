@@ -17,12 +17,19 @@ import { projects } from "@/data/projects";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function AboutOverviewContent() {
-  const entrance = useScrollReveal({ image: true });
+  const entrance = useScrollReveal({ image: true, distance: 30 });
+  const cardEntrance = (index: number) => ({
+    ...entrance,
+    transition: {
+      ...entrance.transition,
+      delay: entrance.transition.duration === 0 ? 0 : (index % 3) * 0.1,
+    },
+  });
   return (
     <section id="about" className="about-section">
-      <motion.div {...entrance}>
+      <div>
         <AboutHeader />
-      </motion.div>
+      </div>
       <div
         className="bento-grid"
         onPointerMove={(event) => {
@@ -42,7 +49,7 @@ export default function AboutOverviewContent() {
           }
         }}
       >
-        <motion.article {...entrance} className="glass-card bento-profile">
+        <motion.article {...cardEntrance(0)} className="glass-card bento-profile">
           <div className="profile-top">
             <Image
               src="/nicky_dev3.jpg"
@@ -69,14 +76,14 @@ export default function AboutOverviewContent() {
             Open to internship opportunities <ArrowUpRight size={17} />
           </div>
         </motion.article>
-        <motion.div {...entrance} className="glass-card bento-ticker">
+        <motion.div {...cardEntrance(1)} className="glass-card bento-ticker">
           <div className="ticker-content">
             BACKEND SYSTEMS · FULL STACK DEVELOPMENT · APPLIED AI · COMPUTER
             SCIENCE · BACKEND SYSTEMS · FULL STACK DEVELOPMENT · APPLIED AI ·
             COMPUTER SCIENCE ·{" "}
           </div>
         </motion.div>
-        <motion.article {...entrance} className="glass-card bento-small">
+        <motion.article {...cardEntrance(2)} className="glass-card bento-small">
           <GraduationCap className="text-orange-400" size={30} />
           <div>
             <p className="micro-label">EDUCATION</p>
@@ -84,7 +91,7 @@ export default function AboutOverviewContent() {
             <p>Final year · Khon Kaen University</p>
           </div>
         </motion.article>
-        <motion.div {...entrance} className="glass-card bento-small">
+        <motion.div {...cardEntrance(0)} className="glass-card bento-small">
           <Link
             href="/projects"
             className="card-cover-link"
@@ -99,7 +106,7 @@ export default function AboutOverviewContent() {
             <h3>Projects</h3>
           </div>
         </motion.div>
-        <motion.article {...entrance} className="glass-card bento-small">
+        <motion.article {...cardEntrance(1)} className="glass-card bento-small">
           <div className="mini-stack">
             {["Next.js", "React", "Python", "Java", "PostgreSQL", "Docker"].map(
               (s) => (
@@ -112,7 +119,7 @@ export default function AboutOverviewContent() {
             <h3>My stack</h3>
           </div>
         </motion.article>
-        <motion.article {...entrance} className="glass-card bento-wide">
+        <motion.article {...cardEntrance(2)} className="glass-card bento-wide">
           <Code2 className="text-orange-400" />
           <div>
             <p className="micro-label">FROM INTERFACE TO INFRASTRUCTURE</p>
@@ -127,7 +134,7 @@ export default function AboutOverviewContent() {
             </p>
           </div>
         </motion.article>
-        <motion.article {...entrance} className="glass-card bento-small">
+        <motion.article {...cardEntrance(0)} className="glass-card bento-small">
           <div className="bento-socials">
             <a
               href={siteConfig.github.url}
@@ -159,7 +166,7 @@ export default function AboutOverviewContent() {
             <h3>Profiles</h3>
           </div>
         </motion.article>
-        <motion.article {...entrance} className="glass-card bento-location">
+        <motion.article {...cardEntrance(1)} className="glass-card bento-location">
           <MapPin size={24} />
           <div>
             <p className="micro-label">BASED IN</p>

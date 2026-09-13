@@ -1,11 +1,103 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIntroAnimation } from "@/context/IntroAnimationContext";
 import AboutDome from "./AboutDome";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const AboutHeader = memo(function AboutHeader() {
+  const header = useRef<HTMLDivElement>(null);
+  const { isIntroComplete } = useIntroAnimation();
+  useLayoutEffect(() => {
+    if (!isIntroComplete || !header.current) return;
+    const media = gsap.matchMedia();
+    media.add(
+      "(prefers-reduced-motion: no-preference)",
+      () => {
+        const documentTop = () => {
+          const element = header.current!;
+          const panel = element.closest<HTMLElement>("[data-scroll-panel]");
+          const anchor = document.querySelector<HTMLElement>(
+            '[data-scroll-anchor="about"]',
+          );
+          // Refresh against the normal-flow anchor, even if this panel is pinned.
+          return panel && anchor
+            ? anchor.getBoundingClientRect().top +
+                window.scrollY +
+                element.getBoundingClientRect().top -
+                panel.getBoundingClientRect().top
+            : element.getBoundingClientRect().top + window.scrollY;
+        };
+        // Ram's choreographed entrance, scoped to this existing header. Re-entering
+        // from either edge plays it again; no second animator owns these transforms.
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: header.current,
+            start: () => documentTop() - window.innerHeight * 0.65,
+            end: () => documentTop() + header.current!.offsetHeight,
+            toggleActions: "play reverse play reverse",
+            invalidateOnRefresh: true,
+          },
+        });
+        timeline
+          .fromTo(
+            ".about-dome",
+            { opacity: 0, scale: 0.82 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+          )
+          .fromTo(
+            ".about-badge",
+            { opacity: 0, scale: 0.85, y: 25 },
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.7,
+              ease: "power3.out",
+            },
+            0.2,
+          )
+          .fromTo(
+            ".about-title",
+            { opacity: 0, y: 55, clipPath: "inset(100% 0% 0% 0%)" },
+            {
+              opacity: 1,
+              y: 0,
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1,
+              ease: "power3.out",
+            },
+            0.4,
+          )
+          .fromTo(
+            ".about-subtitle",
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              ease: "power3.out",
+            },
+            0.65,
+          );
+      },
+      header,
+    );
+    return () => media.revert();
+  }, [isIntroComplete]);
   return (
-    <div className="text-center mb-8 sm:mb-12 md:mb-16 about-header-container">
+    <div
+      ref={header}
+      className="text-center mb-8 sm:mb-12 md:mb-16 about-header-container"
+    >
       {/* Visual Dome Crown just above heading */}
       <AboutDome />
 

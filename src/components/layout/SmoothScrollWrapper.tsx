@@ -42,7 +42,11 @@ export default function SmoothScrollWrapper({
     const scrollToSection = (id: string) => {
       const target = document.getElementById(id);
       if (!target) return;
-      const destination = id === "home" ? 0 : target;
+      const anchor =
+        document.querySelector<HTMLElement>(
+          `[data-scroll-anchor="${CSS.escape(id)}"]`,
+        ) ?? target;
+      const destination = id === "home" ? 0 : anchor;
       transition?.kill();
       const main = document.getElementById("main-content");
       setMoving(true);
@@ -88,7 +92,7 @@ export default function SmoothScrollWrapper({
               ? 0
               : Math.max(
                   0,
-                  target.getBoundingClientRect().top + window.scrollY - 95,
+                  anchor.getBoundingClientRect().top + window.scrollY - 95,
                 ),
           behavior: "instant",
         });
