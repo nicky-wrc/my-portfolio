@@ -7,6 +7,7 @@ import {
   Instrument_Serif,
   Outfit,
   Playfair_Display,
+  Yellowtail,
 } from "next/font/google";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
@@ -16,6 +17,7 @@ const geist = Geist({
   variable: "--font-geist-sans",
   display: "swap",
 });
+const signatureFont = Yellowtail({ subsets: ["latin"], weight: "400", variable: "--font-signature", display: "swap" });
 const mono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -100,6 +102,7 @@ export default function RootLayout({
           instrument.variable,
           outfit.variable,
           playfair.variable,
+          signatureFont.variable,
         ].join(" ")}
       >
         <LayoutWrapper>{children}</LayoutWrapper>

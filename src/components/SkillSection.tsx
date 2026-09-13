@@ -38,7 +38,7 @@ export default function SkillSection() {
           The stack I{" "}
           <span className="skill-heading-word" aria-hidden="true">
             <AnimatePresence mode="wait">
-              <motion.em
+              <motion.span
                 key={reducedMotion ? 0 : word}
                 initial={{ opacity: 0, y: 15, filter: "blur(7px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -46,7 +46,7 @@ export default function SkillSection() {
                 transition={{ duration: 0.35 }}
               >
                 {verbs[reducedMotion ? 0 : word]}
-              </motion.em>
+              </motion.span>
             </AnimatePresence>
           </span>
           <span className="sr-only">build with.</span>

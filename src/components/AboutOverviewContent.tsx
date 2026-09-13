@@ -14,14 +14,21 @@ import {
 import AboutHeader from "@/components/sections/About/AboutHeader";
 import { siteConfig } from "@/data/site";
 import { projects } from "@/data/projects";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-const entrance = {
-  initial: { opacity: 0, y: 45, scale: 0.94 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.7 },
-};
 export default function AboutOverviewContent() {
+  const reduced = usePrefersReducedMotion();
+  const entrance = {
+    initial: {
+      opacity: reduced ? 1 : 0,
+      y: reduced ? 0 : 55,
+      scale: reduced ? 1 : 0.88,
+      rotateX: reduced ? 0 : 12,
+    },
+    whileInView: { opacity: 1, y: 0, scale: 1, rotateX: 0 },
+    viewport: { once: true, amount: 0.15 },
+    transition: { duration: reduced ? 0 : 0.75 },
+  };
   return (
     <section id="about" className="about-section">
       <motion.div {...entrance}>

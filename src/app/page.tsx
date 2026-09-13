@@ -4,6 +4,8 @@ import IntroScreen from "@/components/sections/Hero/IntroScreen";
 import AboutOverviewContent from "@/components/AboutOverviewContent";
 import SkillSection from "@/components/SkillSection";
 import WorkSection from "@/components/WorkSection";
+import WorkflowSection from "@/components/WorkflowSection";
+import GitHubContributions from "@/components/GitHubContributions";
 import MarqueeBanner from "@/components/sections/About/MarqueeBanner";
 import ContactSection from "@/components/ContactSection";
 import { useIntroAnimation } from "@/context/IntroAnimationContext";
@@ -18,6 +20,8 @@ export default function Home() {
           <AboutOverviewContent />
           <SkillSection />
           <WorkSection />
+          <WorkflowSection />
+          <GitHubContributions />
           <MarqueeBanner />
           <ContactSection />
         </div>

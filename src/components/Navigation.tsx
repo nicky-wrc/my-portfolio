@@ -1,12 +1,24 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import PersonalMark from "@/components/PersonalMark";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Menu,
+  X,
+  Home,
+  User,
+  Code2,
+  Briefcase,
+  Mail,
+} from "lucide-react";
 import { navLinks } from "@/data/site";
 import { useIntroAnimation } from "@/context/IntroAnimationContext";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+const navIcons = [Home, User, Code2, Briefcase, Mail];
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -14,6 +26,17 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [active, setActive] = useState("home");
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [focused, setFocused] = useState(false);
+  const [navigating, setNavigating] = useState(false);
+  const reduced = usePrefersReducedMotion();
+  useEffect(() => {
+    const change = (event: Event) =>
+      setNavigating((event as CustomEvent<boolean>).detail);
+    window.addEventListener("portfolio-navigation-scroll", change);
+    return () =>
+      window.removeEventListener("portfolio-navigation-scroll", change);
+  }, []);
   useEffect(() => {
     let last = window.scrollY;
     const update = () => {
@@ -34,6 +57,7 @@ export default function Navigation() {
       setActive(current);
     };
     window.addEventListener("scroll", update, { passive: true });
+    update();
     return () => window.removeEventListener("scroll", update);
   }, [pathname]);
   useEffect(() => {
@@ -59,43 +83,72 @@ export default function Navigation() {
     <motion.header
       inert={!isIntroComplete}
       className="portfolio-navigation"
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget))
+          setFocused(false);
+      }}
       initial={{ opacity: 0, y: -35 }}
       animate={{
         opacity: isIntroComplete ? 1 : 0,
-        y: isIntroComplete && (visible || open) ? 0 : -110,
+        y:
+          isIntroComplete &&
+          (visible || open || focused || navigating || hovered)
+            ? 0
+            : -110,
       }}
       transition={{ type: "spring", stiffness: 200, damping: 24 }}
     >
       <Link
-        href="/"
+        href="/#home"
+        scroll={false}
         className="portfolio-brand"
         aria-label="Worachat Paranya home"
         onClick={() => setOpen(false)}
       >
-        <Image src="/nicky_dev.jpg" width={52} height={52} alt="" />
-        <span>
-          WP<span className="text-orange-400">.</span>
-        </span>
+        <PersonalMark />
       </Link>
       <nav className="desktop-pill" aria-label="Primary navigation">
-        {navLinks.map((link) => (
-          <Link
-            key={link.label}
-            href={link.href}
-            aria-current={
-              current === link.href.split("#")[1] ? "location" : undefined
-            }
-          >
-            {current === link.href.split("#")[1] && (
+        <span className="nav-border-light" aria-hidden="true" />
+        {navLinks.map((link, index) => {
+          const Icon = navIcons[index];
+          return (
+            <Link
+              key={link.label}
+              href={link.href}
+              scroll={false}
+              onMouseEnter={() => setHovered(link.label)}
+              onMouseLeave={() => setHovered(null)}
+              aria-current={
+                current === link.href.split("#")[1] ? "location" : undefined
+              }
+            >
+              {hovered === link.label &&
+                current !== link.href.split("#")[1] && (
+                  <motion.span
+                    layoutId="nav-hover"
+                    className="nav-hover"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              {current === link.href.split("#")[1] && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="nav-active"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
               <motion.span
-                layoutId="nav-pill"
-                className="nav-active"
-                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-              />
-            )}
-            <span className="relative z-10">{link.label}</span>
-          </Link>
-        ))}
+                className="nav-link-content"
+                whileHover={reduced ? undefined : { scale: 1.05, y: -1 }}
+                whileTap={reduced ? undefined : { scale: 0.93 }}
+              >
+                <Icon size={16} aria-hidden="true" />
+                <span>{link.label}</span>
+              </motion.span>
+            </Link>
+          );
+        })}
       </nav>
       <Link href="/contact" className="nav-contact">
         Let’s talk <ArrowUpRight size={14} />
@@ -123,6 +176,10 @@ export default function Navigation() {
               <Link
                 key={link.label}
                 href={link.href}
+                scroll={false}
+                aria-current={
+                  current === link.href.split("#")[1] ? "location" : undefined
+                }
                 onClick={() => setOpen(false)}
               >
                 {link.label}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import ProjectPreview from "@/components/ProjectPreview";
 import type { Project } from "@/data/projects";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 type ProjectCardProps = {
   project: Project;
   index: number;
@@ -11,16 +12,17 @@ type ProjectCardProps = {
   headingLevel?: "h2" | "h4";
 };
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const reduced = usePrefersReducedMotion();
   return (
     <motion.article
       layout
       className="portfolio-project-card"
-      initial={{ opacity: 0, y: 25, scale: 0.96 }}
+      initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 45, scale: reduced ? 1 : 0.96 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.035, 0.15) }}
-      whileHover={{ y: -6 }}
+      transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : Math.min(index * 0.06, 0.18), ease: [0.16, 1, 0.3, 1] }}
+      whileHover={reduced ? undefined : { y: -6 }}
     >
       <Link
         className="project-preview-link"

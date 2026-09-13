@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
+import RevealHeading from "@/components/ui/RevealHeading";
 import { projects } from "@/data/projects";
 
 const categories = ["All", "Web App", "AI", "Mobile App", "Data Analytics"];
@@ -59,15 +60,7 @@ export default function WorkSection({
         viewport={{ once: true }}
       >
         <span className="section-badge">✳ A SELECTION OF MY WORK</span>
-        {archive ? (
-          <h1>
-            Ideas turned into <em>projects.</em>
-          </h1>
-        ) : (
-          <h2>
-            Ideas turned into <em>projects.</em>
-          </h2>
-        )}
+        <RevealHeading text="Ideas turned into projects." as={archive ? "h1" : "h2"} />
         <p>
           Web systems, backend engineering, and applied AI.
           <br />
