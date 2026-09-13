@@ -44,27 +44,27 @@ const eatAtHomeScreenshots = [
 ].map((number) => `/Eat_At_Home/${number}.jpg`);
 
 const ppeDetectionScreenshots = [
-  "12f6938c-467c-40a4-92bd-d056e82b54eb.jfif",
-  "25e48426-d984-40c0-955e-dad76b0129f7.jfif",
-  "2860d7f5-3590-4620-be59-9d7f149558db.jfif",
-  "4076fcba-1afb-431e-83c2-5395c6f14921.jfif",
-  "57788004-e565-4675-8f18-3bb261ec9a9b.jfif",
-  "599f865a-791b-40ec-bb3b-56e377368454.jfif",
-  "63374281-09bd-4f26-a88f-507ed062b159.jfif",
-  "6778c5bd-ddcb-4db9-adda-9e60d2df2f43.jfif",
-  "6787a6eb-80c8-455b-af86-3cdc4ff86a86.jfif",
-  "6d705b7a-9f74-4634-8d8a-83e7915a43d3.jfif",
-  "8afe0b1a-22fa-4c08-8f0c-8b9da4eee987.jfif",
-  "b665f844-91db-46bf-a6ef-eccfab32a83d.jfif",
-  "f0b585ae-28b2-4c3b-8609-8d339facf45d.jfif",
+  "12f6938c-467c-40a4-92bd-d056e82b54eb.jpg",
+  "25e48426-d984-40c0-955e-dad76b0129f7.jpg",
+  "2860d7f5-3590-4620-be59-9d7f149558db.jpg",
+  "4076fcba-1afb-431e-83c2-5395c6f14921.jpg",
+  "57788004-e565-4675-8f18-3bb261ec9a9b.jpg",
+  "599f865a-791b-40ec-bb3b-56e377368454.jpg",
+  "63374281-09bd-4f26-a88f-507ed062b159.jpg",
+  "6778c5bd-ddcb-4db9-adda-9e60d2df2f43.jpg",
+  "6787a6eb-80c8-455b-af86-3cdc4ff86a86.jpg",
+  "6d705b7a-9f74-4634-8d8a-83e7915a43d3.jpg",
+  "8afe0b1a-22fa-4c08-8f0c-8b9da4eee987.jpg",
+  "b665f844-91db-46bf-a6ef-eccfab32a83d.jpg",
+  "f0b585ae-28b2-4c3b-8609-8d339facf45d.jpg",
 ].map((filename) => `/ppe_detection/${filename}`);
 
 const aiPoweredProductScreenshots = [
-  "0c1b4800-0e16-4a6d-91a7-b7c785825b1c.jfif",
-  "58dc0f82-aa45-4007-a86b-32a28811494b.jfif",
-  "637547db-73ce-4a8d-bba3-8a712423255d.jfif",
-  "900595c7-f5a7-4c74-933d-9bccdea1e809.jfif",
-  "b38f49ba-a588-4584-bc6d-a40d10cc884a.jfif",
+  "0c1b4800-0e16-4a6d-91a7-b7c785825b1c.jpg",
+  "58dc0f82-aa45-4007-a86b-32a28811494b.jpg",
+  "637547db-73ce-4a8d-bba3-8a712423255d.jpg",
+  "900595c7-f5a7-4c74-933d-9bccdea1e809.jpg",
+  "b38f49ba-a588-4584-bc6d-a40d10cc884a.jpg",
 ].map((filename) => `/AI_Powered_Product/${filename}`);
 
 export const projects: Project[] = [
@@ -343,7 +343,7 @@ export const projects: Project[] = [
     category: "AI",
     image: "/AnyConv.com__CPKKU.jpg",
     previewImage:
-      "/ppe_detection/1e92d4ae-50fb-4a6c-8cde-df38acfc867a.jfif",
+      "/ppe_detection/1e92d4ae-50fb-4a6c-8cde-df38acfc867a.jpg",
     screenshots: ppeDetectionScreenshots,
     githubUrl: "https://github.com/nicky-wrc/ppe-detection-system",
   },
@@ -368,7 +368,7 @@ export const projects: Project[] = [
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
     previewImage:
-      "/AI_Powered_Product/61b97058-fa90-429c-bb4d-8ee9a383e96d.jfif",
+      "/AI_Powered_Product/61b97058-fa90-429c-bb4d-8ee9a383e96d.jpg",
     screenshots: aiPoweredProductScreenshots,
     githubUrl: "https://github.com/nicky-wrc/Powered-Product-Recommendation-Engine-Web-app",
   },
