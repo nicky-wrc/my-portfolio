@@ -19,7 +19,10 @@ export function ScrollStack({ children }: { children: ReactNode }) {
         for (const panel of panels) {
           // A long section scrolls all the way to its bottom before it sticks.
           // Short sections stick at the top, as in the supplied reference.
-          const revealRoom = Math.min(200, window.innerHeight * 0.25);
+          const revealRoom =
+            panel.dataset.scrollPanel === "home"
+              ? 0
+              : Math.min(200, window.innerHeight * 0.25);
           panel.style.setProperty(
             "--stack-top",
             `${

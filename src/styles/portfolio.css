@@ -13,6 +13,13 @@ body {
   position: relative;
   isolation: isolate;
 }
+.hero-scroll-track {
+  position: relative;
+  height: 300svh;
+}
+@media (max-width: 767px) {
+  .hero-scroll-track { height: 260svh; }
+}
 .portfolio-scroll-panel {
   position: sticky;
   top: var(--stack-top, 0px);
@@ -25,6 +32,7 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .portfolio-scroll-panel { position: relative; top: auto; }
+  .hero-scroll-track { height: auto; }
 }
 button,
 a,
