@@ -16,9 +16,10 @@ export default function RevealHeading({
   return (
     <Heading
       className="reveal-heading"
-      initial="hidden"
+      initial={reduced ? false : "hidden"}
+      animate={reduced ? "visible" : undefined}
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.15 }}
       aria-label={text}
     >
       {text.split(" ").map((word, index) => (
@@ -32,10 +33,9 @@ export default function RevealHeading({
             variants={{
               hidden: {
                 opacity: reduced ? 1 : 0,
-                y: reduced ? 0 : "105%",
-                rotateX: reduced ? 0 : 70,
+                y: reduced ? 0 : "45%",
               },
-              visible: { opacity: 1, y: 0, rotateX: 0 },
+              visible: { opacity: 1, y: 0 },
             }}
             transition={{
               duration: reduced ? 0 : 0.8,

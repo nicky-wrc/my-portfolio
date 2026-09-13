@@ -1,4 +1,5 @@
 "use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -7,6 +8,8 @@ import { skills } from "@/components/sections/Skills/skills.data";
 import MarqueeRow from "@/components/sections/Skills/MarqueeRow";
 const verbs = ["build with.", "create with.", "explore."];
 export default function SkillSection() {
+  const entrance = useScrollReveal();
+  const delayedEntrance = useScrollReveal({ delay: 0.1 });
   const reducedMotion = usePrefersReducedMotion();
   const [word, setWord] = useState(0);
   useEffect(() => {
@@ -28,9 +31,7 @@ export default function SkillSection() {
   return (
     <section id="skills" className="skills-section">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        {...entrance}
         className="section-heading"
       >
         <span className="section-badge">✳ THE TOOLS BEHIND THE WORK</span>
@@ -53,7 +54,7 @@ export default function SkillSection() {
         </h2>
         <p>From the first line of code to a complete working system.</p>
       </motion.div>
-      <div className="filter-pills" role="group" aria-label="Skill categories">
+      <motion.div {...delayedEntrance} className="filter-pills" role="group" aria-label="Skill categories">
         {["All", ...groups.map((g) => g.category)].map((category) => (
           <button
             key={category}
@@ -63,7 +64,7 @@ export default function SkillSection() {
             {category}
           </button>
         ))}
-      </div>
+      </motion.div>
       {reducedMotion ? (
         <ul className="static-skills">
           {visible.map((skill) => (
@@ -74,12 +75,12 @@ export default function SkillSection() {
           ))}
         </ul>
       ) : (
-        <div className="skill-marquees" key={selected}>
+        <motion.div key={selected} {...delayedEntrance} className="skill-marquees">
           <MarqueeRow skills={visible.slice(0, middle)} speed={40} />
           {visible.length > 1 && (
             <MarqueeRow skills={visible.slice(middle)} reverse speed={45} />
           )}
-        </div>
+        </motion.div>
       )}
     </section>
   );

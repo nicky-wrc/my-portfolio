@@ -16,12 +16,11 @@ export default function Hero() {
     media.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(
         inner.current,
-        { scale: 1, y: 0, opacity: 1, filter: "blur(0px)" },
+        { scale: 1, y: 0, opacity: 1 },
         {
-          scale: 0.88,
-          y: -100,
+          scale: 0.97,
+          y: -40,
           opacity: 0,
-          filter: "blur(12px)",
           ease: "none",
           scrollTrigger: {
             trigger: section.current,

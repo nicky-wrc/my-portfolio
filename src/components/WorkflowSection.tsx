@@ -1,4 +1,5 @@
 "use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { motion } from "framer-motion";
 import {
@@ -115,6 +116,7 @@ function WorkflowVisual({
   );
 }
 export default function WorkflowSection() {
+  const entrance = useScrollReveal();
   const reduced = usePrefersReducedMotion();
   return (
     <section id="workflow" className="workflow-section site-container">
@@ -144,17 +146,10 @@ export default function WorkflowSection() {
           <motion.article
             key={value.title}
             className={`workflow-card workflow-card--${value.visual}`}
-            initial={{
-              opacity: reduced ? 1 : 0,
-              y: reduced ? 0 : 45,
-              scale: reduced ? 1 : 0.96,
-            }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
+            {...entrance}
             transition={{
-              duration: 0.7,
+              ...entrance.transition,
               delay: reduced ? 0 : (index % 3) * 0.08,
-              ease: [0.16, 1, 0.3, 1],
             }}
             whileHover={reduced ? undefined : { y: -4 }}
           >

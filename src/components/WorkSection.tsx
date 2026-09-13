@@ -1,5 +1,6 @@
 "use client";
 
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,6 +23,8 @@ export default function WorkSection({
 }: {
   archive?: boolean;
 }) {
+  const entrance = useScrollReveal();
+  const delayedEntrance = useScrollReveal({ delay: 0.08 });
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(archive);
@@ -53,21 +56,19 @@ export default function WorkSection({
       id="projects"
       className={`work-section ${archive ? "archive-section" : ""}`}
     >
-      <motion.div
-        className="section-heading"
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
+      <div className="section-heading">
         <span className="section-badge">✳ A SELECTION OF MY WORK</span>
-        <RevealHeading text="Ideas turned into projects." as={archive ? "h1" : "h2"} />
-        <p>
+        <RevealHeading
+          text="Ideas turned into projects."
+          as={archive ? "h1" : "h2"}
+        />
+        <motion.p {...delayedEntrance}>
           Web systems, backend engineering, and applied AI.
           <br />
           Explore the thinking and technology behind each build.
-        </p>
-      </motion.div>
-      <div className="work-stats">
+        </motion.p>
+      </div>
+      <motion.div {...entrance} className="work-stats">
         <div>
           <strong>{projects.length}</strong>
           <span>Projects</span>
@@ -80,8 +81,8 @@ export default function WorkSection({
           <strong>{projects.filter((p) => p.demoUrl).length}</strong>
           <span>Live demos</span>
         </div>
-      </div>
-      <div className="work-controls">
+      </motion.div>
+      <motion.div {...entrance} className="work-controls">
         <label className="project-search">
           <Search size={17} />
           <input
@@ -120,8 +121,9 @@ export default function WorkSection({
             <List size={17} />
           </button>
         </div>
-      </div>
-      <div
+      </motion.div>
+      <motion.div
+        {...entrance}
         className="filter-pills"
         role="group"
         aria-label="Project categories"
@@ -138,7 +140,7 @@ export default function WorkSection({
             </span>
           </button>
         ))}
-      </div>
+      </motion.div>
       <p className="result-count" role="status">
         Showing {visible.length} of {filtered.length} projects
       </p>
@@ -162,7 +164,7 @@ export default function WorkSection({
           </button>
         </div>
       )}
-      <div className="work-bottom">
+      <motion.div {...entrance} className="work-bottom">
         {!archive && filtered.length > 6 && (
           <button className="pill-button" onClick={() => setShowAll(!showAll)}>
             {showAll ? "Show less" : "View more projects"}
@@ -174,7 +176,7 @@ export default function WorkSection({
             Explore all projects <ArrowUpRight size={15} />
           </Link>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }

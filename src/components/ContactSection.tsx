@@ -1,17 +1,17 @@
 "use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Github, Linkedin } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import RevealHeading from "@/components/ui/RevealHeading";
 export default function ContactSection() {
+  const entrance = useScrollReveal();
   return (
     <section id="contact" className="contact-cta">
       <div className="contact-grid-art" aria-hidden="true" />
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        {...entrance}
         className="contact-cta-content"
       >
         <span className="section-badge">✳ HAVE SOMETHING IN MIND?</span>

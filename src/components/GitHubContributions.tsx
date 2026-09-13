@@ -1,4 +1,5 @@
 "use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -13,6 +14,7 @@ export default function GitHubContributions() {
   const [data, setData] = useState<Contributions | null>(null);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const entrance = useScrollReveal({ image: true });
   const reduced = usePrefersReducedMotion();
   useEffect(() => {
     const controller = new AbortController();
@@ -45,14 +47,7 @@ export default function GitHubContributions() {
       </div>
       <motion.div
         className="contributions-panel"
-        initial={{
-          opacity: reduced ? 1 : 0,
-          y: reduced ? 0 : 30,
-          scale: reduced ? 1 : 0.98,
-        }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7 }}
+        {...entrance}
       >
         <div className="contributions-top">
           <div>

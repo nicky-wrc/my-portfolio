@@ -1,4 +1,5 @@
 "use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
@@ -13,15 +14,13 @@ type ProjectCardProps = {
 };
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const reduced = usePrefersReducedMotion();
+  const entrance = useScrollReveal({ delay: (index % 3) * 0.08 });
   return (
     <motion.article
       layout
       className="portfolio-project-card"
-      initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 45, scale: reduced ? 1 : 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      {...entrance}
       exit={{ opacity: 0, scale: 0.95 }}
-      viewport={{ once: true }}
-      transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : Math.min(index * 0.06, 0.18), ease: [0.16, 1, 0.3, 1] }}
       whileHover={reduced ? undefined : { y: -6 }}
     >
       <Link
