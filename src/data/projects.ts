@@ -67,6 +67,48 @@ const aiPoweredProductScreenshots = [
   "b38f49ba-a588-4584-bc6d-a40d10cc884a.jpg",
 ].map((filename) => `/AI_Powered_Product/${filename}`);
 
+const gameKeyMarketplaceScreenshots = [
+  "1cbdcc59-ded1-4a6f-998a-b56879c40c01.jpg",
+  "460f6011-f4f8-4f9e-a65c-08040ab0a79b.jpg",
+  "6a023ab1-a2b3-4880-93d0-9e05837895fb.jpg",
+].map((filename) => `/game_key_marketplace/${filename}`);
+
+const ecommerceScreenshots = [
+  "056b78a3-688f-490e-895b-0a1a5f7867f7.jpg",
+  "1aa27a24-d4a3-4c78-9d1b-6ab84c52be5f.jpg",
+  "2492eb02-fb75-4541-a3ba-58f01ff657b7.jpg",
+  "28942f3a-1b37-4800-ad9a-bc4886665068.jpg",
+  "407f3a13-feb9-4f07-9870-49a64f5b7aae.jpg",
+  "440e3b51-3f2b-41ec-9ebe-70550b713883.jpg",
+  "4db1f148-c75b-4023-ad06-8ff8f364972f.jpg",
+  "4e64d33e-edb5-46b5-9b96-4573f4f1c6a7.jpg",
+  "6a73b4f2-8c7e-4887-9c57-a6d2ef11baa2.jpg",
+  "984fc38b-1d25-4da2-99fe-2f077f1f8452.jpg",
+  "b4fa253e-ceef-48f8-ba90-fbb7e3501221.jpg",
+  "bfb81dea-1977-4fd0-98be-f972f5b7a2b4.jpg",
+  "d38ff15e-876d-4ce9-a0d6-7c47fa6faf0b.jpg",
+  "d751d6d7-ab8b-4f7e-9b0a-d440d24747a6.jpg",
+  "d81c2ece-abfe-49fc-a4e1-2c131f5f098b.jpg",
+  "f414f045-a047-40a7-99c1-3229d57512ea.jpg",
+  "fd1a311e-cf37-488b-b25f-7bed1f6f5048.jpg",
+  "ff9594de-b389-41c6-bfbc-8161b87146a7.jpg",
+].map((filename) => `/E_commerce/${filename}`);
+
+const bigDataScreenshots = [
+  "13e5357c-80ee-4149-b837-cf2a047f63b2.jpg",
+  "64cf91bd-86d4-44d4-a5f6-ee1e0730397f.jpg",
+  "92d0465c-72ad-4d9d-b647-7001f7b8a0bf.jpg",
+  "ca2ecb0d-1906-484f-9734-80f03f2d2289.jpg",
+  "cd6f6bcd-8d7a-416f-916e-f12649a5e68b.jpg",
+  "ff7c8b20-a35b-4483-b28d-d46e50707cfe.jpg",
+].map((filename) => `/Big_data/${filename}`);
+
+const expenseTrackerScreenshots = [
+  "59350bfb-e233-4df5-a9d6-f0ed136ef09e.jpg",
+  "ebf84362-be26-49e2-af8a-d1f2d1618dbe.jpg",
+  "6de4c04d-1487-4a93-b5a6-ce632e85c04c.jpg",
+].map((filename) => `/Expense/${filename}`);
+
 export const projects: Project[] = [
   {
     slug: "face-recognition-attendance",
@@ -194,6 +236,9 @@ export const projects: Project[] = [
     tags: ["React 19", "Node.js", "Express.js", "PostgreSQL", "JWT", "Vite", "Tailwind CSS", "E-commerce", "Full-Stack"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage:
+      "/game_key_marketplace/1448f0b3-9e2c-4cce-8e60-4dda8f579e5c.jpg",
+    screenshots: gameKeyMarketplaceScreenshots,
     githubUrl: "https://github.com/nicky-wrc/game-key-marketplace",
     demoUrl: "https://game-key-marketplace-frontend.vercel.app",
   },
@@ -217,6 +262,8 @@ export const projects: Project[] = [
     tags: ["Java 21", "Spring Boot", "Spring Security", "PostgreSQL", "JWT", "WebSocket", "Next.js", "TypeScript", "React", "E-commerce", "RESTful API"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/E_commerce/c8f6b7e9-d036-487b-81bb-8fd32b9ad0d7.jpg",
+    screenshots: ecommerceScreenshots,
     githubUrl: "https://github.com/E-comproject/e_commerceSpringboots",
   },
   {
@@ -263,18 +310,57 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Recharts", "Node.js", "Express", "PostgreSQL", "scikit-learn (Random Forest)", "Apache Spark", "Docker"],
     category: "Data Analytics",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/Big_data/15ef0d64-122c-4995-bce8-f79432b0a2aa.jpg",
+    screenshots: bigDataScreenshots,
     githubUrl: "https://github.com/nicky-wrc/Big-Data-Analytics-Mini-Project",
     demoUrl: "https://big-data-analytics-mini-project.vercel.app/",
   },
   {
     slug: "expense-eracker",
     title: "Expense Tracker",
-    description: "",
-    content: "",
+    description: "A full-stack expense management application with a real-time dashboard, charts, receipt uploads, trip tracking, advanced filtering, and CSV reporting.",
+    content: "EXPensio gives authenticated users one place to record and understand personal or team spending. Its dark dashboard summarizes total expenses, transaction counts, average spending, recent receipts, pending tasks, category trends, and day-to-day expenses. Users can create, edit, and delete expenses; organize them into categories; search and filter by date, category, or keyword; sort by date or amount; and export detailed Thai-language CSV reports with category and overall summaries.",
+    caseStudy: {
+      problem: "Expense records, receipts, and travel costs are difficult to review when they are scattered across separate files and lack consistent categories or date-based reporting.",
+      solution: "A responsive full-stack application connects authenticated expense workflows to a PostgreSQL database and presents live summaries, visual reports, receipt evidence, and trip-level spending in one interface.",
+      highlights: [
+        "Expense CRUD with category, date-range, keyword, and sorting controls",
+        "Recharts dashboard with summary cards and spending visualizations",
+        "Receipt uploads with previews and links to expense records",
+        "Trip management with expense totals and per-trip records",
+        "JWT authentication, profile editing, avatar uploads, and password updates",
+        "CSV reports containing transaction data and category summaries",
+      ],
+    },
+    details: [
+      {
+        title: "Expenses and reporting",
+        paragraphs: [
+          "The expense workflow supports Food, Transportation, Shopping, Entertainment, Bills, Health, and Other categories. Users can narrow records by week, month, year, a custom date range, category, or search term, then order the result by date or amount.",
+          "CSV export produces a dated report containing each expense, its category, description, amount, and related trip, followed by category totals and an overall transaction summary.",
+        ],
+      },
+      {
+        title: "Receipts, trips, and profiles",
+        paragraphs: [
+          "Receipt images can be previewed before upload, attached to expense records, and reviewed later. The documented upload flow accepts JPG, PNG, and GIF images up to 5 MB.",
+          "Trip tools group related expenses under a named journey with optional start and end dates. Users can also update their name, avatar, and password from the profile area.",
+        ],
+      },
+      {
+        title: "Architecture and delivery",
+        paragraphs: [
+          "The React 19 and Vite frontend uses React Router, Recharts, Lucide React, Axios, and date-fns. The Express 5 API uses Prisma ORM with PostgreSQL, JWT authentication, bcrypt password hashing, CORS controls, and environment-based configuration.",
+          "The API covers authentication, profiles, categories, expenses, dashboard summaries, and trips. GitHub Actions validates the frontend and backend through linting, builds, Prisma schema checks, client generation, and server startup checks.",
+        ],
+      },
+    ],
     role: "Full-Stack Developer",
-    tags: ["React 19", "React Router DOM v7", "Vite", "Recharts", "Lucide React", "Axios", "date-fns", "Node.js", "Express.js v5", "Prisma ORM", "PostgreSQL", "JWT", "bcryptjs", "CORS"],
+    tags: ["React 19", "React Router DOM v7", "Vite", "Recharts", "Lucide React", "Axios", "date-fns", "Node.js", "Express.js v5", "Prisma ORM", "PostgreSQL", "JWT", "bcryptjs", "CORS", "GitHub Actions", "ESLint"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/Expense/2e0f1559-32e8-4348-8cc9-428f57b26473.jpg",
+    screenshots: expenseTrackerScreenshots,
     githubUrl: "https://github.com/nicky-wrc/expense-tracker",
     demoUrl: "https://expense-tracker-phi-drab-82.vercel.app/login",
   },
