@@ -83,14 +83,14 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-start gap-2.5">
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 xs:gap-3">
                 <span
-                  className="text-base xs:text-lg sm:text-xl font-medium tracking-tight select-none"
+                  className="text-base xs:text-lg sm:text-xl font-semibold tracking-tight select-none"
                   style={{
-                    fontFamily: "var(--font-instrument), Georgia, serif",
+                    fontFamily: "var(--font-plus-jakarta-sans), sans-serif",
                     textTransform: "none",
                   }}
                 >
                   <span className="text-white">Worachat</span>{" "}
-                  <span className="text-white italic">Paranya</span>
+                  <span className="text-white">Paranya</span>
                 </span>
 
                 {/* Available for Projects / Pulse indicator */}

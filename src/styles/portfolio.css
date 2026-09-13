@@ -30,9 +30,27 @@ body {
 .portfolio-scroll-panel:not([data-scroll-panel="home"]) {
   border-radius: 32px 32px 0 0;
 }
+.portfolio-scroll-panel::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--stack-fill, 0px);
+  background: #0f0e0e;
+  pointer-events: none;
+}
+.portfolio-scroll-hold {
+  height: calc(100svh + var(--stack-fill, 0px));
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  .portfolio-scroll-hold { height: calc(65svh + var(--stack-fill, 0px)); }
+}
 @media (prefers-reduced-motion: reduce) {
   .portfolio-scroll-panel { position: relative; top: auto; }
   .hero-scroll-track { height: auto; }
+  .portfolio-scroll-hold, .portfolio-scroll-panel::after { display: none; }
 }
 button,
 a,

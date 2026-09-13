@@ -33,6 +33,10 @@ next-env.d.ts
 /.turbo/
 /.swc/
 /.cache/
+# Local Python environment/cache for the resume rendering utility
+.venv/
+__pycache__/
+*.pyc
 
 # Environment files and local secrets
 .env*
@@ -60,11 +64,26 @@ pnpm-debug.log*
 /.idea/
 /.claude/
 /.codex/
+/.cursor/
+/AGENTS.md
+/CLAUDE.md
 .DS_Store
 ._*
 Thumbs.db
 Desktop.ini
 
 # Local reference copies that are not part of the portfolio application
+/exam/
 /developer-portfolios-master/
 /public/footer.jfif
+
+# Superseded resume drafts (keep the active PDF and browser previews tracked)
+/RESUME.md
+/public/Worachat_Resume_Backend_Developer.pdf
+
+# Unused Next.js starter artwork
+/public/file.svg
+/public/globe.svg
+/public/next.svg
+/public/vercel.svg
+/public/window.svg

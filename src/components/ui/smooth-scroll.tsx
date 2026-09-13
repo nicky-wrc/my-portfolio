@@ -23,14 +23,25 @@ export function ScrollStack({ children }: { children: ReactNode }) {
             panel.dataset.scrollPanel === "home"
               ? 0
               : Math.min(200, window.innerHeight * 0.25);
-          panel.style.setProperty(
-            "--stack-top",
-            `${
-              panel.offsetHeight > window.innerHeight
-                ? window.innerHeight - panel.offsetHeight - revealRoom
-                : 0
-            }px`,
+          const top =
+            panel.offsetHeight > window.innerHeight
+              ? window.innerHeight - panel.offsetHeight - revealRoom
+              : 0;
+          // Cover earlier pinned panels without changing the content layout.
+          // Round upward so fractional section heights cannot leave a seam.
+          const fill = Math.max(
+            0,
+            Math.ceil(window.innerHeight - panel.getBoundingClientRect().height - top),
           );
+          panel.style.setProperty("--stack-top", `${top}px`);
+          panel.style.setProperty("--stack-fill", `${fill}px`);
+          const hold = panel.nextElementSibling;
+          if (
+            hold instanceof HTMLElement &&
+            hold.hasAttribute("data-scroll-hold")
+          ) {
+            hold.style.setProperty("--stack-fill", `${fill}px`);
+          }
         }
         ScrollTrigger.refresh();
       });
@@ -67,6 +78,13 @@ export function ScrollPanel({
       <div data-scroll-panel={anchor} className="portfolio-scroll-panel">
         {children}
       </div>
+      {anchor !== "home" && (
+        <div
+          data-scroll-hold={anchor}
+          className="portfolio-scroll-hold"
+          aria-hidden="true"
+        />
+      )}
     </>
   );
 }
