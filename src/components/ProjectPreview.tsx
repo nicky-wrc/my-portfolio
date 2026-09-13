@@ -41,7 +41,9 @@ export default function ProjectPreview({
   const Icon = visual.icon;
   return (
     <div
-      className="project-visual"
+      className={`project-visual${
+        project.galleryLayout === "portrait" ? " project-visual--portrait" : ""
+      }`}
       style={{ "--project-color": visual.color } as React.CSSProperties}
     >
       {project.previewImage ? (

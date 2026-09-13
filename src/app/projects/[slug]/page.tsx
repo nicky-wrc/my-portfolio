@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ProjectGallery from "@/components/ProjectGallery";
 import ProjectPreview from "@/components/ProjectPreview";
 import { notFound, permanentRedirect } from "next/navigation";
 import {
@@ -120,9 +121,34 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
         </div>
       </section>
 
-      <div className="detail-preview site-container">
-        <ProjectPreview project={project} priority />
-      </div>
+      {project.screenshots?.length ? (
+        <section
+          className="project-screenshots site-container"
+          aria-labelledby="project-screenshots-title"
+          data-reveal
+        >
+          <div className="project-screenshots-heading">
+            <p className="eyebrow">Product walkthrough</p>
+            <h2 id="project-screenshots-title">System screens</h2>
+            <p>
+              A look at the role-based workflows and management interfaces in
+              the completed system.
+            </p>
+          </div>
+          <ProjectGallery
+            images={[
+              project.previewImage ?? project.image,
+              ...project.screenshots,
+            ]}
+            projectTitle={project.title}
+            layout={project.galleryLayout}
+          />
+        </section>
+      ) : (
+        <div className="detail-preview site-container">
+          <ProjectPreview project={project} priority />
+        </div>
+      )}
       <section className="section-shell">
         <div className="site-container detail-layout">
           <aside className="detail-aside" data-reveal>

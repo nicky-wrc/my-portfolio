@@ -11,6 +11,9 @@ export interface Project {
   image: string;
   /** Optional verified screenshot; legacy image fields contain shared placeholders. */
   previewImage?: string;
+  /** Optional screenshots displayed on the project detail page. */
+  screenshots?: string[];
+  galleryLayout?: "landscape" | "portrait";
   githubUrl?: string;
   demoUrl?: string;
   featured?: boolean;
@@ -23,6 +26,38 @@ export interface Project {
     highlights: string[];
   };
 }
+
+const smartMotoScreenshots = [
+  ...Array.from(
+    { length: 11 },
+    (_, index) => `/smart_moto/car-${index + 1}.png`,
+  ),
+  ...Array.from(
+    { length: 22 },
+    (_, index) => `/smart_moto/car-${index + 13}.png`,
+  ),
+];
+
+const eatAtHomeScreenshots = [
+  2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23,
+  24, 25, 26, 66, 77,
+].map((number) => `/Eat_At_Home/${number}.jpg`);
+
+const ppeDetectionScreenshots = [
+  "12f6938c-467c-40a4-92bd-d056e82b54eb.jfif",
+  "25e48426-d984-40c0-955e-dad76b0129f7.jfif",
+  "2860d7f5-3590-4620-be59-9d7f149558db.jfif",
+  "4076fcba-1afb-431e-83c2-5395c6f14921.jfif",
+  "57788004-e565-4675-8f18-3bb261ec9a9b.jfif",
+  "599f865a-791b-40ec-bb3b-56e377368454.jfif",
+  "63374281-09bd-4f26-a88f-507ed062b159.jfif",
+  "6778c5bd-ddcb-4db9-adda-9e60d2df2f43.jfif",
+  "6787a6eb-80c8-455b-af86-3cdc4ff86a86.jfif",
+  "6d705b7a-9f74-4634-8d8a-83e7915a43d3.jfif",
+  "8afe0b1a-22fa-4c08-8f0c-8b9da4eee987.jfif",
+  "b665f844-91db-46bf-a6ef-eccfab32a83d.jfif",
+  "f0b585ae-28b2-4c3b-8609-8d339facf45d.jfif",
+].map((filename) => `/ppe_detection/${filename}`);
 
 export const projects: Project[] = [
   {
@@ -48,19 +83,24 @@ export const projects: Project[] = [
   {
     slug: "food-order-app",
     title: "Food Order App Admin & User",
+    featured: true,
+    featuredRank: 4,
     description: "A food-ordering application with separate administrator and customer experiences and real-time order status updates.",
     content: "A complete food-ordering application with separate administrator and customer experiences, built with Flutter and Firebase. Firebase Authentication handles registration and sign-in. Administrators can add, edit, and remove menu items with images and prices, manage every order, and update delivery status. Customers can browse and filter menus by name or category, add items to a shopping cart, place orders, manage profile and delivery information, and review their complete order history. Firebase Realtime Database provides immediate order-status updates, while push notifications alert customers when an order changes. The application uses Flutter, Dart, Firebase Authentication, Firebase Realtime Database, Firebase Storage, Firebase Cloud Messaging, Kotlin for native features, Provider or Bloc for state management, cloud storage, and push notifications.",
     role: "Mobile Developer",
     tags: ["Flutter", "Dart", "Firebase", "Firebase Authentication", "Firebase Realtime Database", "Firebase Storage", "Kotlin", "Mobile App", "State Management"],
     category: "Mobile App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/Eat_At_Home/1.jpg",
+    screenshots: eatAtHomeScreenshots,
+    galleryLayout: "portrait",
     githubUrl: "https://github.com/nicky-wrc/UserEatAtHome",
   },
   {
     slug: "smart-moto-service",
     title: "Smart Moto Service Center",
     featured: true,
-    featuredRank: 4,
+    featuredRank: 2,
     caseStudy: {
       problem: "A motorcycle service center needs to coordinate vehicle intake, repairs, parts, payments, reporting, and personnel across one workflow.",
       solution: "A full-stack service-center application connecting reception, workshop, inventory, billing, and management through shared job records and role-based access control.",
@@ -118,19 +158,23 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "NestJS", "PostgreSQL", "Vite", "React Router", "Tailwind CSS", "Context API", "Custom Hooks", "Recharts", "Node.js", "Prisma ORM", "JWT / RBAC", "Swagger / OpenAPI", "Docker", "GitHub Actions"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/smart_moto/car-cover.jpeg",
+    screenshots: smartMotoScreenshots,
     githubUrl: "https://github.com/nicky-wrc/smart-moto-service-center",
   },
   {
     slug: "pos-pharmacy",
     title: "POS Pharmacy System",
     featured: true,
-    featuredRank: 6,
+    featuredRank: 3,
     description: "A pharmacy point-of-sale system built with Laravel 8 and MySQL for end-to-end product, purchasing, sales, inventory, and reporting workflows.",
     content: "A point-of-sale system designed specifically for pharmacies and built with Laravel 8 and MySQL. Product management supports creating, editing, and removing products; organizing categories; monitoring out-of-stock and expired items; and managing prices and discounts. Purchase management records purchases, imports Excel data, edits or removes records, tracks purchase history, and exports data. The sales interface calculates prices, records sales history, manages discounts, and exports sales data. Additional workflows cover supplier records and contacts, role- and permission-based user access, profile and password management, authentication and authorization, and dashboards with charts and statistics. Reports can be exported to Excel or PDF and visualized with Chart.js. Pusher and event listeners provide real-time out-of-stock notifications. The system also supports automated database backups and restoration, application branding and settings, data import and export, printing, responsive layouts, and a user-friendly interface. It uses PHP 7.3/8.0, Laravel 8.12, MySQL, JavaScript, Bootstrap, Chart.js, Laravel Excel, Laravel Permission, Laravel Backup, Pusher, Axios, and Laravel Mix, following MVC, Eloquent ORM, RBAC, and automated database-backup practices.",
     role: "Backend Developer",
     tags: ["PHP", "Laravel", "MySQL", "JavaScript", "Bootstrap", "Chart.js", "Laravel Excel", "Pusher", "Axios", "POS", "Backend"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/Phamacy_POS/1.png",
+    screenshots: ["/Phamacy_POS/2.png"],
     githubUrl: "https://github.com/nicky-wrc/Pharmacy-Project",
   },
   {
@@ -149,7 +193,7 @@ export const projects: Project[] = [
     slug: "ecommerce-springboot",
     title: "E-commerce",
     featured: true,
-    featuredRank: 5,
+    featuredRank: 6,
     caseStudy: {
       problem: "An e-commerce platform must coordinate customer, seller, and administrator workflows across orders, inventory, payments, and support.",
       solution: "A Spring Boot REST API with JWT access control, a Next.js frontend, real-time seller chat, and multiple payment workflows.",
@@ -290,13 +334,16 @@ export const projects: Project[] = [
     tags: ["React 19", "TypeScript", "FastAPI", "Ultralytics YOLO", "Python 3.11", "OpenCV", "PostgreSQL 15", "SQLAlchemy", "Alembic", "JWT / RBAC", "WebSocket", "SMTP", "Docker Compose", "Vite", "Tailwind CSS 4", "React Router", "Zustand", "Axios", "Recharts", "jsPDF", "html2canvas", "NumPy", "Pillow", "Pydantic", "Pytest"],
     category: "AI",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage:
+      "/ppe_detection/1e92d4ae-50fb-4a6c-8cde-df38acfc867a.jfif",
+    screenshots: ppeDetectionScreenshots,
     githubUrl: "https://github.com/nicky-wrc/ppe-detection-system",
   },
   {
     slug: "Powered-Product-Recommendation-Engine-Web-app",
     title: "AI-Powered Product Recommendation Engine Web app",
     featured: true,
-    featuredRank: 2,
+    featuredRank: 5,
     caseStudy: {
       problem: "A product catalog needs recommendations and search that can respond to both user behavior and product meaning.",
       solution: "A hybrid recommendation system combining collaborative filtering, semantic product embeddings, and natural-language search in a Next.js and FastAPI commerce app.",
@@ -317,8 +364,6 @@ export const projects: Project[] = [
   {
     slug: "restaurant-qr-system",
     title: "Restaurant QR System",
-    featured: true,
-    featuredRank: 3,
     caseStudy: {
       problem: "Restaurant orders need to move clearly from each table to the kitchen while staff retain role-specific controls.",
       solution: "A QR-based ordering system with real-time Socket.io updates, a kitchen display, table management, and role-based administration.",
