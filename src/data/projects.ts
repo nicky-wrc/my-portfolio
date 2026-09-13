@@ -59,6 +59,14 @@ const ppeDetectionScreenshots = [
   "f0b585ae-28b2-4c3b-8609-8d339facf45d.jfif",
 ].map((filename) => `/ppe_detection/${filename}`);
 
+const aiPoweredProductScreenshots = [
+  "0c1b4800-0e16-4a6d-91a7-b7c785825b1c.jfif",
+  "58dc0f82-aa45-4007-a86b-32a28811494b.jfif",
+  "637547db-73ce-4a8d-bba3-8a712423255d.jfif",
+  "900595c7-f5a7-4c74-933d-9bccdea1e809.jfif",
+  "b38f49ba-a588-4584-bc6d-a40d10cc884a.jfif",
+].map((filename) => `/AI_Powered_Product/${filename}`);
+
 export const projects: Project[] = [
   {
     slug: "face-recognition-attendance",
@@ -359,6 +367,9 @@ export const projects: Project[] = [
     tags: ["FastAPI", "Next.js", "PostgreSQL", "pgvector", "Tailwind CSS", "Docker", "Redis", "MLflow", "Scikit-learn", "Sentence Transformers", "Claude API", "Collaborative Filtering"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage:
+      "/AI_Powered_Product/61b97058-fa90-429c-bb4d-8ee9a383e96d.jfif",
+    screenshots: aiPoweredProductScreenshots,
     githubUrl: "https://github.com/nicky-wrc/Powered-Product-Recommendation-Engine-Web-app",
   },
   {

@@ -60,7 +60,7 @@ export default function ProjectGallery({
       }}
     >
       <div className="project-gallery-stage">
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={images[activeIndex]}
             className="project-gallery-image-wrap"
