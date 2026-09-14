@@ -6,6 +6,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/layout/Footer/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScrollWrapper from "./SmoothScrollWrapper";
+import TerminalSandbox from "@/components/ui/TerminalSandbox";
+import PortfolioAssistant from "@/components/ui/PortfolioAssistant";
 
 export default function LayoutWrapper({
   children,
@@ -23,6 +25,8 @@ export default function LayoutWrapper({
           {children}
           <Footer />
           <CustomCursor />
+          <TerminalSandbox />
+          <PortfolioAssistant />
         </SmoothScrollWrapper>
       </IntroAnimationProvider>
     </MotionConfig>
