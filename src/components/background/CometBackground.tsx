@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import { visibleAnimation } from "@/lib/visible-animation";
 
 interface Comet {
   x: number;
@@ -16,9 +17,6 @@ interface Comet {
 export default function CometBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cometsRef = useRef<Comet[]>([]);
-  const animationFrameRef = useRef<number | undefined>(undefined);
-  const lastFrameTimeRef = useRef<number>(0);
-  const isVisibleRef = useRef<boolean>(true);
 
   // dx and dy ratios for a ~45-degree angle (coming from top-right to bottom-left)
   const angle = Math.PI / 4; // 45 degrees
@@ -67,11 +65,11 @@ export default function CometBackground() {
     });
     if (!ctx) return;
 
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
     const maxComets = isMobile ? 3 : 16;
 
     const setupCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -92,30 +90,15 @@ export default function CometBackground() {
       cometsRef.current.push(initComet(width, height, i < maxComets / 2));
     }
 
-    const targetFPS = 60;
-    const frameInterval = 1000 / targetFPS;
-
-    const animate = (currentTime: number) => {
-      if (!isVisibleRef.current) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      const elapsed = currentTime - lastFrameTimeRef.current;
-
-      if (elapsed < frameInterval) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      lastFrameTimeRef.current = currentTime - (elapsed % frameInterval);
+    const animate = (_time: number, delta: number) => {
+      const step = delta / (1000 / 60);
 
       // Clear with transparent layer
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       cometsRef.current.forEach((comet) => {
         if (!comet.active) {
-          comet.delay -= 1;
+          comet.delay -= step;
           if (comet.delay <= 0) {
             // Re-initialize from edges
             const fresh = initComet(width, height, true);
@@ -125,8 +108,8 @@ export default function CometBackground() {
         }
 
         // Move comet
-        comet.x += dxRatio * comet.speed;
-        comet.y += dyRatio * comet.speed;
+        comet.x += dxRatio * comet.speed * step;
+        comet.y += dyRatio * comet.speed * step;
 
         // Tail endpoint (trailing behind the movement)
         const xEnd = comet.x - dxRatio * comet.length;
@@ -162,10 +145,9 @@ export default function CometBackground() {
         }
       });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    const stopAnimation = visibleAnimation(canvas, animate, 60);
 
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
@@ -181,36 +163,12 @@ export default function CometBackground() {
       }, 250);
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        isVisibleRef.current = entries[0].isIntersecting;
-      },
-      { threshold: 0 },
-    );
-    observer.observe(canvas);
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
-      } else {
-        lastFrameTimeRef.current = performance.now();
-        animationFrameRef.current = requestAnimationFrame(animate);
-      }
-    };
-
     window.addEventListener("resize", handleResize);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      observer.disconnect();
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      stopAnimation();
     };
   }, [initComet, dxRatio, dyRatio]);
 
@@ -218,7 +176,7 @@ export default function CometBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 z-[11] pointer-events-none"
-      style={{ width: "100%", height: "100%", willChange: "transform" }}
+      style={{ width: "100%", height: "100%" }}
       aria-hidden="true"
     />
   );

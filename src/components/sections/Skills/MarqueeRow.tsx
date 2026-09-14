@@ -2,6 +2,7 @@
 
 import { Skill } from "./skills.data";
 import { useState, useEffect, useRef, memo, useMemo } from "react";
+import { visibleAnimation } from "@/lib/visible-animation";
 
 interface MarqueeRowProps {
   skills: Skill[];
@@ -143,33 +144,14 @@ export default function MarqueeRow({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | undefined>(undefined);
   const offsetRef = useRef(0);
-  const lastTimeRef = useRef<number>(0);
   const isPausedRef = useRef(false);
-  const isVisibleRef = useRef(true);
 
   // Memoize doubled skills array
   const displaySkills = useMemo(
     () => Array.from({ length: Math.max(2, Math.ceil(24 / Math.max(skills.length, 1))) }, () => skills).flat(),
     [skills],
   );
-
-  // Visibility detection to pause animation when off-screen
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisibleRef.current = entry.isIntersecting;
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, []);
 
   // Initialize offset based on direction
   useEffect(() => {
@@ -186,24 +168,16 @@ export default function MarqueeRow({
 
   // Smooth animation using refs and delta time
   useEffect(() => {
+    const container = containerRef.current;
+    const marquee = marqueeRef.current;
+    if (!container || !marquee || !skills.length) return;
     const itemWidth = 80 + 32;
     const totalWidth = itemWidth * skills.length;
-
-    const animate = (currentTime: number) => {
-      if (!marqueeRef.current) {
-        animationRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      // Calculate delta time for consistent speed
-      if (lastTimeRef.current === 0) {
-        lastTimeRef.current = currentTime;
-      }
-      const deltaTime = (currentTime - lastTimeRef.current) / 1000; // Convert to seconds
-      lastTimeRef.current = currentTime;
+    const animate = (_time: number, delta: number) => {
+      const deltaTime = delta / 1000;
 
       // Only update if not paused and visible
-      if (!isPausedRef.current && isVisibleRef.current) {
+      if (!isPausedRef.current) {
         const movement = speed * deltaTime;
         offsetRef.current += reverse ? movement : -movement;
 
@@ -215,19 +189,11 @@ export default function MarqueeRow({
         }
 
         // Apply transform directly to DOM (no React re-render)
-        marqueeRef.current.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
+        marquee.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
       }
 
-      animationRef.current = requestAnimationFrame(animate);
     };
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
+    return visibleAnimation(container, animate);
   }, [reverse, skills.length, speed]);
 
   // Memoize edge gradient styles
@@ -258,7 +224,6 @@ export default function MarqueeRow({
         ref={marqueeRef}
         className="flex gap-8"
         style={{
-          willChange: "transform",
           transform: "translate3d(0, 0, 0)",
         }}
       >

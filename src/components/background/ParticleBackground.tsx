@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import { visibleAnimation } from "@/lib/visible-animation";
 
 interface Particle {
   x: number;
@@ -15,9 +16,6 @@ interface Particle {
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number | undefined>(undefined);
-  const lastFrameTimeRef = useRef<number>(0);
-  const isVisibleRef = useRef<boolean>(true);
 
   const initParticles = useCallback(
     (width: number, height: number, count: number) => {
@@ -48,12 +46,12 @@ export default function ParticleBackground() {
     });
     if (!ctx) return;
 
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
     const particleCount = isMobile ? 6 : 30;
 
     // Setup canvas with optimized DPR
     const setupCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -66,36 +64,19 @@ export default function ParticleBackground() {
       return { width, height };
     };
 
-    const { width, height } = setupCanvas();
+    let { width, height } = setupCanvas();
     initParticles(width, height, particleCount);
 
-    // FPS throttling
-    const targetFPS = 60;
-    const frameInterval = 1000 / targetFPS;
-
-    // Animation loop with FPS throttling
-    const animate = (currentTime: number) => {
-      if (!isVisibleRef.current) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      const elapsed = currentTime - lastFrameTimeRef.current;
-
-      if (elapsed < frameInterval) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      lastFrameTimeRef.current = currentTime - (elapsed % frameInterval);
+    const animate = (_time: number, delta: number) => {
+      const step = delta / (1000 / 60);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Batch shadow operations - exact original rendering
       particlesRef.current.forEach((particle) => {
-        particle.y += particle.speedY;
-        particle.x += particle.speedX;
-        particle.opacity += particle.opacityDirection;
+        particle.y += particle.speedY * step;
+        particle.x += particle.speedX * step;
+        particle.opacity += particle.opacityDirection * step;
 
         if (particle.opacity >= 0.8 || particle.opacity <= 0.4) {
           particle.opacityDirection *= -1;
@@ -118,10 +99,9 @@ export default function ParticleBackground() {
 
       ctx.shadowBlur = 0; // Reset once after all particles
 
-      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    const stopAnimation = visibleAnimation(canvas, animate, 60);
 
     // Debounced resize handler
     let resizeTimeout: NodeJS.Timeout;
@@ -129,43 +109,18 @@ export default function ParticleBackground() {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         const { width: newWidth, height: newHeight } = setupCanvas();
+        width = newWidth;
+        height = newHeight;
         initParticles(newWidth, newHeight, particleCount);
       }, 250);
     };
 
-    // Intersection Observer for visibility
-    const observer = new IntersectionObserver(
-      (entries) => {
-        isVisibleRef.current = entries[0].isIntersecting;
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(canvas);
-
-    // Visibility change handler
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
-      } else {
-        lastFrameTimeRef.current = performance.now();
-        animationFrameRef.current = requestAnimationFrame(animate);
-      }
-    };
-
     window.addEventListener("resize", handleResize);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      observer.disconnect();
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      stopAnimation();
     };
   }, [initParticles]);
 
@@ -173,7 +128,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 z-[12] pointer-events-none"
-      style={{ width: "100%", height: "100%", willChange: "transform" }}
+      style={{ width: "100%", height: "100%" }}
       aria-hidden="true"
     />
   );

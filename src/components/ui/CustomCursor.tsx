@@ -70,6 +70,9 @@ export default function CustomCursor() {
       }
 
       dot.style.transform = `translate3d(${x - DOT_SIZE / 2}px, ${y - DOT_SIZE / 2}px, 0)`;
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(animateRing);
+      }
     };
 
     // Event delegation for clickable and text elements
@@ -130,6 +133,8 @@ export default function CustomCursor() {
 
     const handleWindowBlur = () => {
       setVisible(false);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
 
     const handleWindowFocus = () => {
@@ -140,7 +145,7 @@ export default function CustomCursor() {
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        setVisible(false);
+        handleWindowBlur();
         return;
       }
       if (hasPointerRef.current) {
@@ -149,6 +154,7 @@ export default function CustomCursor() {
     };
 
     const animateRing = () => {
+      rafRef.current = null;
       if (hasPointerRef.current) {
         const current = ringPosRef.current;
         const pointer = pointerRef.current;
@@ -157,9 +163,10 @@ export default function CustomCursor() {
         current.y += (pointer.y - current.y) * FOLLOW_SPEED;
 
         ring.style.transform = `translate3d(${current.x - RING_SIZE / 2}px, ${current.y - RING_SIZE / 2}px, 0)`;
+        if (Math.abs(pointer.x - current.x) + Math.abs(pointer.y - current.y) > 0.1) {
+          rafRef.current = window.requestAnimationFrame(animateRing);
+        }
       }
-
-      rafRef.current = window.requestAnimationFrame(animateRing);
     };
 
     window.addEventListener("pointermove", handlePointerMove, {
@@ -171,7 +178,6 @@ export default function CustomCursor() {
     window.addEventListener("blur", handleWindowBlur);
     window.addEventListener("focus", handleWindowFocus);
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    rafRef.current = window.requestAnimationFrame(animateRing);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
@@ -184,6 +190,7 @@ export default function CustomCursor() {
       if (rafRef.current) {
         window.cancelAnimationFrame(rafRef.current);
       }
+      rafRef.current = null;
     };
   }, [enabled]);
 

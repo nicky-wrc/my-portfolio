@@ -24,9 +24,8 @@ export default function SmoothScrollWrapper({
     const lenis = reducedMotion || touch
       ? null
       : new Lenis({
-          duration: 1.2,
           smoothWheel: true,
-          lerp: 0.1,
+          lerp: 0.16,
           syncTouch: false,
         });
     const ticker = (time: number) => lenis?.raf(time * 1000);

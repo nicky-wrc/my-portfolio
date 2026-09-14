@@ -39,9 +39,17 @@ export default function Navigation() {
   }, []);
   useEffect(() => {
     let last = window.scrollY;
+    let frame: number | undefined;
+    let lastVisible: boolean | undefined;
+    let lastActive: string | undefined;
     const update = () => {
+      frame = undefined;
       const y = window.scrollY;
-      setVisible(y < 80 || y < last);
+      const nextVisible = y < 80 || y < last;
+      if (nextVisible !== lastVisible) {
+        setVisible(nextVisible);
+        lastVisible = nextVisible;
+      }
       last = y;
       if (pathname !== "/") return;
       let current = "home";
@@ -54,11 +62,20 @@ export default function Navigation() {
         )
           current = id;
       }
-      setActive(current);
+      if (current !== lastActive) {
+        setActive(current);
+        lastActive = current;
+      }
     };
-    window.addEventListener("scroll", update, { passive: true });
+    const schedule = () => {
+      if (frame === undefined) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
     update();
-    return () => window.removeEventListener("scroll", update);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      if (frame !== undefined) cancelAnimationFrame(frame);
+    };
   }, [pathname]);
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {

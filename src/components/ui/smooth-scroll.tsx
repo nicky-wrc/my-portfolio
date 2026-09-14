@@ -19,7 +19,8 @@ export function ScrollStack({ children }: { children: ReactNode }) {
     const measure = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        for (const panel of panels) {
+        // Finish all geometry reads before writing styles to avoid repeated layout.
+        const measurements = Array.from(panels, (panel) => {
           // A long section scrolls all the way to its bottom before it sticks.
           // Short sections stick at the top, as in the supplied reference.
           const revealRoom =
@@ -36,17 +37,24 @@ export function ScrollStack({ children }: { children: ReactNode }) {
             0,
             Math.ceil(window.innerHeight - panel.getBoundingClientRect().height - top),
           );
-          panel.style.setProperty("--stack-top", `${top}px`);
-          panel.style.setProperty("--stack-fill", `${fill}px`);
+          return { panel, top: `${top}px`, fill: `${fill}px` };
+        });
+        let changed = false;
+        for (const { panel, top, fill } of measurements) {
+          if (panel.style.getPropertyValue("--stack-top") === top &&
+              panel.style.getPropertyValue("--stack-fill") === fill) continue;
+          changed = true;
+          panel.style.setProperty("--stack-top", top);
+          panel.style.setProperty("--stack-fill", fill);
           const hold = panel.nextElementSibling;
           if (
             hold instanceof HTMLElement &&
             hold.hasAttribute("data-scroll-hold")
           ) {
-            hold.style.setProperty("--stack-fill", `${fill}px`);
+            hold.style.setProperty("--stack-fill", fill);
           }
         }
-        ScrollTrigger.refresh();
+        if (changed) ScrollTrigger.refresh();
       });
     };
     const observer = new ResizeObserver(measure);
