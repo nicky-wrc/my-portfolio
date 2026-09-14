@@ -1,5 +1,6 @@
 "use client";
 
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import { useState } from "react";
 
 type FormStatus =
@@ -102,7 +103,7 @@ export default function ContactForm() {
           disabled={isSending}
         >
           {isSending ? "Sending…" : "Send message"}
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true"><PortfolioArrow /></span>
         </button>
         <p
           className={`form-status form-status-${status.state}`}

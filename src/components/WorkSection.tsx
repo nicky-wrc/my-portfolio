@@ -1,5 +1,6 @@
 "use client";
 
+import { PortfolioAsterisk } from "@/components/ui/PortfolioIcons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -57,7 +58,7 @@ export default function WorkSection({
       className={`work-section ${archive ? "archive-section" : ""}`}
     >
       <div className="section-heading">
-        <span className="section-badge">✳ A SELECTION OF MY WORK</span>
+        <span className="section-badge"><PortfolioAsterisk /> A SELECTION OF MY WORK</span>
         <RevealHeading
           text="Ideas turned into projects."
           as={archive ? "h1" : "h2"}

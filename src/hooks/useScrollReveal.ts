@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useIntroAnimation } from "@/context/IntroAnimationContext";
 
-const query = "(max-width: 767px)";
+const query = "(max-width: 767px), (hover: none) and (pointer: coarse)";
 function subscribe(callback: () => void) {
   const media = window.matchMedia(query);
   media.addEventListener("change", callback);
@@ -30,8 +30,8 @@ export function useScrollReveal({
   const mobile = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
   const hidden = {
     opacity: 0,
-    y: mobile ? Math.max(35, distance * 0.85) : Math.max(55, distance),
-    ...(image ? { scale: 0.94 } : {}),
+    y: mobile ? Math.min(30, distance) : Math.max(55, distance),
+    ...(image ? { scale: mobile ? 0.97 : 0.94 } : {}),
   };
   const visible = { opacity: 1, y: 0, ...(image ? { scale: 1 } : {}) };
   return {
@@ -42,7 +42,7 @@ export function useScrollReveal({
       once,
       amount: 0.15,
       margin: mobile
-        ? ("0px 0px -140px 0px" as const)
+        ? ("0px 0px -40px 0px" as const)
         : ("0px 0px -200px 0px" as const),
     },
     transition: {

@@ -1,4 +1,5 @@
 "use client";
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -99,7 +100,7 @@ export default function AboutOverviewContent() {
           />
           <strong className="bento-number">
             {String(projects.length).padStart(2, "0")}
-            <span>↗</span>
+            <span><PortfolioArrow /></span>
           </strong>
           <div>
             <p className="micro-label">SELECTED & EXPLORATORY WORK</p>

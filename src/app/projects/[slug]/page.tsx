@@ -1,3 +1,4 @@
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ProjectGallery from "@/components/ProjectGallery";
@@ -161,7 +162,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  View source <span aria-hidden="true">↗</span>
+                  View source <span aria-hidden="true"><PortfolioArrow /></span>
                 </a>
               ) : null}
               {project.demoUrl ? (
@@ -171,7 +172,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Open live site <span aria-hidden="true">↗</span>
+                  Open live site <span aria-hidden="true"><PortfolioArrow /></span>
                 </a>
               ) : null}
               <Link href="/projects" className="text-link text-link-muted">

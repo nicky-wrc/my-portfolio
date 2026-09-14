@@ -47,6 +47,11 @@ body {
 @media (max-width: 767px) {
   .portfolio-scroll-hold { height: calc(65svh + var(--stack-fill, 0px)); }
 }
+@media (hover: none) and (pointer: coarse) {
+  .portfolio-scroll-panel { position: relative; top: auto; }
+  .portfolio-scroll-hold, .portfolio-scroll-panel::after { display: none; }
+  .hero-scroll-track { height: 220svh; }
+}
 @media (prefers-reduced-motion: reduce) {
   .portfolio-scroll-panel { position: relative; top: auto; }
   .hero-scroll-track { height: auto; }

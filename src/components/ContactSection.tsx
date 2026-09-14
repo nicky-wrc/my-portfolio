@@ -1,4 +1,5 @@
 "use client";
+import { PortfolioAsterisk } from "@/components/ui/PortfolioIcons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -12,7 +13,7 @@ export default function ContactSection() {
     <section id="contact" className="contact-cta">
       <div className="contact-grid-art" aria-hidden="true" />
       <div className="contact-cta-content">
-        <span className="section-badge">✳ HAVE SOMETHING IN MIND?</span>
+        <span className="section-badge"><PortfolioAsterisk /> HAVE SOMETHING IN MIND?</span>
         <RevealHeading text="Let’s build something great." />
         <motion.p {...entrance}>
           Have an internship opportunity or a project to discuss?

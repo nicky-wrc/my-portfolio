@@ -12,6 +12,9 @@ export function ScrollStack({ children }: { children: ReactNode }) {
       "[data-scroll-panel]",
     );
     if (!panels) return;
+    // Touch browsers change the visual viewport during toolbar gestures.
+    // Their panels flow normally; no sticky measurements/refreshes are needed.
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     let frame = 0;
     const measure = () => {
       cancelAnimationFrame(frame);

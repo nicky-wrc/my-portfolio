@@ -20,7 +20,8 @@ export default function SmoothScrollWrapper({
   const reducedMotion = usePrefersReducedMotion();
   useEffect(() => {
     if (!isIntroComplete) return;
-    const lenis = reducedMotion
+    const touch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const lenis = reducedMotion || touch
       ? null
       : new Lenis({
           duration: 1.2,
@@ -94,7 +95,7 @@ export default function SmoothScrollWrapper({
                   0,
                   anchor.getBoundingClientRect().top + window.scrollY - 95,
                 ),
-          behavior: "instant",
+          behavior: reducedMotion ? "instant" : "smooth",
         });
         ScrollTrigger.update();
         setMoving(false);

@@ -1,5 +1,6 @@
 "use client";
 
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import PersonalMark from "@/components/PersonalMark";
@@ -18,7 +19,11 @@ export default function IntroScreen() {
     }
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const timeline = gsap.timeline({ onComplete: completeIntro });
+    const touch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const timeline = gsap.timeline({ paused: true, onComplete: completeIntro });
+    let active = true;
+    // Wait for lettering metrics so Safari does not reveal a fallback-font crop.
+    document.fonts.ready.then(() => { if (active) timeline.play(); });
     timeline
       .fromTo(
         name.current,
@@ -34,8 +39,8 @@ export default function IntroScreen() {
         name.current,
         {
           opacity: 0,
-          scale: 18,
-          filter: "blur(10px)",
+          scale: touch ? 1.15 : 18,
+          filter: touch ? "none" : "blur(10px)",
           duration: 0.85,
           ease: "power3.in",
         },
@@ -44,6 +49,7 @@ export default function IntroScreen() {
       .to(overlay.current, { opacity: 0, duration: 0.85 }, "<0.15");
     const fallback = window.setTimeout(completeIntro, 4500);
     return () => {
+      active = false;
       timeline.kill();
       clearTimeout(fallback);
       document.body.style.overflow = originalOverflow;
@@ -55,7 +61,7 @@ export default function IntroScreen() {
         <PersonalMark signature />
       </div>
       <button ref={skip} onClick={completeIntro} className="intro-skip">
-        Skip intro ↗
+        Skip intro <PortfolioArrow />
       </button>
     </div>
   );

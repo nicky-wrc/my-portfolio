@@ -1,3 +1,4 @@
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import Link from "next/link";
 export default function NotFound() {
   return (
@@ -8,7 +9,7 @@ export default function NotFound() {
       </h1>
       <p>This page doesn’t exist. Let’s get you back to the portfolio.</p>
       <Link className="gradient-button" href="/">
-        Back to home ↗
+        Back to home <PortfolioArrow />
       </Link>
       <Link className="text-link" href="/projects">
         Explore projects

@@ -1,5 +1,6 @@
 "use client";
 
+import { PortfolioArrow } from "@/components/ui/PortfolioIcons";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Terminal, X } from "lucide-react";
@@ -58,13 +59,13 @@ export default function TerminalSandbox() {
         result = skills.map((group) => `${group.category}\n${group.items.join(" · ")}`).join("\n\n");
         break;
       case "projects":
-        result = <ul className="terminal-projects">{projects.map((project) => <li key={project.slug}><Link href={`/projects/${project.slug}`} onClick={close}>{project.title} ↗</Link></li>)}</ul>;
+        result = <ul className="terminal-projects">{projects.map((project) => <li key={project.slug}><Link href={`/projects/${project.slug}`} onClick={close}>{project.title} <PortfolioArrow /></Link></li>)}</ul>;
         break;
       case "contact":
-        result = <div className="terminal-projects"><a href={siteConfig.emailHref}>{siteConfig.email}</a><br /><a href={siteConfig.github.url} target="_blank" rel="noreferrer">GitHub @{siteConfig.github.handle} ↗</a></div>;
+        result = <div className="terminal-projects"><a href={siteConfig.emailHref}>{siteConfig.email}</a><br /><a href={siteConfig.github.url} target="_blank" rel="noreferrer">GitHub @{siteConfig.github.handle} <PortfolioArrow /></a></div>;
         break;
       case "resume":
-        result = <Link href="/resume" onClick={close}>View Worachat&apos;s resume ↗</Link>;
+        result = <Link href="/resume" onClick={close}>View Worachat&apos;s resume <PortfolioArrow /></Link>;
         break;
       case "neofetch":
         result = `${siteConfig.name}\n────────────────────────\nRole     ${siteConfig.role}\nLocation ${siteConfig.location}\nGitHub   @${siteConfig.github.handle}\nProjects ${projects.length}\nStack    Next.js · React · TypeScript\nShell    Portfolio sandbox`;

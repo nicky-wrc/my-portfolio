@@ -1,3 +1,4 @@
+import { PortfolioArrow, PortfolioAsterisk } from "@/components/ui/PortfolioIcons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -24,7 +25,7 @@ export default function ContactPage() {
         Back to portfolio
       </Link>
       <div className="section-heading">
-        <span className="section-badge">✳ LET’S CONNECT</span>
+        <span className="section-badge"><PortfolioAsterisk /> LET’S CONNECT</span>
         <h1>
           Start a <em>conversation.</em>
         </h1>
@@ -95,7 +96,7 @@ export default function ContactPage() {
         </aside>
         <div className="contact-form-panel">
           <h2>
-            Send me a message <span>↗</span>
+            Send me a message <span><PortfolioArrow /></span>
           </h2>
           <p>Tell me a little about what you have in mind.</p>
           <ContactForm />

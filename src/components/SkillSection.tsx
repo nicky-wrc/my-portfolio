@@ -1,4 +1,5 @@
 "use client";
+import { PortfolioAsterisk } from "@/components/ui/PortfolioIcons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,7 +35,7 @@ export default function SkillSection() {
   return (
     <section id="skills" className="skills-section">
       <div className="section-heading">
-        <span className="section-badge">✳ THE TOOLS BEHIND THE WORK</span>
+        <span className="section-badge"><PortfolioAsterisk /> THE TOOLS BEHIND THE WORK</span>
         <motion.h2 {...entrance}>
           The stack I{" "}
           <span
