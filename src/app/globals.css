@@ -50,6 +50,25 @@ html.lenis body {
   html.custom-cursor-enabled [contenteditable="true"] {
     cursor: text !important;
   }
+
+  /* Modal dialogs sit above the custom cursor in the browser top layer. */
+  html.custom-cursor-enabled dialog[open],
+  html.custom-cursor-enabled dialog[open] * {
+    cursor: auto !important;
+  }
+  html.custom-cursor-enabled dialog[open] :is(button, a, [role="button"]),
+  html.custom-cursor-enabled dialog[open] :is(button, a, [role="button"]) * {
+    cursor: pointer !important;
+  }
+  html.custom-cursor-enabled dialog[open] :is(input, textarea) {
+    cursor: text !important;
+  }
+  html.custom-cursor-enabled dialog::backdrop {
+    cursor: default !important;
+  }
+  html:has(dialog[open]) :is(.custom-cursor-dot-container, .custom-cursor-ring-container) {
+    visibility: hidden;
+  }
 }
 
 .custom-cursor-dot-container,
