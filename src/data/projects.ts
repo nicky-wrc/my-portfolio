@@ -109,6 +109,8 @@ const expenseTrackerScreenshots = [
   "6de4c04d-1487-4a93-b5a6-ce632e85c04c.jpg",
 ].map((filename) => `/Expense/${filename}`);
 
+const faceRecognitionScreenshots = ["/Faceimage/2.png"];
+
 export const projects: Project[] = [
   {
     slug: "face-recognition-attendance",
@@ -128,6 +130,8 @@ export const projects: Project[] = [
     tags: ["Python", "OpenCV", "Deep Learning", "NumPy", "Pandas", "Tkinter", "SQLite", "Face Recognition", "Computer Vision", "AI"],
     category: "Web App",
     image: "/AnyConv.com__CPKKU.jpg",
+    previewImage: "/Faceimage/1.png",
+    screenshots: faceRecognitionScreenshots,
     githubUrl: "https://github.com/nicky-wrc/Face-Recognition-Attendance-project",
   },
   {
