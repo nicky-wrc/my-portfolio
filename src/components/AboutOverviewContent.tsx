@@ -9,6 +9,9 @@ import {
   Linkedin,
   Instagram,
   Code2,
+  BriefcaseBusiness,
+  Building2,
+  CalendarDays,
   GraduationCap,
   MapPin,
 } from "lucide-react";
@@ -16,6 +19,29 @@ import AboutHeader from "@/components/sections/About/AboutHeader";
 import { siteConfig } from "@/data/site";
 import { projects } from "@/data/projects";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+const internshipHighlights = [
+  {
+    title: "Client-Centric Web Solutions",
+    description:
+      "Developed and maintained responsive web applications and dynamic websites across diverse industries, translating custom client business requirements into functional, scalable digital solutions.",
+  },
+  {
+    title: "Full-Stack Implementation",
+    description:
+      "Engineered end-to-end features using modern frontend technologies and backend services, ensuring high performance, cross-browser responsiveness, and seamless user experiences.",
+  },
+  {
+    title: "CMS & WordPress Customization",
+    description:
+      "Built tailored WordPress solutions through custom themes, plugin integrations, and REST APIs, while improving site loading speed, SEO, and content management for clients.",
+  },
+  {
+    title: "Agile Delivery & Deployment",
+    description:
+      "Collaborated with project managers and design teams to deliver multiple client projects on schedule, assisting with database configuration, debugging, and production deployments.",
+  },
+];
 
 export default function AboutOverviewContent() {
   const entrance = useScrollReveal({ image: true, distance: 30 });
@@ -178,6 +204,46 @@ export default function AboutOverviewContent() {
           </a>
         </motion.article>
       </div>
+      <motion.section
+        {...entrance}
+        className="about-experience glass-card"
+        aria-labelledby="internship-experience-title"
+      >
+        <div className="experience-heading">
+          <div className="experience-icon" aria-hidden="true">
+            <BriefcaseBusiness />
+          </div>
+          <div>
+            <p className="micro-label">INTERNSHIP EXPERIENCE</p>
+            <h2 id="internship-experience-title">
+              Full-Stack Web Developer Intern
+            </h2>
+          </div>
+        </div>
+        <div className="experience-meta">
+          <span>
+            <Building2 aria-hidden="true" />
+            The Business SEO Company Limited
+          </span>
+          <span>
+            <CalendarDays aria-hidden="true" />
+            May 2026 — Jun 2026
+          </span>
+        </div>
+        <ol className="experience-highlights">
+          {internshipHighlights.map((highlight, index) => (
+            <li key={highlight.title}>
+              <span className="experience-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3>{highlight.title}</h3>
+                <p>{highlight.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </motion.section>
       <motion.div {...entrance} className="about-story">
         <p className="micro-label">THE WAY I WORK</p>
         <p>
